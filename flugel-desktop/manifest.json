@@ -12094,6 +12094,13 @@
       "sha256": "95c58ecada6a0608b92b234cf5c891418b440c2d62467f259d6673d8a2e10bc3",
       "bytes": 2297621,
       "kind": "referenced visual asset"
+    },
+    {
+      "source": "/home/flugel/.local/state/pip-konum-monitor",
+      "path": "flugel-desktop/home/.local/state/pip-konum-monitor",
+      "sha256": "824577fccf2146e20c1138a9e04b9880d547798dce2f996b47bb7f2b83b4e0ab",
+      "bytes": 49,
+      "kind": "persistent PiP monitor placement preference"
     }
   ]
 }

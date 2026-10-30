@@ -822,6 +822,7 @@ home/.local/share/user-places.xbel	6780	a984a73376fe3f1753accf25dab754ea0c4f3006
 home/.local/state/arayuz-secimi	8	b4fa4317e6849cb827e15f831b3588749f4e54df7d7470072bea91d388b19ed4	Masaüstü ayarı / kaynak belgesi
 home/.local/state/caelestia/scheme.json	3180	76e93164fe19d9fe7d403adeb8852b37bdd6fe36398826d3143bb64a541285b1	Masaüstü ayarı / kaynak belgesi
 home/.local/state/caelestia/sequences.txt	465	ffb9709f706f96db2cbd40cf9ad35eebfcf2fd04354e0680df5b4a49392e1bf0	Masaüstü ayarı / kaynak belgesi
+home/.local/state/pip-konum-monitor	49	824577fccf2146e20c1138a9e04b9880d547798dce2f996b47bb7f2b83b4e0ab	PiP monitör konum ve boyut tercihi
 home/.local/state/quickshell/user/generated/color.txt	7	0660f5cf3aaa990a5f4efbbc65670049d6928d9707e238fc5514f206b4772164	Etkin üretilmiş renk paleti
 home/.local/state/quickshell/user/generated/colors-lock.json	1578	8f51836ae2eb5e050a00b7970cf5cae954c3d815e16d770abed668dd157860a5	Etkin üretilmiş renk paleti
 home/.local/state/quickshell/user/generated/colors.json	1578	d14a873a34b3c973a5aadac6b1b309afe8c73910b9cf412af0e9f8a066903b66	Etkin üretilmiş renk paleti
@@ -862,7 +863,7 @@ licenses/caelestia-dots/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b2
 licenses/caelestia-shell-aw/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
 licenses/end4-pC/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
 licenses/mpvpaper/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
-manifest.json	555622	2eeaf66a4fcd466f12b2bb4a594ff227f7830348576bc02bf6c873c4d90daea7	Masaüstü ayarı / kaynak belgesi
+manifest.json	555929	3eeedc6af8b0a9f66ba0421a0c70c060c8157628884384b7db9971952c4b78bf	Masaüstü ayarı / kaynak belgesi
 missing-original-paths.json	3	37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570	Masaüstü ayarı / kaynak belgesi
 packages/explicit-foreign.txt	280	fa46dd94ce58f299f829a39f01a682111599cdf9babfe171c0a9e3e2a192d708	Paket/sürüm envanteri
 packages/explicit-repository.txt	3658	0810c6fd51fb6c4d2b4e0148b1a7faabff7fc8c432c86b90fc1066426a6d9c6b	Paket/sürüm envanteri
