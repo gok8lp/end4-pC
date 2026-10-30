@@ -100,6 +100,9 @@ Item {
         animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
     }
 
+    // Fareyle üstüne gelince dock simgeleri gibi akıcı büyüme (kart alttan, kapak biraz daha fazla)
+    HoverHandler { id: medyaHover }
+
     StyledRectangularShadow {
         target: card
         visible: root.hasTrack
@@ -107,6 +110,11 @@ Item {
 
     Rectangle {
         id: card
+        transformOrigin: DockStyle.vertical ? Item.Center : Item.Bottom
+        scale: medyaHover.hovered ? 1.06 : 1
+        Behavior on scale {
+            NumberAnimation { duration: 240; easing.type: Easing.OutCubic }
+        }
         anchors.fill:         parent
         anchors.topMargin:    Appearance.sizes.hyprlandGapsOut
         anchors.bottomMargin: Appearance.sizes.hyprlandGapsOut
@@ -171,6 +179,10 @@ Item {
                 Layout.topMargin:  DockStyle.vertical ? root.artMargin + 2 : 0
                 implicitWidth:     36
                 implicitHeight:    36
+                scale: medyaHover.hovered ? 1.12 : 1
+                Behavior on scale {
+                    NumberAnimation { duration: 280; easing.type: Easing.OutBack; easing.overshoot: 1.4 }
+                }
                 color:  ColorUtils.transparentize(root.blendedColors.colLayer1, 0.5)
                 radius: Appearance.rounding.small
 

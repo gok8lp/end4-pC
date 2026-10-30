@@ -217,6 +217,7 @@ Singleton {
 
     function discardAllNotifications() {
         root.list = []
+        root.unread = 0
         triggerListChange()
         notifFileView.setText(stringifyList(root.list));
         notifServer.trackedNotifications.values.forEach((notif) => {
@@ -323,5 +324,11 @@ Singleton {
                 console.log("[Notifications] Error loading file: " + error)
             }
         }
+    }
+
+    // Caelestia'daki Ctrl+Alt+C (clearNotifs) davranışı: bütün bildirimleri temizle
+    IpcHandler {
+        target: "notifications"
+        function clearAll(): void { root.discardAllNotifications(); }
     }
 }

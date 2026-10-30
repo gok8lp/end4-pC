@@ -52,6 +52,9 @@ Item {
     Shape {
         id: shape
         visible: !root.glassOn
+        // Açık boyut: boyutsuz Shape, sağ/alt köşelerde pencere dışına düşüyor ve çerçeve köşeleri hiç çizilmiyordu
+        width: root.implicitSize
+        height: root.implicitSize
         x: root.isLeft ? root.leftVisualMargin : root.width - shape.width - root.rightVisualMargin
         y: root.isTop ? root.topVisualMargin : root.height - shape.height - root.bottomVisualMargin
         layer.enabled: true

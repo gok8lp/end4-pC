@@ -48,7 +48,9 @@ Scope {
         id: cornerPanelWindow
         property var corner
 
-        visible: Config.options.bar.showFrame 
+        // Köşe, iki komşu kenarda da çerçeve varsa anlamlı; yoksa (ör. Hug stilinde üst kenar) boşlukta asılı kalır
+        visible: root.frameVisibleFor(cornerWidget.isTop ? "top" : "bottom")
+            && root.frameVisibleFor(cornerWidget.isLeft ? "left" : "right")
         exclusionMode: ExclusionMode.Ignore
         mask: Region {}
         WlrLayershell.namespace: "quickshell:screenframe-corner"
@@ -76,8 +78,10 @@ Scope {
             id: cornerWidget
             anchors.fill: parent
             corner: cornerPanelWindow.corner
-            implicitSize: Math.max(0, Appearance.rounding.screenRounding - root.frameThickness)
-            color: root.frameColor
+            // Üstteki dış ekran köşesiyle aynı yarıçap: 23-8=15 px koyu duvar kağıdında neredeyse görünmüyordu
+            implicitSize: Appearance.rounding.screenRounding
+            // Opak: yarı saydam layer0 rengi bu katmanlı Shape'te bozuk karışıyor ve köşe görünmüyordu
+            color: Qt.rgba(root.frameColor.r, root.frameColor.g, root.frameColor.b, 1)
         }
     }
 

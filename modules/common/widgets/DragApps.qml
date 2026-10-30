@@ -178,9 +178,7 @@ Item {
                         slotItem.deskEntry?.execute()
                         return
                     }
-                    const next = (slotItem._lastFocused + 1) % entry.toplevels.length
-                    slotItem._lastFocused = next
-                    entry.toplevels[next].activate()
+                    Quickshell.execDetached([Quickshell.env("HOME") + "/.local/bin/pencere-kucult", "dock", slotItem.appId])
                 }
 
                 middleClickAction: () => { slotItem.deskEntry?.execute() }

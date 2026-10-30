@@ -13,6 +13,7 @@ import Quickshell.Hyprland
 
 Scope {
     id: overviewScope
+    property bool showWorkspaces: false
     property bool dontAutoCancelSearch: false
 
     PanelWindow {
@@ -141,7 +142,7 @@ Scope {
 
             Loader {
                 id: overviewLoader
-                active: GlobalStates.overviewOpen && (Config?.options.overview.enable ?? true)
+                active: GlobalStates.overviewOpen && overviewScope.showWorkspaces && (Config?.options.overview.enable ?? true)
                 sourceComponent: (Config?.options.overview.style ?? "default") === "niri" ? niriComponent : defaultComponent
 
                 Component {
@@ -197,10 +198,13 @@ Scope {
     IpcHandler {
         target: "search"
 
+        // Windows tuşu = yalnız başlatıcı/arama (Caelestia'daki gibi); çalışma alanı ızgarası yalnız workspacesToggle ile
         function toggle() {
+            overviewScope.showWorkspaces = false;
             GlobalStates.overviewOpen = !GlobalStates.overviewOpen;
         }
         function workspacesToggle() {
+            overviewScope.showWorkspaces = true;
             GlobalStates.overviewOpen = !GlobalStates.overviewOpen;
         }
         function close() {

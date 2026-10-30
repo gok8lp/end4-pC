@@ -65,6 +65,28 @@ ContentPage {
                 monitorConfig: monitorConfig
             }
 
+            RowLayout {
+                Layout.fillWidth: true
+                visible: monitorConfig.hasUnsaved
+                spacing: 8
+
+                StyledText {
+                    Layout.fillWidth: true
+                    text: Translation.tr("Kaydedilmemiş ekran değişiklikleri var")
+                    color: Appearance.colors.colSubtext
+                }
+                RippleButtonWithIcon {
+                    materialIcon: "close"
+                    mainText: Translation.tr("Vazgeç")
+                    onClicked: monitorConfig.discardAll()
+                }
+                RippleButtonWithIcon {
+                    materialIcon: "check"
+                    mainText: Translation.tr("Kaydet ve uygula")
+                    onClicked: monitorConfig.commitAll()
+                }
+            }
+
             ContentSubsection {
                 Layout.topMargin: 10
                 title: (monitorConfig.monitors[monitorCanvas.selectedIndex]?.name ?? "")
@@ -621,7 +643,7 @@ ContentPage {
                     }
                     ConfigSpinBox {
                         icon: "swipe"
-                        text: Translation.tr("Scroll factor")
+                        text: Translation.tr("Scroll speed (10 = default, lower = slower)")
                         value: Math.round(Config.options.hyprland.input.touchpad.scrollFactor * 10)
                         from: 1; to: 30; stepSize: 1
                         onValueChanged: {

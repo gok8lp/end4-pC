@@ -127,6 +127,38 @@ Item {
             source: "HyprlandXkbIndicator.qml"
             onLoaded: item.color = root.iconColor
         }
+        Item {
+            id: tailscaleItem
+            visible: TailscaleVpn.available
+            implicitWidth: tailscaleIcon.implicitWidth
+            implicitHeight: tailscaleIcon.implicitHeight
+
+            MaterialSymbol {
+                id: tailscaleIcon
+                anchors.centerIn: parent
+                text: TailscaleVpn.conflict ? "warning" : (TailscaleVpn.connected ? "vpn_lock" : "vpn_key_off")
+                iconSize: Appearance.font.pixelSize.larger
+                fill: TailscaleVpn.connected ? 1 : 0
+                color: TailscaleVpn.conflict ? Appearance.colors.colError
+                    : TailscaleVpn.connected ? root.iconColor : ColorUtils.transparentize(root.iconColor, 0.5)
+                opacity: TailscaleVpn.busy ? 0.5 : 1
+                Behavior on opacity { NumberAnimation { duration: 150 } }
+            }
+
+            MouseArea {
+                id: tailscaleMouse
+                anchors.fill: parent
+                anchors.margins: -3
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: TailscaleVpn.toggle()
+            }
+
+            StyledToolTip {
+                text: TailscaleVpn.tooltip
+                extraVisibleCondition: tailscaleMouse.containsMouse
+            }
+        }
         MaterialSymbol {
             text: Network.materialSymbol
             iconSize: Appearance.font.pixelSize.larger
@@ -180,7 +212,6 @@ Item {
             active: Notifications.silent || Notifications.unread > 0
             visible: active
             width: active ? item?.implicitWidth ?? 0 : 0
-            height: active ? item?.implicitHeight ?? 0 : 0
             source: "NotificationUnreadCount.qml"
         }
     }

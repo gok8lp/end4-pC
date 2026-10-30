@@ -311,7 +311,7 @@ Item {
 
                     sourceComponent: Visualizer {
                         vertical: false
-                        mirrored: false
+                        pcMirrored: false
                         barCount: 32
                         dotSize: 5
                         dotSpacing: 6

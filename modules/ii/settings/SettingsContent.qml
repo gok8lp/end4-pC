@@ -19,6 +19,17 @@ Item {
     property bool isMinimal: Config.options.settings.style === "minimal"
 
     function goToTarget(target) {
+        if (target.page === "profile") {
+            root.showingProfile = true;
+            profileLoader.active = true;
+            const scrollToPresets = () => profileLoader.item?.goTo("Presets", "Presets", "");
+            if (profileLoader.item) Qt.callLater(scrollToPresets);
+            else {
+                const onceLoaded = () => { profileLoader.loaded.disconnect(onceLoaded); Qt.callLater(scrollToPresets); };
+                profileLoader.loaded.connect(onceLoaded);
+            }
+            return;
+        }
         const idx = root.pages.findIndex(p => p.id === target.page);
         if (idx < 0) return;
         root.currentPage = idx;

@@ -106,22 +106,47 @@ Rectangle {
     }
 
     function snapPosition(px, py) {
-        let sx = px, sy = py
         const thresh = snapThreshold / scaleFactor
+        let sx = px, sy = py
+        let bestX = thresh, bestY = thresh
+        // En yakın kenar kazanır (son eşleşen değil)
         for (let i = 0; i < allMonitors.length; i++) {
             if (i === monitorIndex) continue
             const other = allMonitors[i]
             if (other.disabled) continue
             const ow = monitorConfig.logicalWidth(other)
             const oh = monitorConfig.logicalHeight(other)
-            if (Math.abs(px - other.x) < thresh)                 sx = other.x
-            if (Math.abs(px - (other.x + ow)) < thresh)          sx = other.x + ow
-            if (Math.abs((px + logW) - other.x) < thresh)        sx = other.x - logW
-            if (Math.abs((px + logW) - (other.x + ow)) < thresh) sx = other.x + ow - logW
-            if (Math.abs(py - other.y) < thresh)                 sy = other.y
-            if (Math.abs(py - (other.y + oh)) < thresh)          sy = other.y + oh
-            if (Math.abs((py + logH) - other.y) < thresh)        sy = other.y - logH
-            if (Math.abs((py + logH) - (other.y + oh)) < thresh) sy = other.y + oh - logH
+            for (const c of [other.x, other.x + ow, other.x - logW, other.x + ow - logW]) {
+                const d = Math.abs(px - c)
+                if (d < bestX) { bestX = d; sx = c }
+            }
+            for (const c of [other.y, other.y + oh, other.y - logH, other.y + oh - logH]) {
+                const d = Math.abs(py - c)
+                if (d < bestY) { bestY = d; sy = c }
+            }
+        }
+        // Üst üste binme kalırsa iptal etmek yerine en yakın kenara yapıştır
+        for (let pass = 0; pass < 3; pass++) {
+            let moved = false
+            for (let i = 0; i < allMonitors.length; i++) {
+                if (i === monitorIndex) continue
+                const o = allMonitors[i]
+                if (o.disabled) continue
+                const ow = monitorConfig.logicalWidth(o)
+                const oh = monitorConfig.logicalHeight(o)
+                if (!(sx < o.x + ow && sx + logW > o.x && sy < o.y + oh && sy + logH > o.y)) continue
+                const moves = [
+                    { d: (sx + logW) - o.x, x: o.x - logW, y: sy },
+                    { d: (o.x + ow) - sx,   x: o.x + ow,   y: sy },
+                    { d: (sy + logH) - o.y, x: sx, y: o.y - logH },
+                    { d: (o.y + oh) - sy,   x: sx, y: o.y + oh }
+                ]
+                moves.sort((a, b) => a.d - b.d)
+                sx = moves[0].x
+                sy = moves[0].y
+                moved = true
+            }
+            if (!moved) break
         }
         return Qt.point(sx, sy)
     }

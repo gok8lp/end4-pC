@@ -66,8 +66,8 @@ DockButton {
             root.desktopEntry?.execute();
             return;
         }
-        lastFocused = (lastFocused + 1) % appToplevel.toplevels.length
-        appToplevel.toplevels[lastFocused].activate()
+        // Windows görev çubuğu gibi: odaktaysa küçült, küçültülmüşse geri getir, değilse öne getir
+        Quickshell.execDetached([Quickshell.env("HOME") + "/.local/bin/pencere-kucult", "dock", appToplevel.appId])
     }
 
     middleClickAction: () => {

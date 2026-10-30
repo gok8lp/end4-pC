@@ -172,6 +172,15 @@ Scope {
         function toggle(): void { GlobalStates.settingsOpen = !GlobalStates.settingsOpen; }
         function open(): void   { GlobalStates.settingsOpen = true; }
         function close(): void  { GlobalStates.settingsOpen = false; }
+        function openPage(id: string): void {
+            GlobalStates.openSettingsAt(id, "", "", "");
+        }
+        function openSection(id: string, label: string): void {
+            GlobalStates.openSettingsAt(id, label, "", "");
+        }
+        function openPresets(): void {
+            GlobalStates.openSettingsAt("profile", "", "", "");
+        }
     }
 
     CompositorGlobalShortcut {

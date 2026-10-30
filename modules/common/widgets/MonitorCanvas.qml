@@ -97,13 +97,17 @@ Item {
     }
 
     function commitPosition(idx, newX, newY) {
-        const normalized = computeNormalized(monitorConfig.monitors, idx, newX, newY)
-        monitorConfig.monitors = normalized
+        const old = monitorConfig.monitors
+        const normalized = computeNormalized(old, idx, newX, newY)
         root.previewPositions = {}
         for (let i = 0; i < normalized.length; i++) {
-            monitorConfig.applyMonitor(normalized[i])
+            if (normalized[i].x !== old[i].x || normalized[i].y !== old[i].y)
+            {
+                monitorConfig.updateMonitor(i, { x: normalized[i].x, y: normalized[i].y })
+                // Niri modelinde bekletme yok: eski davranış (hemen uygula + kaydet)
+                if (monitorConfig.commitAll === undefined) monitorConfig.applyAndSave(i)
+            }
         }
-        monitorConfig.save()
     }
 
     Rectangle {

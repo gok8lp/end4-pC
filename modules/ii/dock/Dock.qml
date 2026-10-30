@@ -322,7 +322,7 @@ Scope {
                             }
 
                             DockAppsButton {
-                                onClicked: GlobalStates.overviewOpen = !GlobalStates.overviewOpen
+                                onClicked: Quickshell.execDetached(["bash", "-c", "$HOME/.local/bin/izgara-ac"])
                             }
                         }
                     }

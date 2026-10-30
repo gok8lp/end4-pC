@@ -113,12 +113,39 @@ NestableObject {
         for (const key in setPairs) args.push("--set", key, String(setPairs[key]))
         for (const key of resetKeys) args.push("--reset", key)
 
-        saveProc.command = args
-        saveProc.running = true
+        root._saveQueue = root._saveQueue.concat([args])
 
         let pending = Object.assign({}, root._pendingChanges)
         delete pending[index]
         root._pendingChanges = pending
+    }
+
+    // Değişiklikler önce bekletilir; "Kaydet" ile dosyaya yazılıp hyprctl reload ile uygulanır.
+    property var _saveQueue: []
+    readonly property bool hasUnsaved: Object.keys(root._pendingChanges).length > 0
+
+    function _runNextSave() {
+        if (saveProc.running) return
+        if (root._saveQueue.length === 0) {
+            reloadProc.running = true
+            return
+        }
+        const q = root._saveQueue.slice()
+        saveProc.command = q.shift()
+        root._saveQueue = q
+        saveProc.running = true
+    }
+
+    function commitAll() {
+        const indexes = Object.keys(root._pendingChanges).map(Number)
+        if (indexes.length === 0) return
+        for (const i of indexes) root.save(i)
+        root._runNextSave()
+    }
+
+    function discardAll() {
+        root._pendingChanges = ({})
+        fetchProc.running = true
     }
 
     function applyMonitor(m) {
@@ -135,8 +162,7 @@ NestableObject {
     }
 
     function applyAndSave(index) {
-        root.applyMonitor(root.monitors[index])
-        root.save(index)
+        // Bekletilir; updateMonitor zaten _pendingChanges'e yazdı.
     }
 
     function saveHdr(index) {
@@ -144,11 +170,13 @@ NestableObject {
     }
 
     function logicalWidth(m) {
-        return (m.transform === 1 || m.transform === 3) ? m.height : m.width
+        const w = (m.transform === 1 || m.transform === 3) ? m.height : m.width
+        return Math.round(w / (m.scale || 1))
     }
 
     function logicalHeight(m) {
-        return (m.transform === 1 || m.transform === 3) ? m.width : m.height
+        const h = (m.transform === 1 || m.transform === 3) ? m.width : m.height
+        return Math.round(h / (m.scale || 1))
     }
 
     Process {
@@ -243,7 +271,7 @@ NestableObject {
 
     Process {
         id: saveProc
-        onRunningChanged: if (!running) reloadProc.running = true
+        onRunningChanged: if (!running) root._runNextSave()
     }
 
     Process {
