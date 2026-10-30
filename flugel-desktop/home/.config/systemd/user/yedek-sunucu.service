@@ -1,0 +1,8 @@
+[Unit]
+Description=PC dosyalarını home server'a yedekle (yedek-sunucu)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/yedek-sunucu
+Nice=15
+IOSchedulingClass=idle

@@ -1,0 +1,27 @@
+#!/bin/bash
+# yedek-geri — sunucudaki yedeklerden geri dönüş.
+#   yedek-geri liste                       → anlık görüntüleri listele
+#   yedek-geri bak  <yol> [snap]            → o yolun yedekteki içeriğini göster (örn. .config/hypr/hyprland.lua)
+#   yedek-geri geri <yol> [snap] [--uygula] → varsayılan KURU: neyin değişeceğini gösterir; --uygula ile geri yükler.
+#                                             Üzerine yazılan mevcut dosyalar önce ~/.local/state/yedek-geri/<tarih>/ altına alınır.
+set -u
+SUNUCU=flugel@192.168.0.15; ANAHTAR="$HOME/.ssh/id_ed25519_homeserver"; HEDEF=/mnt/side/backups/linux-pc
+SSH="ssh -o BatchMode=yes -o ConnectTimeout=6 -i $ANAHTAR"
+komut="${1:-liste}"; shift || true
+snaplar(){ $SSH "$SUNUCU" "ls -1 $HEDEF/snap | grep -v partial"; }
+case "$komut" in
+  liste) snaplar | while read -r d; do printf '%s  %s\n' "$d" "$($SSH "$SUNUCU" "du -sh --apparent-size $HEDEF/snap/$d 2>/dev/null | cut -f1")"; done ;;
+  bak) yol="${1:?yol ver}"; snap="${2:-$(snaplar | tail -1)}"; $SSH "$SUNUCU" "ls -la $HEDEF/snap/$snap/$yol" ;;
+  geri)
+    yol="${1:?yol ver}"; snap=""; uygula=""
+    for a in "${@:2}"; do [ "$a" = --uygula ] && uygula=1 || snap="$a"; done
+    snap="${snap:-$(snaplar | tail -1)}"; yol="${yol#$HOME/}"
+    kaynak="$SUNUCU:$HEDEF/snap/$snap/$yol"; hedef="$HOME/$yol"
+    if [ -z "$uygula" ]; then echo "KURU çalıştırma ($snap → $hedef); uygulamak için --uygula ekle:"; rsync -aHn --itemize-changes -e "$SSH" "$kaynak${yol:+}" "$(dirname "$hedef")/"
+    else
+      onceki="$HOME/.local/state/yedek-geri/$(date +%Y%m%d-%H%M%S)"; mkdir -p "$onceki/$(dirname "$yol")"
+      [ -e "$hedef" ] && cp -a "$hedef" "$onceki/$(dirname "$yol")/"
+      rsync -aH -e "$SSH" "$kaynak" "$(dirname "$hedef")/" && echo "Geri yüklendi: $yol (önceki hâli: $onceki)"
+    fi ;;
+  *) sed -n 2,7p "$0"; exit 2 ;;
+esac

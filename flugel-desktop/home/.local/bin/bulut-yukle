@@ -1,0 +1,21 @@
+#!/bin/bash
+# bulut-yukle immich dosya...  — Dolphin sağ tık menüsünden çağrılır; ek paket gerektirmez (curl).
+hedef="$1"; shift
+AYAR="$HOME/.config/bulut-yukle/ayar"; [ -r "$AYAR" ] && . "$AYAR"
+bildir(){ notify-send -a "Bulut yükleme" "$1" "$2" 2>/dev/null; echo "$1 — $2"; }
+ok=0; hata=0
+case "$hedef" in
+  immich)
+    [ -n "$IMMICH_KEY" ] || { bildir "Immich girişi yok" "Terminalde 'bulut-giris' çalıştırıp API anahtarını kaydet."; exit 1; }
+    for f in "$@"; do
+      [ -f "$f" ] || continue
+      ctime=$(date -u -d "@$(stat -c %W "$f" | sed 's/^0$/'"$(stat -c %Y "$f")"'/')" +%Y-%m-%dT%H:%M:%S.000Z)
+      mtime=$(date -u -d "@$(stat -c %Y "$f")" +%Y-%m-%dT%H:%M:%S.000Z)
+      kod=$(curl -s -m 600 -o /tmp/bulut-yukle.out -w '%{http_code}' -H "x-api-key: $IMMICH_KEY" -H "Accept: application/json" \
+        -F "deviceAssetId=$(basename "$f")-$(stat -c %Y "$f")" -F "deviceId=flugel-linux-dolphin" \
+        -F "fileCreatedAt=$ctime" -F "fileModifiedAt=$mtime" -F "assetData=@$f" "$IMMICH_URL/api/assets")
+      if [ "$kod" = 200 ] || [ "$kod" = 201 ]; then ok=$((ok+1)); else hata=$((hata+1)); echo "HATA $kod: $f $(cat /tmp/bulut-yukle.out)"; fi
+    done; rm -f /tmp/bulut-yukle.out
+    bildir "Immich" "$ok yüklendi, $hata hata" ;;
+  *) echo "kullanım: bulut-yukle immich dosya..." >&2; exit 2 ;;
+esac

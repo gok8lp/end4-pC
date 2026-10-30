@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=image/*;video/*;application/octet-stream;application/pdf;text/plain;
+Actions=ImmichYukle;BulutGiris
+X-KDE-Submenu=Immich
+Icon=cloud-upload
+
+[Desktop Action ImmichYukle]
+Name=Immich'e yükle
+Icon=folder-photo
+Exec=bulut-yukle immich %F
+
+[Desktop Action BulutGiris]
+Name=Immich girişini ayarla (bir kez)
+Icon=configure
+Exec=foot -e bulut-giris

@@ -1,0 +1,14 @@
+#!/bin/bash
+# bulut-giris — Immich API anahtarını BİR KEZ kaydeder (~/.config/bulut-yukle/ayar, izin 600).
+# Anahtar/parola ekranda görünmez, hiçbir yere gönderilmez; yalnız sunucuya doğrulama isteği gider.
+AYAR="$HOME/.config/bulut-yukle/ayar"; mkdir -p "$(dirname "$AYAR")"; touch "$AYAR"; chmod 600 "$AYAR"
+IMMICH_URL="${IMMICH_URL:-http://flugelserver.tail42f1f4.ts.net:2283}"
+echo "== Immich =="; echo "Immich > Hesap ayarları > API anahtarları > yeni anahtar oluştur (izin: asset.upload, user.read)."
+read -r -s -p "Immich API anahtarı (boş = atla): " IK; echo
+if [ -n "$IK" ]; then
+  kod=$(curl -s -m 10 -o /dev/null -w '%{http_code}' -H "x-api-key: $IK" "$IMMICH_URL/api/users/me")
+  if [ "$kod" = 200 ]; then sed -i '/^IMMICH_/d' "$AYAR"; printf 'IMMICH_URL=%q\nIMMICH_KEY=%q\n' "$IMMICH_URL" "$IK" >> "$AYAR"; echo "Immich: doğrulandı ve kaydedildi."
+  else echo "Immich: anahtar reddedildi (HTTP $kod); kaydedilmedi."; fi
+fi
+echo; echo "Nextcloud için Dolphin yer imi (WebDAV) yeterli: ilk açılışta kullanıcı + uygulama parolası ve sertifika onayı sorar."
+read -r -p "Bitti. Enter'a bas…" _

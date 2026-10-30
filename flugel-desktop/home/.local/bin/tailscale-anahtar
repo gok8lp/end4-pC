@@ -1,0 +1,13 @@
+#!/bin/bash
+# tailscale-anahtar — Tailscale'i tek tuşla aç/kapat. Mullvad'a ve çıkış düğümü ayarlarına DOKUNMAZ.
+# Mullvad bağlıyken Tailscale IP trafiği Mullvad güvenlik duvarı tarafından engellenir (ölçüldü); bu yüzden uyarı verir.
+d=$(~/.local/bin/tailscale-durum); ts=$(sed -n 's/.*ts=\([a-z]*\).*/\1/p' <<<"$d"); mv=$(sed -n 's/.*mullvad=\([a-z]*\).*/\1/p' <<<"$d")
+bildir(){ notify-send -a Tailscale "$1" "$2" 2>/dev/null; echo "$1 — $2"; }
+case "$ts" in
+  running) tailscale down && bildir "Tailscale kapatıldı" "Mullvad durumu değişmedi ($mv)." ;;
+  stopped) if tailscale up --timeout 20s; then
+             if [ "$mv" = connected ]; then bildir "Tailscale açıldı — DİKKAT" "Mullvad bağlı: Tailscale IP trafiği engelleniyor. LAN adresleri çalışır."
+             else bildir "Tailscale açıldı" "Mullvad bağlı değil, çakışma yok."; fi
+           else bildir "Tailscale açılamadı" "tailscale up hata verdi (oturum gerekebilir)."; exit 1; fi ;;
+  *) bildir "Tailscale bulunamadı" "tailscale komutu/daemon yok."; exit 1 ;;
+esac

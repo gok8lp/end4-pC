@@ -1,0 +1,11 @@
+[Unit]
+Description=Taildrop: gelen dosyaları ~/Downloads/Taildrop klasörüne al
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/tailscale file get --loop --conflict=rename %h/Downloads/Taildrop
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

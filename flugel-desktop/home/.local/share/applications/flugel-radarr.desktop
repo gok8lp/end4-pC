@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Radarr
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:7878/
+Exec=/usr/bin/google-chrome-stable --app=http://flugelserver.tail42f1f4.ts.net:7878/
+Icon=radarr
+Categories=Network;

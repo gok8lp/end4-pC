@@ -1,0 +1,59 @@
+
+* { font-family: "Rubik", "Noto Sans", sans-serif; }
+
+window {
+    background-color: rgba(25, 18, 16, 0.68);
+    color: #eedfdc;
+}
+
+/* arama kutusu */
+entry {
+    min-height: 44px;
+    min-width: 520px;
+    margin: 28px 0 8px 0;
+    padding: 0 18px;
+    font-size: 17px;
+    border-radius: 999px;
+    border: 2px solid rgba(84, 67, 63, 0.6);
+    background-color: #302826;
+    color: #eedfdc;
+    box-shadow: none;
+}
+entry:focus { border-color: #ffb4a5; }
+
+button, image { background: none; border: none; box-shadow: none; }
+#category-button image { margin-right: 6px; min-height: 0; padding: 0; }
+#category-button label { padding: 7px 0; min-height: 0; }
+
+/* uygulama düğmeleri */
+button {
+    border-radius: 22px;
+    padding: 10px 6px;
+    margin: 4px;
+    color: #eedfdc;
+    font-size: 13px;
+    transition: background-color 120ms ease;
+}
+button:hover, button:focus {
+    background-color: rgba(225, 137, 119, 0.85);
+    color: #612418;
+}
+
+/* kategori düğmeleri */
+#category-button {
+    margin: 0 3px 14px 3px;
+    padding: 0 14px;
+    min-height: 0;
+    border-radius: 999px;
+    font-size: 13px;
+    background-color: rgba(48, 40, 38, 0.9);
+}
+#category-button:checked, #category-button:hover {
+    background-color: #ffb4a5;
+    color: #581d12;
+}
+
+#pinned-box { padding-bottom: 10px; border-bottom: 1px solid rgba(84, 67, 63, 0.5); }
+#files-box { padding: 8px; border: 1px solid rgba(84, 67, 63, 0.5); border-radius: 22px; }
+#math-label { font-weight: bold; font-size: 18px; }
+label { color: #d9c1bc; }

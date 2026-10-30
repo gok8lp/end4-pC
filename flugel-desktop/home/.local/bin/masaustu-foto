@@ -1,0 +1,7 @@
+#!/bin/bash
+# masaustu-foto <dosya> [ölçek] — eDP-1'de boş bir çalışma alanına geçip yalnız duvar kâğıdı + widget'ları görüntüler, sonra geri döner.
+hyprctl dispatch 'hl.dsp.focus({ monitor = "eDP-1" })' >/dev/null
+onceki=$(hyprctl -j monitors | python3 -c "import json,sys;print([m['activeWorkspace']['name'] for m in json.load(sys.stdin) if m['name']=='eDP-1'][0])")
+hyprctl dispatch 'hl.dsp.focus({ workspace = "6" })' >/dev/null; sleep 3
+grim -o eDP-1 -s "${2:-0.5}" "$1"
+hyprctl dispatch "hl.dsp.focus({ workspace = \"$onceki\" })" >/dev/null

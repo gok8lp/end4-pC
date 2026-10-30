@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -eu
+if [[ $(cat "$HOME/.local/state/arayuz-secimi" 2>/dev/null) != end4-pC ]]; then
+  printf -v action 'hl.dsp.global("caelestia:%s")' "$1"
+  exec hyprctl dispatch "$action"
+fi
+case "$1" in
+launcher) qs ipc -c end4-pC call search toggle ;;
+session) qs ipc -c end4-pC call session toggle ;;
+sidebar) qs ipc -c end4-pC call sidebarRight toggle ;;
+lock) qs ipc -c end4-pC call lock activate ;;
+showall) qs ipc -c end4-pC call sidebarRight toggle; qs ipc -c end4-pC call search toggle ;;
+clearNotifs) qs ipc -c end4-pC call notifications clearAll ;;
+screenshotFreeze|screenshot) qs ipc -c end4-pC call region screenshot ;;
+brightnessUp) brightnessctl set +5% ;;
+brightnessDown) brightnessctl set 5%- ;;
+mediaToggle) playerctl play-pause ;;
+mediaNext) playerctl next ;;
+mediaPrev) playerctl previous ;;
+mediaStop) playerctl stop ;;
+*) printf -v action 'hl.dsp.global("caelestia:%s")' "$1"; hyprctl dispatch "$action" ;;
+esac

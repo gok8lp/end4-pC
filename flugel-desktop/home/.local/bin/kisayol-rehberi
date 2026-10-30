@@ -1,0 +1,421 @@
+#!/usr/bin/python3 -I
+# kisayol-rehberi — Super+H: sağ alttan kayarak açılan Hyprland kısayol öğretici (GTK3 + gtk-layer-shell).
+# Arka planda hazır bekler, SIGUSR1 ile açılır/kapanır (kisayol-ac). Arama kutusu, ok tuşlarıyla seçim,
+# seçili kısayol için tuş animasyonu; Enter / çift tık kısayolu gerçekten uygular (ydotool ile tuşlara basar).
+import json
+import os
+import signal
+import subprocess
+import sys
+from pathlib import Path
+
+import gi
+
+gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "3.0")
+gi.require_version("GtkLayerShell", "0.1")
+from gi.repository import Gdk, GLib, Gtk, GtkLayerShell  # noqa: E402
+
+HOME = Path.home()
+RENK = HOME / ".local/state/quickshell/user/generated/colors.json"
+SCHEME = HOME / ".local/state/caelestia/scheme.json"
+RUN = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp"))
+PIDFILE = RUN / "kisayol-rehberi.pid"
+YDOTOOL_SOCK = RUN / ".ydotool_socket"
+
+# Evdev tuş kodları (fiziksel tuşlar; düzenden bağımsız basılır)
+MOD = {"Super": 125, "Ctrl": 29, "Alt": 56, "Shift": 42}
+TUS = {**{c: k for c, k in zip("qwertyuiop", range(16, 26))}, **{c: k for c, k in zip("asdfghjkl", range(30, 39))},
+       **{c: k for c, k in zip("zxcvbnm", range(44, 51))}, **{str(i): 1 + i for i in range(1, 10)}, "0": 11,
+       "Space": 57, "Tab": 15, "Print": 99, "Delete": 111, "Esc": 1, "←": 105, "→": 106, "↑": 103, "↓": 108,
+       "PgUp": 104, "PgDn": 109, "F1": 59, "F10": 68, "F11": 87, "F12": 88, "-": 12, "=": 13, ",": 51, ".": 52, "*": 13}
+
+# (kategori, tuşlar, açıklama, uygulanabilir mi) — kaynak: ~/.config/hypr/variables.lua + caelestia/hypr-user.lua
+K = [
+    ("Pencere", "Super+Q", "Etkin pencereyi kapat", False),
+    ("Pencere", "Super+F", "Tam ekran aç/kapat", True),
+    ("Pencere", "Super+Alt+F", "Kenarlıklı tam ekran", True),
+    ("Pencere", "Super+Alt+Space", "Yüzen ↔ döşeme düzeni", True),
+    ("Pencere", "Super+P", "Pencereyi sabitle (tüm çalışma alanlarında görünür)", True),
+    ("Pencere", "Alt+Tab", "Pencereler arasında geç", True),
+    ("Pencere", "Super+Tab", "Pencere / uygulama ara", True),
+    ("Pencere", "Super+Z", "Sürükleyerek taşı (fare ile basılı tut)", False),
+    ("Pencere", "Super+X", "Sürükleyerek boyutlandır (fare ile basılı tut)", False),
+    ("Pencere", "Super+-", "Pencereyi daralt", True),
+    ("Pencere", "Super+*", "Pencereyi genişlet (TR klavyede * tuşu)", True),
+    ("Pencere", "Super+Alt+M", "Küçültülen Chrome penceresini geri getir", True),
+    ("Çalışma alanı", "Super+1…0", "1–10. çalışma alanına git", False),
+    ("Çalışma alanı", "Super+Alt+1…0", "Pencereyi o çalışma alanına taşı (gitme)", False),
+    ("Çalışma alanı", "Super+PgDn", "Sonraki çalışma alanı", True),
+    ("Çalışma alanı", "Super+PgUp", "Önceki çalışma alanı", True),
+    ("Çalışma alanı", "Super+S", "Özel (scratchpad) çalışma alanını aç/kapat", True),
+    ("Çalışma alanı", "Super+M", "Müzik çalışma alanı", True),
+    ("Çalışma alanı", "Super+D", "İletişim çalışma alanı", True),
+    ("Çalışma alanı", "Super+R", "Yapılacaklar çalışma alanı", True),
+    ("Gruplar", "Super+,", "Pencereyi grupla / gruptan çıkar", True),
+    ("Gruplar", "Super+U", "Grubu çöz", True),
+    ("Uygulamalar", "Super+T", "Terminal", True),
+    ("Uygulamalar", "Super+W", "Tarayıcı", True),
+    ("Uygulamalar", "Super+C", "Kod düzenleyici", True),
+    ("Uygulamalar", "Super+E", "Dosya yöneticisi (Dolphin)", True),
+    ("Uygulamalar", "Super+A", "Uygulama ızgarası (klasörler, pano, sabitlenenler)", True),
+    ("Uygulamalar", "Super+V", "Pano geçmişi", True),
+    ("Uygulamalar", "Super+.", "Emoji seçici", True),
+    ("Uygulamalar", "Ctrl+Alt+V", "Ses ayarları", True),
+    ("Uygulamalar", "Ctrl+Shift+Esc", "Sistem monitörü", True),
+    ("Ekran", "Print", "Ekran görüntüsü", True),
+    ("Ekran", "Super+Shift+S", "Ekranı dondurup bölge seç", True),
+    ("Ekran", "Ctrl+Alt+R", "Ekran kaydı başlat/durdur", True),
+    ("Ekran", "Super+Shift+C", "Renk seçici", True),
+    ("Medya", "Ctrl+Super+Space", "Oynat / duraklat", True),
+    ("Medya", "Ctrl+Super+-", "Önceki parça", True),
+    ("Medya", "Ctrl+Super+Backspace", "Medyayı durdur", False),
+    ("Medya", "Super+Shift+M", "Sesi kapat / aç", True),
+    ("Sistem", "Super", "Başlatıcı (Super'e tek basıp bırak)", False),
+    ("Sistem", "Super+N", "Yan panel", True),
+    ("Sistem", "Super+K", "Panelleri göster", True),
+    ("Sistem", "Super+L", "Ekranı kilitle", False),
+    ("Sistem", "Super+Shift+L", "Uyku", False),
+    ("Sistem", "Ctrl+Alt+Delete", "Oturum menüsü (kapat / yeniden başlat)", False),
+    ("Sistem", "Super+Ctrl+F12", "Arayüz seç (end4-pC / Caelestia)", True),
+    ("Sistem", "Super+Ctrl+F11", "Ayarlar (doğrudan Presets)", True),
+    ("Sistem", "Super+Ctrl+F10", "Hareketli duvar kâğıdı", True),
+    ("Sistem", "Super+H", "Bu kısayol rehberi (Help)", False),
+]
+
+
+def renkler():
+    try:
+        d = json.loads(RENK.read_text())
+        r = {}
+        for k, v in d.items():
+            if isinstance(v, str) and v.startswith("#") and len(v) >= 7:
+                p = k.split("_")
+                r[p[0] + "".join(x.title() for x in p[1:])] = v[1:7]
+        if r:
+            return r
+    except (OSError, ValueError):
+        pass
+    try:
+        return json.loads(SCHEME.read_text())["colours"]
+    except (OSError, ValueError, KeyError):
+        return {}
+
+
+def rgba(c, ad, yedek, a=1):
+    h = c.get(ad, yedek)
+    return f"rgba({int(h[0:2], 16)},{int(h[2:4], 16)},{int(h[4:6], 16)},{a})"
+
+
+def css_uret():
+    c = renkler()
+    fg = "#" + c.get("onSurface", "e6e2df")
+    alt = "#" + c.get("onSurfaceVariant", "c9c5bd")
+    pri = "#" + c.get("primary", "cac6b0")
+    return f"""
+    window#rehber {{ background: transparent; }}
+    #kart {{ background-color: {rgba(c, "surfaceContainer", "211f1e")}; border-radius: 26px;
+            border: 1px solid {rgba(c, "outlineVariant", "49473f", 0.8)}; }}
+    #baslik {{ color: {fg}; font-size: 18px; font-weight: bold; }}
+    #arama {{ min-height: 36px; border-radius: 999px; padding: 0 14px; color: {fg}; box-shadow: none;
+             background: {rgba(c, "surfaceContainerHigh", "2b2a28")}; border: 2px solid {rgba(c, "outlineVariant", "49473f", 0.6)}; }}
+    #arama:focus {{ border-color: {pri}; }}
+    #demo {{ background: {rgba(c, "surfaceContainerHighest", "373533")}; border-radius: 18px; }}
+    #demo-aciklama {{ color: {fg}; font-size: 13px; }}
+    .tus {{ min-width: 28px; padding: 6px 12px; border-radius: 10px; color: {fg}; font-weight: bold; font-size: 14px;
+           background: {rgba(c, "surfaceContainerHigh", "2b2a28")}; border-bottom: 4px solid {rgba(c, "outlineVariant", "49473f")}; }}
+    .tus.basili {{ background: {pri}; color: #{c.get("onPrimary", "1c1b1a")}; border-bottom-width: 1px; margin-top: 3px; }}
+    .tus-kucuk {{ padding: 2px 7px; border-radius: 7px; font-size: 11px; color: {fg}; font-weight: bold;
+                 background: {rgba(c, "surfaceContainerHigh", "2b2a28")}; border-bottom: 2px solid {rgba(c, "outlineVariant", "49473f")}; }}
+    list, row {{ background: transparent; }}
+    row {{ border-radius: 12px; padding: 6px 8px; }}
+    row:selected {{ background: {rgba(c, "primaryContainer", "4a4838")}; }}
+    row label.acik {{ color: {fg}; font-size: 13px; }}
+    .kategori {{ color: {alt}; font-size: 10px; font-weight: bold; letter-spacing: 1px; }}
+    .ipucu {{ color: {alt}; font-size: 11px; }}
+    scrolledwindow {{ background: transparent; }}
+    """
+
+
+def tuslari_ayir(metin):
+    return [p for p in metin.replace("+,", "+VIRGUL").split("+") if p] if metin != "Super+-" else ["Super", "-"]
+
+
+class Rehber(Gtk.Window):
+    GENISLIK, YUKSEKLIK, KENAR = 470, 640, 22
+
+    def __init__(self):
+        super().__init__(title="Kısayol rehberi")
+        self.set_name("rehber")
+        GtkLayerShell.init_for_window(self)
+        GtkLayerShell.set_namespace(self, "kisayol-rehberi")
+        GtkLayerShell.set_layer(self, GtkLayerShell.Layer.OVERLAY)
+        GtkLayerShell.set_keyboard_mode(self, GtkLayerShell.KeyboardMode.EXCLUSIVE)
+        GtkLayerShell.set_anchor(self, GtkLayerShell.Edge.BOTTOM, True)
+        GtkLayerShell.set_anchor(self, GtkLayerShell.Edge.RIGHT, True)
+        GtkLayerShell.set_exclusive_zone(self, -1)
+        self.set_app_paintable(True)
+        scr = self.get_screen()
+        if scr.get_rgba_visual():
+            self.set_visual(scr.get_rgba_visual())
+        self.css = Gtk.CssProvider()
+        Gtk.StyleContext.add_provider_for_screen(scr, self.css, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+        self.son_css = ""
+        self.anim = None
+        self.demo_zamanlayici = None
+        self.demo_adim = 0
+
+        kart = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, name="kart",
+                       margin_top=0, margin_bottom=0)
+        kart.set_size_request(self.GENISLIK, self.YUKSEKLIK)
+        ic = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin_top=16, margin_bottom=14,
+                     margin_start=16, margin_end=16)
+        kart.pack_start(ic, True, True, 0)
+        ic.pack_start(Gtk.Label(label="Hyprland kısayolları", name="baslik", xalign=0), False, False, 0)
+        self.arama = Gtk.SearchEntry(name="arama", placeholder_text="Kısayol veya iş ara…")
+        self.arama.connect("search-changed", lambda *_: self.liste.invalidate_filter())
+        ic.pack_start(self.arama, False, False, 0)
+
+        # animasyonlu tuş gösterimi
+        self.demo = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8, name="demo", margin_top=2)
+        self.demo.set_size_request(-1, 92)
+        self.demo_tuslar = Gtk.Box(spacing=6, halign=Gtk.Align.CENTER, margin_top=14)
+        self.demo_aciklama = Gtk.Label(name="demo-aciklama", wrap=True, justify=Gtk.Justification.CENTER)
+        self.demo.pack_start(self.demo_tuslar, False, False, 0)
+        self.demo.pack_start(self.demo_aciklama, False, False, 0)
+        ic.pack_start(self.demo, False, False, 0)
+
+        sc = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
+        self.liste = Gtk.ListBox(selection_mode=Gtk.SelectionMode.SINGLE, activate_on_single_click=False)
+        self.liste.set_filter_func(self.filtre)
+        self.liste.connect("row-selected", self.secildi)
+        self.liste.connect("row-activated", lambda _l, r: self.calistir(r))
+        self.liste.set_focus_vadjustment(sc.get_vadjustment())
+        self.satirlar = []
+        onceki = None
+        for kat, tus, acik, calis in K:
+            self.liste.add(self.satir_yap(kat, tus, acik, calis, kat != onceki))
+            onceki = kat
+        sc.add(self.liste)
+        ic.pack_start(sc, True, True, 0)
+        self.ipucu = Gtk.Label(label="↑↓ seç · Enter uygula · Esc kapat", name="ipucu", xalign=0)
+        self.ipucu.get_style_context().add_class("ipucu")
+        ic.pack_start(self.ipucu, False, False, 0)
+        self.add(kart)
+        self.connect("key-press-event", self.tus)
+        self.connect("delete-event", lambda *_: self.gizle() or True)
+
+    def satir_yap(self, kat, tus, acik, calis, yeni_kat):
+        row = Gtk.ListBoxRow()
+        row.veri = (kat, tus, acik, calis)
+        kutu = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
+        if yeni_kat:
+            k = Gtk.Label(label=kat.upper(), xalign=0, margin_top=4)
+            k.get_style_context().add_class("kategori")
+            kutu.pack_start(k, False, False, 0)
+        h = Gtk.Box(spacing=10)
+        tl = Gtk.Box(spacing=3)
+        tl.set_size_request(190, -1)
+        for t in tuslari_ayir(tus):
+            l = Gtk.Label(label="," if t == "VIRGUL" else t)
+            l.get_style_context().add_class("tus-kucuk")
+            tl.pack_start(l, False, False, 0)
+        a = Gtk.Label(label=acik + ("" if calis else "  ·  yalnız öğrenme"), xalign=0, wrap=True)
+        a.get_style_context().add_class("acik")
+        h.pack_start(tl, False, False, 0)
+        h.pack_start(a, True, True, 0)
+        kutu.pack_start(h, False, False, 0)
+        row.add(kutu)
+        row.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
+        return row
+
+    def filtre(self, row):
+        q = self.arama.get_text().strip().casefold()
+        if not q:
+            return True
+        kat, tus, acik, _ = row.veri
+        return q in f"{kat} {tus} {acik}".casefold()
+
+    # ---------- tuş animasyonu ----------
+    def secildi(self, _l, row):
+        if row is None:
+            return
+        kat, tus, acik, calis = row.veri
+        self.demo_acik = acik
+        self.demo_parcalar = [("," if t == "VIRGUL" else t) for t in tuslari_ayir(tus)]
+        for ch in self.demo_tuslar.get_children():
+            self.demo_tuslar.remove(ch)
+        self.demo_etiketler = []
+        for i, t in enumerate(self.demo_parcalar):
+            l = Gtk.Label(label=t)
+            l.get_style_context().add_class("tus")
+            self.demo_tuslar.pack_start(l, False, False, 0)
+            if i < len(self.demo_parcalar) - 1:
+                self.demo_tuslar.pack_start(Gtk.Label(label="+"), False, False, 0)
+            self.demo_etiketler.append(l)
+        self.demo_aciklama.set_text(acik)
+        self.demo_tuslar.show_all()
+        self.demo_adim = 0
+        if self.demo_zamanlayici is None:
+            self.demo_zamanlayici = GLib.timeout_add(420, self.demo_ilerle)
+
+    def demo_ilerle(self):
+        if not self.get_visible():
+            self.demo_zamanlayici = None
+            return False
+        n = len(self.demo_etiketler)
+        # 0..n-1: tuşları sırayla bas, n: hepsi basılı (uygula), n+1: bırak
+        adim = self.demo_adim % (n + 2)
+        for i, l in enumerate(self.demo_etiketler):
+            ctx = l.get_style_context()
+            if adim >= n or i <= adim:
+                ctx.add_class("basili")
+            else:
+                ctx.remove_class("basili")
+            if adim == n + 1:
+                ctx.remove_class("basili")
+        self.demo_adim += 1
+        return True
+
+    # ---------- uygulama ----------
+    def calistir(self, row):
+        if row is None:
+            return
+        _k, tus, _a, calis = row.veri
+        if not calis:
+            self.ipucu.set_text("Bu kısayol güvenlik/doğruluk için yalnız öğrenme amaçlı; tuşlara kendin bas.")
+            return
+        parcalar = ["," if t == "VIRGUL" else t for t in tuslari_ayir(tus)]
+        if any(p in {"-", "*", ",", ".", "="} for p in parcalar):
+            self.ipucu.set_text("Noktalama tuşları klavye düzenine göre değişir; bu kısayolu tuşlarla dene.")
+            return
+        kodlar = []
+        for p in parcalar:
+            kod = MOD.get(p) or TUS.get(p.lower() if len(p) == 1 else p)
+            if kod is None:
+                self.ipucu.set_text(f"'{p}' tuşu simüle edilemiyor.")
+                return
+            kodlar.append(kod)
+        self.gizle()
+        GLib.timeout_add(260, lambda: self.bas(kodlar) and False)
+
+    def bas(self, kodlar):
+        env = dict(os.environ, YDOTOOL_SOCKET=str(YDOTOOL_SOCK))
+        if not YDOTOOL_SOCK.exists():
+            subprocess.Popen(["ydotoold", "--socket-path", str(YDOTOOL_SOCK)], stdout=subprocess.DEVNULL,
+                             stderr=subprocess.DEVNULL, start_new_session=True)
+            GLib.usleep(600000)
+        seq = [f"{k}:1" for k in kodlar] + [f"{k}:0" for k in reversed(kodlar)]
+        try:
+            subprocess.run(["ydotool", "key", *seq], env=env, timeout=3)
+        except (OSError, subprocess.SubprocessError) as e:
+            print("tuşlar gönderilemedi:", e, file=sys.stderr)
+        return False
+
+    # ---------- pencere / animasyon ----------
+    def tus(self, _w, ev):
+        k = ev.keyval
+        if k == Gdk.KEY_Escape:
+            if self.arama.get_text():
+                self.arama.set_text("")
+            else:
+                self.gizle()
+            return True
+        if k in (Gdk.KEY_Down, Gdk.KEY_Up):
+            gorunur = [r for r in self.liste.get_children() if r.get_child_visible() and self.filtre(r)]
+            if not gorunur:
+                return True
+            sec = self.liste.get_selected_row()
+            i = gorunur.index(sec) if sec in gorunur else (-1 if k == Gdk.KEY_Down else len(gorunur))
+            i = max(0, min(len(gorunur) - 1, i + (1 if k == Gdk.KEY_Down else -1)))
+            self.liste.select_row(gorunur[i])
+            gorunur[i].grab_focus()
+            return True
+        if k in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
+            self.calistir(self.liste.get_selected_row())
+            return True
+        if not self.arama.is_focus() and ev.string and ev.string.isprintable():
+            self.arama.grab_focus_without_selecting()
+        return False
+
+    def kaydir(self, hedef_kenar, sure=300, kapat=False):
+        """Sağ-alt köşeden kayarak girer/çıkar; easeOutBack benzeri eğri."""
+        if self.anim:
+            GLib.source_remove(self.anim)
+        baslangic = GLib.get_monotonic_time()
+        kapali = -(self.GENISLIK + 40)
+        a, b = (hedef_kenar, kapali) if kapat else (kapali, hedef_kenar)
+
+        def ease(t):
+            if kapat:
+                return t * t * t
+            c1 = 1.4
+            return 1 + (c1 + 1) * (t - 1) ** 3 + c1 * (t - 1) ** 2
+
+        def adim():
+            t = min(1.0, (GLib.get_monotonic_time() - baslangic) / 1000 / sure)
+            v = ease(t)
+            GtkLayerShell.set_margin(self, GtkLayerShell.Edge.RIGHT, int(a + (b - a) * v))
+            self.set_opacity(max(0.0, min(1.0, (1 - t) if kapat else t * 1.6)))
+            if t >= 1.0:
+                self.anim = None
+                if kapat:
+                    self.hide()
+                return False
+            return True
+
+        self.anim = GLib.timeout_add(8, adim)
+
+    def monitor_ayarla(self):
+        disp = Gdk.Display.get_default()
+        try:
+            out = subprocess.run(["hyprctl", "-j", "monitors"], capture_output=True, text=True, timeout=1).stdout
+            odak = next((m for m in json.loads(out) if m.get("focused")), None)
+        except (OSError, ValueError, subprocess.SubprocessError):
+            odak = None
+        if odak:
+            for i in range(disp.get_n_monitors()):
+                m = disp.get_monitor(i)
+                g = m.get_geometry()
+                if (g.x, g.y) == (odak["x"], odak["y"]):
+                    GtkLayerShell.set_monitor(self, m)
+                    GtkLayerShell.set_margin(self, GtkLayerShell.Edge.BOTTOM, 24 + int(odak.get("reserved", [0, 0, 0, 0])[3] or 0))
+                    break
+
+    def goster(self):
+        css = css_uret()
+        if css != self.son_css:
+            self.css.load_from_data(css.encode())
+            self.son_css = css
+        self.monitor_ayarla()
+        self.arama.set_text("")
+        GtkLayerShell.set_margin(self, GtkLayerShell.Edge.RIGHT, -(self.GENISLIK + 40))
+        self.set_opacity(0.0)
+        self.show_all()
+        self.present()
+        self.liste.select_row(self.liste.get_row_at_index(0))
+        self.arama.grab_focus()
+        self.kaydir(self.KENAR, 320)
+
+    def gizle(self):
+        if self.get_visible():
+            self.kaydir(self.KENAR, 220, kapat=True)
+
+    def degistir(self):
+        GLib.idle_add(lambda: (self.gizle() if self.get_visible() else self.goster()) and False)
+        return GLib.SOURCE_CONTINUE
+
+
+def main():
+    os.environ.setdefault("GDK_BACKEND", "wayland")
+    w = Rehber()
+    PIDFILE.write_text(str(os.getpid()))
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, w.degistir)
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGTERM, lambda: Gtk.main_quit() or False)
+    if "--goster" in sys.argv:
+        GLib.idle_add(lambda: w.goster() and False)
+    Gtk.main()
+
+
+if __name__ == "__main__":
+    main()

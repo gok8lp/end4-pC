@@ -1,0 +1,12 @@
+[
+  {
+    "source": "/home/flugel/.local/bin/matugen",
+    "reason": "compiled runtime: source/package provenance recorded separately",
+    "sha256": "688ac6eaa02c03d4d62d361f33fc7886a92b78ec06f13c5b37638416e1faac62"
+  },
+  {
+    "source": "/home/flugel/.local/bin/mpvpaper-holder",
+    "reason": "compiled runtime: source/package provenance recorded separately",
+    "sha256": "3ddbd1d28e4edaefd727eaeefbe93e65c335620f21860c04b5b2d3606a86600b"
+  }
+]

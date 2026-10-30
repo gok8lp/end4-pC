@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Jellyfin
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:8096/
+Exec=/usr/bin/google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:12443/
+Icon=jellyfin
+Categories=Network;

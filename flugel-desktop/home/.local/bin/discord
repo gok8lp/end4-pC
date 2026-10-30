@@ -1,0 +1,6 @@
+#!/bin/bash
+# Discord stays offline if its isolated Mullvad connection cannot be verified.
+if ! sudo -n /usr/local/libexec/discord-mullvad-run "$@"; then
+    notify-send -a Discord "Discord VPN bağlantısı kurulamadı" "Mullvad doğrulanamadığı için normal internet bağlantısı kullanılmadı." 2>/dev/null || true
+    exit 1
+fi

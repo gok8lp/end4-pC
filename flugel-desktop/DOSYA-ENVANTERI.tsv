@@ -1,0 +1,879 @@
+Dosya	Bayt	SHA-256	İşlev
+DEGISIKLIKLER.md	8080	867ed9981299c4ffcc7e448f9383978555523557353e73ddd9a51b756b37babb	Masaüstü ayarı / kaynak belgesi
+DOGRULAMA.md	1362	215a9f8cc7074ae48f7aa275b2796ea46733176861206a5349734a17a3e535c1	Aktarım doğrulama sonuçları
+KURULUM.md	5385	97276477623986d3a9bf26c0e85b8a26bd2d067e0a6291171a4cf938401f5dda	Masaüstü ayarı / kaynak belgesi
+excluded-runtime-binaries.json	451	8884e48117e5b94ba78ad5ae1b55a88dd719244a1e3ecb82ebc639beaf5dfcf7	Masaüstü ayarı / kaynak belgesi
+home/.config/autostart/Nextcloud.desktop	244	1c897e4059cdeeb34dd0abf228c43edde8bcdaacb842659318bf0e395de8a1aa	Masaüstü ayarı / kaynak belgesi
+home/.config/autostart/claude-desktop.desktop	132	053571994a2390e745b2b81e2a6e1192e24167bf63dca15934c28d7d5098f173	Masaüstü ayarı / kaynak belgesi
+home/.config/autostart/remmina-applet.desktop	193	7c99521764909581872e544973b2ed72d55d06e473d9e0fc5a4161aaefdcda9a	Masaüstü ayarı / kaynak belgesi
+home/.config/caelestia/cli.json	1757	46390a280bab803077ac3cb287ba3183ca333d13619dfa9a93a41d4c106a03fc	Caelestia kullanıcı ayarı
+home/.config/caelestia/hypr-user.lua	11135	7cb695672911365837db48252918b7985950bca5622aa58e792fad0f755993e3	Caelestia kullanıcı ayarı
+home/.config/caelestia/hypr-vars.lua	396	f0dc5c48fe271519fea7a987e98c103b3a94a54bb7e374954ba6fbf6e042bd60	Caelestia kullanıcı ayarı
+home/.config/caelestia/monitors/eDP-1/shell.json	4	d914176fd50bd7f565700006a31aa97b79d3ad17cee20c8e5ff2061d5cb74817	Caelestia kullanıcı ayarı
+home/.config/caelestia/shell.json	850	65b64292128108ce1417282f984a6fd64297a296b8efc98606502fdf3af2b76b	Caelestia kullanıcı ayarı
+home/.config/caelestia/user-config.fish	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	Caelestia kullanıcı ayarı
+home/.config/chrome-flags.conf	40	fc0c6ce679366601087d380f1290d7d5985dd151a037fdd880806f06efb61921	Masaüstü ayarı / kaynak belgesi
+home/.config/copyq/copyq-commands.ini	1881	2edc2b8de0a3063b5d1d1251c0835e1464d843cf6613152ec32a32eded2faadf	Masaüstü ayarı / kaynak belgesi
+home/.config/copyq/copyq-filter.ini	36	e9e63147743c90a2ee6b5222b46947adf3a92cc0dc8c95b052598c5a466e6bea	Masaüstü ayarı / kaynak belgesi
+home/.config/copyq/copyq-monitor.ini	24	d4e516ea1671c350be40d1336690ca5f945cddf412d320e5335bc72f3b9e454d	Masaüstü ayarı / kaynak belgesi
+home/.config/copyq/copyq.conf	84	cde96cba968e0dafd50379c92621dc50742d693fd4ad346f311f5421a67705a3	Masaüstü ayarı / kaynak belgesi
+home/.config/dolphinrc	295	30297d8cdd1711eac78006148d85ffd85df4096d6d065a9022189c7a60b7fd74	Masaüstü ayarı / kaynak belgesi
+home/.config/fastfetch/config.jsonc	2027	4d4521022542ce6b3f81018bf3c9d0c51e4cefbdcf3c7aad1452081aa39d32cc	Masaüstü ayarı / kaynak belgesi
+home/.config/fish/config.fish	1651	9b2a7b6062b0ef86edfe9ca327396c075ea1b7420927276b13c21d1a745622dc	Masaüstü ayarı / kaynak belgesi
+home/.config/fish/functions/fish_greeting.fish	464	f540f5280476d0e2795952281f8e668c15bddc593b7a49ca82fa812c8ef84f0d	Masaüstü ayarı / kaynak belgesi
+home/.config/foot/foot.ini	568	4aed5304ec2e0e01debbe5e384647f17a51cc848d979e00e061eae3e777e39c0	Masaüstü ayarı / kaynak belgesi
+home/.config/gtk-3.0/assets/close-active.svg	1474	1b17b86ed6769af3c7cf4b9386f53be231da77fee8d21dba9f294c4663565123	GTK görünümü
+home/.config/gtk-3.0/assets/close-backdrop-active.svg	1474	4126ba1f43247e69d38ff0390d3026a65f26efbd79b9d3a3aff7c5c8e0087b19	GTK görünümü
+home/.config/gtk-3.0/assets/close-backdrop-hover.svg	1474	1e18de3acdf9d2a57266249a476797c374a633e9a6ce4ef1d164f8e374449784	GTK görünümü
+home/.config/gtk-3.0/assets/close-backdrop-normal.svg	1268	6b536579c0f99c5e815cb33b7b5aaa45aea150cc79b7c855ee90b5828592631d	GTK görünümü
+home/.config/gtk-3.0/assets/close-hover.svg	1474	69a900ea24ae4a2334443b2331aab5437c5bb1f706960b90e8173dbc15a023b3	GTK görünümü
+home/.config/gtk-3.0/assets/close-normal.svg	1268	0fc31ffd027c7de326059edc99565422bfd1e9b08fb115ca5c63038ebb42d9e4	GTK görünümü
+home/.config/gtk-3.0/assets/maximize-active.svg	1413	dabc486e0551068e3f608ddc91a2d5f18b58486822f8bb8e8561bb4347ac4063	GTK görünümü
+home/.config/gtk-3.0/assets/maximize-backdrop-active.svg	1413	bb52d7250c9c820e545aa060ef765ac4e5238dd88bea2404c7bee9636efb14d8	GTK görünümü
+home/.config/gtk-3.0/assets/maximize-backdrop-hover.svg	1413	5a2398f16e296361e23e1882e0a0b0a3f97c90baa9a62b2ce0a3e983029b7b39	GTK görünümü
+home/.config/gtk-3.0/assets/maximize-backdrop-normal.svg	1207	ace71db6b489235ae1a2cbc0961cdb3e5a7857ecd6db62b67bbc7efaccec78a8	GTK görünümü
+home/.config/gtk-3.0/assets/maximize-hover.svg	1413	4ba9b72cf3060695bd211c2aa97763abb514d1df73e3929dc841de6fa9439236	GTK görünümü
+home/.config/gtk-3.0/assets/maximize-normal.svg	1207	fd916d23f305ed6836568b41218c6c0d53e1678b261903f04fbb17bf86f5960e	GTK görünümü
+home/.config/gtk-3.0/assets/maximized-active.svg	1401	d5c3a63f871e3ce3174863564e8790489859058209c0859d782f37bfbfd468b1	GTK görünümü
+home/.config/gtk-3.0/assets/maximized-backdrop-active.svg	1401	adfa88bf335b46c09fcfe4293fc04ee2367f7ddb5f18750967a930c99a6748e8	GTK görünümü
+home/.config/gtk-3.0/assets/maximized-backdrop-hover.svg	1401	8ce5d967974cf012b74b1f37f9ff8ee36ba6c3392c8eadcd1667fb1a072ce42d	GTK görünümü
+home/.config/gtk-3.0/assets/maximized-backdrop-normal.svg	1195	9dd0227d3eceb2535187cbdb11ee7c4d5ef754e611cb57102928a8828d3ceeb2	GTK görünümü
+home/.config/gtk-3.0/assets/maximized-hover.svg	1401	e3ed1923239e28d1e6b0221083afdeb3246a2c9e410aa51fe83d01cb20c2bcd0	GTK görünümü
+home/.config/gtk-3.0/assets/maximized-normal.svg	1195	5d37162ad35f4b184c75267a5c2dbf806851b2f920ed35f35de7326ca0362367	GTK görünümü
+home/.config/gtk-3.0/assets/minimize-active.svg	1412	9e373a2f7856a74c36b5eb50d8f0e185c0fd4ca84f27f6a8a6c04b72c1e72d2d	GTK görünümü
+home/.config/gtk-3.0/assets/minimize-backdrop-active.svg	1412	65dbe96b4622b032c54db116d6cb2e6e405dc7e0681062d3f4bf2c42c3eb9eaa	GTK görünümü
+home/.config/gtk-3.0/assets/minimize-backdrop-hover.svg	1412	73d87a6c932b894df9506117be31d16e8795649fa7686770df59449602f5b01d	GTK görünümü
+home/.config/gtk-3.0/assets/minimize-backdrop-normal.svg	1206	11d33942b6bacb3bc77bca763876521be927e35ee5996f0596bcb42433d03d2f	GTK görünümü
+home/.config/gtk-3.0/assets/minimize-hover.svg	1412	713e7e92e4d5367ec71c30e154964da977ac6c093bc8871f3d26762c6050ce4d	GTK görünümü
+home/.config/gtk-3.0/assets/minimize-normal.svg	1206	0b6706a4d1af92593196fe5143925f9073cb97652eda198eb6dce87a46f8ebb9	GTK görünümü
+home/.config/gtk-3.0/bookmarks	215	d932d38369c8825de2f1a51a42a9ee5b46c97e26048bcfee8252ff4a61e2a61d	GTK görünümü
+home/.config/gtk-3.0/colors.css	4998	86600300b2ec3b61a396cf41e1761fb6495ac882594b32c5569810eb027051e1	GTK görünümü
+home/.config/gtk-3.0/gtk.css	868	c5ac36d091b68f6c76e67a674dbfbb3f643daa3cee9164f55e575fecf1b19c20	GTK görünümü
+home/.config/gtk-3.0/settings.ini	531	22d6695a186c9ada8b7a7ee4e385ffdf9ae22f4b12035da8fe154ed896c6247e	GTK görünümü
+home/.config/gtk-3.0/thunar.css	4749	f2fa3596956cf724d027ade0b4e0c36f1f2b6b6a4b8a93c84b5becefdf297f9f	GTK görünümü
+home/.config/gtk-3.0/window_decorations.css	3895	2bff7af9575f5bca8336018640fd2d049b8c04c0386ffe51c8edd92424c1025c	GTK görünümü
+home/.config/gtk-4.0/colors.css	4998	86600300b2ec3b61a396cf41e1761fb6495ac882594b32c5569810eb027051e1	GTK görünümü
+home/.config/gtk-4.0/gtk.css	868	c5ac36d091b68f6c76e67a674dbfbb3f643daa3cee9164f55e575fecf1b19c20	GTK görünümü
+home/.config/gtk-4.0/settings.ini	373	212bb3806edfe26140fcd90dbbf8ce286209e0eaff0c71b72e6c68b174bb970a	GTK görünümü
+home/.config/gtk-4.0/thunar.css	4749	f2fa3596956cf724d027ade0b4e0c36f1f2b6b6a4b8a93c84b5becefdf297f9f	GTK görünümü
+home/.config/gtk-4.0/window_decorations.css	3895	2bff7af9575f5bca8336018640fd2d049b8c04c0386ffe51c8edd92424c1025c	GTK görünümü
+home/.config/hypr/custom/scripts/__restore_video_wallpaper.sh	107	2cc9894f75c217e8733839369f2bcf60121505a8645ee363956c16230a627909	Hyprland Lua ayarı
+home/.config/hypr/custom/scripts/mpvpaper_thumbnails/wallpaper-playback-test.mp4.jpg	16959	14b5acd52784cb61bad5da814faf749a6a9223a393c00229e11d1cd1d7379d4a	Hyprland Lua ayarı
+home/.config/hypr/hyprland.lua	1767	c7be93202375f7c6453f2b46890522370d20a780e2dce625e4b8e40d05f50c14	Hyprland Lua ayarı
+home/.config/hypr/hyprland/animations.lua	1520	2ca023d2a7e8ae2a4c8dc854b3f0395a8d8e238d8df4103d6f2aebd35a84f4cc	Hyprland Lua ayarı
+home/.config/hypr/hyprland/decoration.lua	868	0bf760d748b5b8a6c76108deef0baa167450b561c955fb7731cd559438570858	Hyprland Lua ayarı
+home/.config/hypr/hyprland/env.lua	695	68af37b2f19f9b29e5e53ae2347e7444dbae0a95f029b6e103a79d12b09ded5e	Hyprland Lua ayarı
+home/.config/hypr/hyprland/execs.lua	3514	3639894ddf3fba0d692c0a788be842c3748f760fa87f8d2af4eddab66a92f1e5	Hyprland Lua ayarı
+home/.config/hypr/hyprland/general.lua	940	f9b229abc10bae4bcd6c7c9732b72a23def4a469dd38d0f476f0aed3e57d68de	Hyprland Lua ayarı
+home/.config/hypr/hyprland/gestures.lua	940	c62c60854456d84529fcceb5ac9e687f0368993b84926133e144233a42a1783a	Hyprland Lua ayarı
+home/.config/hypr/hyprland/group.lua	1277	c3db452173a2437ea0d17d84f719cf89775b4df225006d3838801925718ea261	Hyprland Lua ayarı
+home/.config/hypr/hyprland/input.lua	556	3dccdddc88d57fe1e9391b7e9553001922fc59c2d022b7b6aa5e35fa2f685d7b	Hyprland Lua ayarı
+home/.config/hypr/hyprland/keybinds.lua	9907	52b7cf4598634dc291bd3eefd77bcdd90c2e169b49d116f706787ca4bf497faf	Hyprland Lua ayarı
+home/.config/hypr/hyprland/misc.lua	702	67761bfd9bb20d8a0bcf300a836295361878cc22db5e2bd0acf4494e4efce688	Hyprland Lua ayarı
+home/.config/hypr/hyprland/rules.lua	8040	885d045a7cceb43162d8c04ac2c3fc5569e0ecaaaf81210e3c3cc63c28a4d644	Hyprland Lua ayarı
+home/.config/hypr/hyprland/shellOverrides/main.lua	1087	5b2322b00c6d1aed3d0b3af36d717d93c5730afded941bfc085e6115e657ce86	Hyprland Lua ayarı
+home/.config/hypr/monitors.lua	339	a81d5c6dea4a94eaed157237596e6f6fc62967fddb369b6c60bfdbddcd5c77ad	Hyprland Lua ayarı
+home/.config/hypr/scheme/current.conf	2727	e9c5c5643ccdcd2c956afafefee8d12ceb1404f30b2008cf025db2f740e197e1	Hyprland Lua ayarı
+home/.config/hypr/scheme/current.lua	3217	b5d29dbd78c9317ea9c30bdd8b850aeedf7a0585e12ff681eb147c52b1e569d5	Hyprland Lua ayarı
+home/.config/hypr/scheme/default.lua	4811	7bb389e3594fde54ce78f1f503710478493c6b07d0723229e5a2e2c961a750e1	Hyprland Lua ayarı
+home/.config/hypr/utils/functions.lua	10650	baf9ea57f53ad01bb527f2b84bfcff64c3ca505c7d6c3c3044911e8a0d280689	Hyprland Lua ayarı
+home/.config/hypr/utils/json.lua	9638	0eaccda57fabc0330736de25f45cf589821a42b5e0fe02e4e3125f7dc0bf2b7e	Hyprland Lua ayarı
+home/.config/hypr/variables.lua	6168	4907beed9d1d58cfe7ffd1c7ab1467cdb02bafd08f188ea274867f29daff8ac0	Hyprland Lua ayarı
+home/.config/illogical-impulse/config.json	30274	b8f81baef23b5897f4511930dd3cad3b6c4967a13cb02b409b5aefc9de26588c	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Benim-Duzenim.json	23825	8e99781f373f2579b8c72ed32ea4435b9338fb454ed75fe328a4c95152f60736	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Re-Zero.json	11458	1147f6353d80d22a946c46d8c69b72fe2d72f2d68c52a1d3a0e82318534d1206	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-columbina.json	8440	e87a13f6f6a14e82341242a04276f42dc75162ec0e7af73f54f9c5172d69a824	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-evanescia.json	8474	64cf0769a1b7bd75219a644daad42747f52f853e95097e86f3b63617b5e3a32e	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-frieren.json	8509	aab238072f57446186908479b3c7c78c4395d9dd90d36a6f1c7356277e5e62f0	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-glassy.json	8286	cc0efbc7e935ec2341c08b424663fe10d44b596b56aab9ca51f953c8f5208237	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-ichika.json	8480	086e74a933637c7ee3f0327cbb4f53f7e56cda5bb9ce34ad7cf59fa4855a27aa	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-relax.json	8187	999ede1dc642a8724d132497187d17827604ed069dc3b0902d8699e694dfcaec	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-reze.json	8529	a8781827489c8d337d903da26ec952cb17e144b3cf3fab26a058e2c93576d6c4	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-robin_summeretto.json	8914	259b9bcd2692011db20f6c9c666fdffbf6e811325395d06a5e10e210d6c54186	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/Video-the_herta.json	8824	19a1cfa7df23833ec9aa32f1cdf0fca0b1f6c1cc1f20618cfca90e598ad78c4f	End4-pC ayar/önayar
+home/.config/illogical-impulse/presets/re_zero.json	18195	f64ec53355220e1782f126b0c29f9993a93983e693e45377184db901fafd925d	End4-pC ayar/önayar
+home/.config/illogical-impulse/wallpaper_order.json	2	4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945	End4-pC ayar/önayar
+home/.config/kdeglobals	3527	2d5b6d61cd413213e83cb3649e68431345ddf30e3c9e2b0e7a24edbf4e4f2758	Masaüstü ayarı / kaynak belgesi
+home/.config/kglobalshortcutsrc	17776	7d1a4f51db79cad62cae3492e597d3300b2b79b3c7ec90177ec869371c86d31e	Masaüstü ayarı / kaynak belgesi
+home/.config/konsolerc	53	72551519ed947eacf8077fbc069eafbe85661f71ee55973b4717aa4b0b1cd6c2	Masaüstü ayarı / kaynak belgesi
+home/.config/kwinrc	281	413f0dbddb91d66699f2225613842859127ad44bdbfde28e438c5ace792a53e3	Masaüstü ayarı / kaynak belgesi
+home/.config/locale.conf	89	bd39bf3c144f1f33f620898768258170a66799e9b1a8bfcef9579a7eeab29630	Masaüstü ayarı / kaynak belgesi
+home/.config/matugen/config.toml	176	6b033cc8ae94cef10db61b7c87dab9aac412a918be95f16c6cc967af5dfdc503	Dinamik renk şablonu
+home/.config/matugen/templates/colors.json	3104	52531508fb0aae6119004b5510bd0aecf3e60e08229d5098e99796f2d613b907	Dinamik renk şablonu
+home/.config/micro/settings.json	32	8dfdb9313b5df2c0672061ff52076ee1b6698e78f2a604a8e59a31446febdb17	Masaüstü ayarı / kaynak belgesi
+home/.config/mimeapps.list	1865	7294b847ccf36f5dc869090ebbfc5e2fd008cf403c93abfce0083b9e97347d0c	Masaüstü ayarı / kaynak belgesi
+home/.config/nwg-drawer/caelestia.css	1516	2c7602c20f47e749418c6381feedee8fc36affe0398167ebf673d25c86ded953	Masaüstü ayarı / kaynak belgesi
+home/.config/nwg-drawer/drawer.css	642	bb49a890e0eefc6bd0f044e24848a59c31a3b5a2f1ed4bf95815eb6efefb9c7c	Masaüstü ayarı / kaynak belgesi
+home/.config/pipewire/filter-chain.conf.d/60-g633-sanal-surround.conf	4908	636fd7056cdb766d4dbc4c9c350d4062d28cffc4adb8d97d6838d6d27570350b	Masaüstü ayarı / kaynak belgesi
+home/.config/pipewire/filter-chain.conf.d/61-g633-sinema.conf	8520	d188ccacf46177e8016ce2c8c89458f879d8f9b823e0f14489151f87ed946e82	Masaüstü ayarı / kaynak belgesi
+home/.config/pipewire/onceki-varsayilan-sink.txt	80	e0fd035df17db4a0e765bc7fe8952a04f94c422e74a67320d455379179c63a10	Masaüstü ayarı / kaynak belgesi
+home/.config/quickshell/caelestia-aw/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/bongocat.gif	7350	1fba455dbbf57507f8021fa49ce7ebb1d4a6973f0f1b5a760ad60e473befddf4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/dino.png	9441	39015398cf0f6094b851d30163b7ca4e11d1b556bc66a10fb2bcab2a0e4be137	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/google-sans-flex/GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf	3997148	2510a8b7a24beb1fe8163e9a49813ccfe96b5453444b9443d42665ca4fa320c9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/google-sans-flex/LICENSE	4302	fb755fa3280d1d215a20df2e64fe6a0f75f8208439b11671978214aae60d2997	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/kurukuru.gif	99006	750d6115bb86008ffbeb09dccd2a8b1e20a466da26295fc724a2170be70f8be8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/logo.svg	4379	a699a549e370a68ce2eeb390c209b1dac13cd7df62bcfb44d2b95202754c286e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/pam.d/fprint	59	a8c05438bbe3343d842b222f435d1b24648a47b1d7cb1c6b26286e78b974af45	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/pam.d/howdy	59	de3f2c5a168aca57a68b8e1385168729f46365b4e1f5e6eb62028e699b345e10	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/pam.d/passwd	268	ab02891a8616badb86e014a3a09dafef229c5ff4a546cccb8904b06b3ef095cc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/wallpaper.webp	5571692	1b87f61b667d6a5fe4bc80b3ce761ba51a3ec0451e6705561a3632a5e9e7220c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/assets/wrap_term_launch.sh	85	5d49fcd54d4fcb7834c869a4a382ef32020926e0c25a641770814fe04551cd2f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/AnchorAnim.qml	1708	9d656ab66d9367a46d75603ee9a8537250ccdf61b0fbc53ef0e89a894f6ec719	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/Anim.qml	2151	b4c5e6a71bf673afa92c1c65d688454d847dcd8584763f7b3c63d2b2e32bc3e1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/AnimLoader.qml	845	5621670b4f2d97711571d842ae09da861f871e644b9afe5941b05384c8ae5c8f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/CAnim.qml	163	39a3ca97b01db880e292ad753935c1cbb0e3a60d93c1ffefbf3019a2044bfd11	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/Logo.qml	3242	8903d529a32ef7b1f9309feef0935205d545a7488a7552956cb36898b272b66d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/MaterialIcon.qml	349	70308f059443f12d04defa684c56b351f3b7c22ba7bd8f871d425255518b5769	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/ScreenState.qml	393	19098aca8f4b357cfcd3eb3a919fca231bc6ac0a07b1d392bb113352ebf0aff5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/StateLayer.qml	6082	8f34998baf9c14e4e45ff10d813f059ea414d38d267398248b0b470f89f0f612	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/StyledClippingRect.qml	151	b2cd81d881f000c131f1ff192471cd31cd6666c463ff15ed7ec9d0a0ce155ad5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/StyledRect.qml	117	e0b161e3a5876dd276a26de9c93e7a0335b74e759399f03d1bd78f712179286e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/StyledText.qml	789	f4cf3c9571a206ea2f26a8e7a93d3e6fd445e05ee91558362dbf0cb89c18e368	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/containers/StyledFlickable.qml	614	531148039587e360ef37d330b350891de017f3b965b5bc2823122b4df8422f6d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/containers/StyledListView.qml	613	b20a6f5857306586710bd66a867177440bd3679c8ee3d22d9fd71bf3dbe4b24c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/containers/StyledWindow.qml	356	fc3b79e63a890353accf857ccdbc7e40c8c91833f8ea7b81ff418bb86408affc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/containers/VerticalFadeFlickable.qml	1918	a6c2c3fc27616297b80fddbf8c94cab38ff576c2353b0b7419557b43ec72fc10	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/containers/VerticalFadeListView.qml	1952	3aa925c29a150b2c86a2f90dc7cf4017b2f016f4e335e7e22300091c696d5995	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/ButtonBase.qml	2768	6fad0b4054107bfaa021a2608f6afd452a9da63c80dac5935dfd63bca8c62b76	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/CircularIndicator.qml	2825	fa5ccc4c39451aa0d516ab2bbe523aae685e400f1e28d96ff7e6343ab182738d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/CircularProgress.qml	3909	7a9a6c458bc1226d5cf12a116ab9b548afa5dff392a038cd286fce845f274c36	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/CustomMouseArea.qml	537	76fb4fd1f8924acc82294fa5606f84bbf919f3fa79c7732d52ad7df5115aca7b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/FilledSlider.qml	3268	8773dca713ee89c2c2f17da23a71ed0365bb955882476492df8e186a9c759a39	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/IconButton.qml	1710	55de51ad579c966c8ccf8504fed23aa908e93e2cb14515936a41e8489eaa9291	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/IconTextButton.qml	2252	f9bc9a1f587f84ad861c51ac15551dbc8d1819604b67aff844532a37a7103b1f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/LoadingIndicator.qml	3586	9dde4a8bec380ed622004c941fc68ba82eb58c958e25eee985ad4a007b181bd6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/Menu.qml	6887	37788e7f392521f59ae22cd8a7e458d7307c7133b9f729249abb58ccdebaf854	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/MenuItem.qml	238	22641d916d45a07dae3433b7286de037f04d586dadf8fe66e778f6bf86a9b397	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/SearchBar.qml	2403	5727782ac353981d69048801ea8e07758716898dc078c3b891f0244ecb69e32b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/SplitButton.qml	4760	05779902f79d29bc2b793da71a47642aaa1f7e133caa9d836e1913d64a6fcc0f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledProgressBar.qml	7733	3cf0523868422d87c37997eb29d59a95d2613e1664748564bb9312b6d8c40cae	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledRadioButton.qml	1537	5f8f10f18f0e927355b277c14f79eb4bddb6a30d949706a8545542a67e1f2c8e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledScrollBar.qml	6386	06c8256f2c8fe90b61566f5b467c3c98781d09a0fe9993d7661b94f7ce5b10dd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledSlider.qml	5525	9cf87590407f2b87849dc4780203652bd4efaefa46f05678050a17b368cd72f4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledSpinBox.qml	4725	3401c5f2065782af9bd531dfbbad8fbf71bdb022967434740d29cdcf9fc7fe58	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledSwitch.qml	6073	c69d78fa605026b5446d40f85abc837b8acbdd82335be608a15883dc0654a8e4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/StyledTextField.qml	10596	d53cb05509638d54b5fcfe9f5a6cf17633606be04e1c2289a9c40c69224175c9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/TextButton.qml	1427	f559fbbf7daa1fe09b9cf8b422599d59fa7188d4b00bc934eaa3b5bce66bd33e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/controls/TextFieldBase.qml	2350	9c9f5f22021903602dab8ab95cbf631d47775770023e9831c5ad7453a5e155fd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/effects/ColouredIcon.qml	655	9904403fa23b2ab0d310f0f355ac6c964f413c2c817548a8295fcc85a804c105	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/effects/Colouriser.qml	242	2646e63eeb85b4b7e1ef48e867481521e3a9c9eb61b9268026f0a187a3b63c21	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/effects/Elevation.qml	400	1b10528634ae9c5397da7f6f60d155b18e0b7276fd8cb9554b9aad87775d5645	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/effects/Mask.qml	111	3b3c61882775eaf6b1d79d054b0d81da0fcb8f9a280f35fa43b28886070d1624	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/CurrentItem.qml	3112	4865e66d600dcdfe70d91a56dbc625714c73b1d20d57e1ae3de009de5c7c256d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/DialogButtons.qml	2786	7eeb4e0565c2a5e0b8c77ae0a49b5f9b5bd4de5535610878da8545019c3b4efe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/FileDialog.qml	2494	9a2cf466bf50da3c0e21d7d4e22bae96de67ecf679191bd8c2fd8e0086cf0689	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/FolderContents.qml	6510	a28f378a089b1ee7e977bbc5fc114fbeca6fa7afb22fba03747b981bd1dd462b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/HeaderBar.qml	5017	7a1c0e0f9229cc3dc0824783fefe142a794c813ff4d7650975513fe29c9611fa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/Sidebar.qml	4145	e3671d38688107dba5c888fbdaf61cffb5aa73ec00b213a0053ccc50b00ed86b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/filedialog/Sizes.qml	118	fd3637d2c748ba04d4e119df7d054d96fe2a7b54d59c9f2c9f45d4cc0d0b0663	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/images/CachingIconImage.qml	1014	d789eb02b012d4001ddde6bfd250440fc734eb325e8ba80201aa0a5d1590088f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/images/CachingImage.qml	365	1975baaa613da28cabd65a685ea0884682b475fd161d92d11cbee03ba7fbd159	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/images/FadeImage.qml	1862	0508b06456979d969c854ea21ed58ae83f625da0cbd71e2c399cbc243d40f57e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/misc/CustomShortcut.qml	143	b5351e36bc106c7e06206b597be28262715eb73423864a498f794423af147208	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/misc/Ref.qml	158	9d00330ddda0749f754260f0340dc59532051243a419a0e507e0f4a103104cd5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/widgets/CoverArt.qml	2497	373542849aa3a57f66e626357054453460bea101df34a7b5cafeecb30298e791	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/widgets/ExtraIndicator.qml	1079	14b9aa3fbe05811ee840d028e16395bd139e361e9fa4dfdc918f7af9dd91d33e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/components/widgets/WavyTopRect.qml	1185	673f19f6d52ac8ce33f007de59aadd391fd713b665ff11af842ea966d5dca9e6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/BatteryMonitor.qml	2602	b453eac2d132fe112d73fd2ba5bd3a760124e4486a93f97d29df924a74f1716d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/GSFLoader.qml	171	1b6750279cc8c35889ad801df78d73001c0163481c8ebea9a4f247dcaf3ca4ce	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/IdleMonitors.qml	2356	6a80dc23e6e4faf9924d445a609060b141ea07fbb237a365ae763763413b52af	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/ServiceLoader.qml	385	ba1f3ebd3208fd0c24781bbf76bf109566bb6ce7a0ab5d5ce3c7640dbdd4f777	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/Shortcuts.qml	5147	444d585eb0e38416c610d521ce708b28bf6e928847b99a0039a44aacba670d3a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/areapicker/AreaPicker.qml	3498	ca086c67278d3675ac8150785ecadd1a7771f8260880386fcef5a2eb73c63648	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/areapicker/Picker.qml	7855	59af6c9fc1b357a47c33e17665c71c11b0a44e8e137f4eeeb82e2d6b680bce17	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/background/Background.qml	4899	dc99ebea9dee7893a185322d07348b3f7b54337e55bc71626b0c755d9dfa1ddd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/background/DesktopClock.qml	5859	108c57b39a92b02615314b71579c3c3f4f5ff5b142449dacdc9b6562f50710d8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/background/VideoWallpaper.qml	6810	0ce2934a21a8d72d65334f008da74ff9bb933cd035917572795f505423dae58c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/background/Visualiser.qml	2744	060d214af6d9f97aa4e284fee3c77dc4f000f33bfd462f53aaec361e41da0311	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/background/Wallpaper.qml	13295	010eb3586b5517de9a80087258378640700b53d7488bb5f425505fbd5a6f531c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/Bar.qml	7280	7223977acf4279d694414843885d07a1ca49d7ae00793a94e6b96c3de0024a15	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/BarWrapper.qml	2511	d393e75051ffe84672c536aeeec673d5aa77b53162299be8860b42f7e5b186ea	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/ActiveWindow.qml	4113	141b9ccca379eb7cce6643e7175d4f7d1e55a3169601461330c3576ef11429d9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/Clock.qml	4486	879e47048840ab8fe21fb81030c3985683dacc45a3e16825079f43285f75b047	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/OsIcon.qml	1156	ef3e9a19d933f11a39be7dc02d2a54fe4cb3e557410c589931fa6a311f503dbe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/Power.qml	855	b9cec6eef9df3c807128296877ef2fe28f9e0f51d2232d98b1463cdfdc2c753d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/StatusIcons.qml	5777	2e2dc140a2109481f430bf74efe88ff7d948e40aa6cc37a486bceac23d38b30e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/Tray.qml	3599	ffc8ed0a18e899bcadceca5336eed185130558f65f5361bfe76e872f0afdf40f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/TrayItem.qml	822	d39fa9a7d1ae72072f94dd59af2ec41cca2967c7c5c21439f42273ce4296ffc7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/status/BatteryStatus.qml	828	70eee8a13cc2fd0499a7b26d8dd634130a5d707f04ad6a3685d456ffcf0cee5f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/status/BluetoothStatus.qml	2275	b48500b71ec5ca9327ea620758ef54d27d4122b51b52f9619ffff86426730376	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/status/LockStatus.qml	1969	d9b5b0af2957b0e7a78dad963d550bb7ab94b835a04eb5fdd42bbf9a39811342	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/workspaces/ActiveIndicator.qml	2007	4be3a79ceac9f6e37effb0358c06336858b6ceb711360fbd6681179de031517f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/workspaces/GapMarkers.qml	1540	7bc61bf3708dbf0f049087dc15b71811fb18cd1f2b9ae0bc7193659aef9ed6e2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/workspaces/OccupiedBg.qml	3010	9b1018a0c9782c8f6a4493e8c1f25c62a823f41577cfa5425f95dc7a2aaf7b8f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/workspaces/SpecialWorkspaces.qml	6391	16b08befa5cc52885fb59466f159295a6fb5439f13e7a558b1e74b9d85f6e175	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/workspaces/Workspace.qml	8758	ef040ff72929a13791ccb484dfb39f19a4818c3fb9197ba8ea36d951bd3f9e50	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/components/workspaces/Workspaces.qml	7074	6ba4feb941c6e14277b9375c23134d25c55879077433a8734e39a53f73b7baf4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/ActiveWindow.qml	2818	bbf0371c2f774f147f6f6f6c167749c1e7f2161d8285c3bdbcd2fc4b8ffcd174	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/AudioPopout.qml	3324	7ea5e3158479af91f694ec134a053200ebbd4307f4e9364c37991dd251615990	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/Battery.qml	8226	7359e58ad66bf7bc8be737c4c563b350ab9c9120371bc8d981ef3bb0ec02a1a2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/Bluetooth.qml	7071	7a227a67a38a45d186120dcaab642c7eb802dd0118f84bf2b2de3853c6436120	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/ClipWrapper.qml	1627	7622cbb2909049ec2b43ef148ec3384cf46a4d0a2184529b970ad2c61bdc44a9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/Content.qml	6608	cb07dc42ecc66651c8e0f45b70621980543c28541cd024a363392ab31a1a1fcc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/LockStatus.qml	380	48b1c2af8b9604e56007e2be0c2e8d6caf97beba043f7dc67b89994b0c126dc8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/Network.qml	13816	2cc9daffe541b8eb4c9c968d6102005c5f5ff4d295f11465f1e864cb4811420c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/PopoutState.qml	132	7e202ed323c64a5e8b9e01062bc130ec72df52f57647dacf35234872a930b47a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/TrayMenu.qml	7481	e944a3940e03ad16d4bf8dd9b173a6b3ac51e0b9003e7cdd72ce6e11f32c0977	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/WirelessPassword.qml	22653	bab956a4939530753de0c341dfeee549dc9deae8c1d3122656a31825daa0facd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/Wrapper.qml	5997	03682cbad2e76be151e9520a00f095711e4114e478e165767425686de15be87a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/kblayout/KbLayout.qml	5630	34755e8783ac7b6aeb0e71435ad3f22afe3da6fe5994efededb8d807c80845aa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/bar/popouts/kblayout/KbLayoutModel.qml	6636	64c200fe4a34be1ddd81d22746154f70a7815faa144cc73bdc34496782a93e0d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/Content.qml	5989	74a4a36b5b9edb7c0b706a55cafa50e66b356add2e7aee4538e4dec93147254d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/Dash.qml	2127	f4379208a0e85fde33b7a1f358d5932353c0c73b6f21a72169290e3462c068c0	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/Media.qml	4621	26b735e17e93b9f61043bc3ed4ba857fa9a4d0bd5ccca896b3d69604bfa039db	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/Performance.qml	4779	4d789916d390d05cda55ab5644d9fdc8f0391898584dc5b0bcbc983643601d47	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/Tabs.qml	5245	a53b9a028515d93605429816e2d97564115a5c8f626c6cc90380cf065da45400	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/WeatherTab.qml	9415	fb5c8a529ee462f99a3063f5cbde86d518de75ee8599d3e66c8d7b0b652da831	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/Wrapper.qml	2027	1d3d1bb6641c9baa223a821e7dbca68d7aebb363575e6691ae42d132f9753d0c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/dash/Calendar.qml	8408	43fec6e6129d1fde3bdfcd190bc9b5a1b4fbf4531d59dcf1e567e922985649ee	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/dash/DateTime.qml	2620	651c1817bd0fef304f33a80bb22dce48cc3894063cc02be8ce064b3ee25f04b4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/dash/Media.qml	5160	b526526a3a1e8fbd63c2213ab6a01a3a21f19f07c1afa91d4de017150513e74d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/dash/Resources.qml	1572	1ddde3ab29a61da7373da2523de25030e95de25b9228892c4c7247804db2a0ce	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/dash/SmallWeather.qml	1691	9517df7f9dde6fc287180543b7af86db265b021c2aac890daa44c9d139f42730	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/dash/User.qml	8322	1cc273afb374ee49235ca1ad16a3bde4046498878c0bae8e4be5e6e4d1bf88c7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/media/BackgroundShapes.qml	3300	d12dac4b46c2160321a344d8b31af4e7250499ca4c2fc6293c51fdd12813621a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/media/CoverVisualiser.qml	2534	d326d57c082df97f29c7f7e90067519b52e63e0f39e2c825dfa0ac4df185d008	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/media/Details.qml	6405	9c81d9b1952f055560cd14e71c4ee58d2e47308d77b3821a33d20886534cfbf4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/media/LyricList.qml	9105	2274d3992d1eff15b32c9334abcc5f64090d0920719e191e8c1eea5642378b8e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/media/LyricsAndSelector.qml	2243	8a7fad5274884daa7abf8c68216d0332f2f6cc8148d2ea74a47ad98975a607cb	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/media/LyricsInfo.qml	6235	b317a2e51edf77a4a4618b5898497814fc4c8595a33b6ed8c25a30b269762745	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/performance/BatteryTank.qml	4719	2f797414d678535ca4f46909be5a10dc0ee2d870601ae32aeb29342a1c536424	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/performance/HeroCard.qml	4398	81c3604b91a29242c0b2000b2a26ec03f88e9d20ab067a93119bf12717bc26a7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/performance/MemoryCard.qml	2601	0d4d3dc7edf82eb1cb71270cc03faa1371ab3cb573ed986bd55436c4495ba13e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/performance/NetworkCard.qml	5852	2d18f130e65204866a78d67d208deb589cc0de8d3f615ae1727be423a86d9d8a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/dashboard/performance/StorageCard.qml	3931	6a90355537de504a26ab880300c06d67e85c369addd669f7d0ec42e776ce1d18	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/drawers/ContentWindow.qml	10994	404deaf9df20cd8b46ea82a144ac45eafe5e4dc065062f576f604cc4f8f5a12a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/drawers/Drawers.qml	405	0c959f41e5419de50c137441b580338f434a3ecd03622c45c52ec2fd590188a7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/drawers/Exclusions.qml	768	5ef6e34905a6034b7e9901b0e7d159fc337c27d3458dc08a1e5ff51481715764	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/drawers/Interactions.qml	13485	88ea719b1d0ab48c3e48ce7dc798220635f967261cd8fb5156d97b949063265d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/drawers/Panels.qml	4228	1166d39de4ee9d40ce4a19e189d7c162743c5ab954174ae5844ba42adca5e6fe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/drawers/Regions.qml	2370	a7da0518d8f8d9fcabcb90101e082baba1550395dffef5e6957edfc19bd0d675	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/AppList.qml	6913	11b85781e9a35e372f0266658419bea5d2cb297006208f90c6a0a27d57b42b9e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/Content.qml	5244	45c2df8d52bc3a8c301d27a75685b1f3813a2db4b01204dc8bdd84c574e57182	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/ContentList.qml	7719	6d2a35523fdca6a161fbf82f7926b3a06e183426f7010b58b881801b7a06af20	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/WallpaperList.qml	3514	614e07ff4bbfe6f2c1eb22ba84f87755d5a957675679659b3dacb7ffef965716	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/Wrapper.qml	1631	b7579e9914cb3b0a0dc156cb6b2296de76f6d89291fb192d1bc7a0bc49f770ea	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/items/ActionItem.qml	1722	da1fd29446f865e196e7c666bb5ae757e09f6a0c854990335bad399afca4b824	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/items/AppItem.qml	2465	1fa6918474e12c649debdbba9c4d70bcc5c2ed0c7f0bd0f3224698d8d2ec7c9e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/items/CalcItem.qml	3752	fb796488b4f1414e1fd38e585d90cb09f65993ee3118995709c2a0e045307295	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/items/SchemeItem.qml	2940	a99363cdfdfb7612f9af26decf49af860bbc15034c0ba5aac9710dc4bf607bb2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/items/VariantItem.qml	2092	1edab66efbef98b56a304372ffb65f1eaf9c3d71eabbf44bcb78b585018d9dfe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/items/WallpaperItem.qml	3844	4865b0ad54b09afa8313525dc567998a3e6e4488335cae6b178edfe6f8b5fda9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/services/Actions.qml	2013	ee6cf7e9067eba0d4aeac8b412fffb50256c356487fdb6ea55972ef39b3dc1af	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/services/Apps.qml	2409	dc6b8778cb46e14c9f7b9920747a07f350369cf6a90bd2457ee1b935802d3832	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/services/M3Variants.qml	3071	9525ea54a4b83d080c72acab582f45c0ad6f97afbab1bc9e4c6ead9d668c75d6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/launcher/services/Schemes.qml	2382	79a36ae84ae7a0d370dc5260834e1c2795d903114555a40f66e658e08c8d19c1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Center.qml	1408	817b15a25e2ffd2ac2b5404c903c9d66c6ab540df3c056b31418b5f8b1a02078	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Content.qml	1171	79f3f560a9345c8611f1331ad781edda2d3ad117dd046440d514e1492e1d9aff	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Fetch.qml	6346	31c07542f66812ca4c9bc7e6781f812ab498b27ca8fb54ad5ffb865152b4bd41	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Lock.qml	1571	53780d8e5545007b2f546c4822567b4c7717b3e54235a7e3c67beb33e80c9178	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/LockSurface.qml	6505	c52ee7f235592984f1837296c570c2424074083578a2e4e5c967939a9c8f4237	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Media.qml	3326	1b70a911e7c4d2542a4baf4dd695e6050a8ae7a3d4859f083fc56a03b7ef08f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/NotifDock.qml	4013	aba23d04cd34cd4572bbc76d7cb289e65df3e2a6a96c61d7615399de6af2d622	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/NotifGroup.qml	12584	921b690e5a9363f84fa79e19104c98087536891d28f239328ee9d582f3b7387a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Pam.qml	7585	097230876dae0ea21921952ac1b081d8b1e4733fa11fe23d01065f9d309c771a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/Resources.qml	5353	5ec619f3eabdc83c962b6c9ad850a26f86d7df4c387d397da31d86f433dbfdd3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/WeatherInfo.qml	1315	37d81e6e10c11616d9cf98bb799a56f304403ca4f0a1160cc6e13dc1168e26f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/center/Clock.qml	2588	57e91ab131ac89fbd8b79c63434a0c8d9f9b6304cf39e1a265beabd04cbcdfe5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/center/InputField.qml	7525	95bf76b4d140afcc63fa26214a223a6b4095cacb2b627eef15f92af5f3807c7a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/center/PasswordInput.qml	5933	56e0a542ea61519160047971428039ef6c97b2447e7031e75eaec8c07c45a7cf	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/center/ProfilePic.qml	1244	b38f25dd2604223bbf2dae1f2046399bd80182c17742710893a06dad64fe90a9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/center/StateMessage.qml	8038	4cf8948acfececb5d8f28f26b4331b0583f60f2e88f15d7ee246306f3281870e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/weather/BriefInfo.qml	1953	43fa0225cc2085987f7a534ca53a24372d29ebf2ad881417503723b22008c409	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/lock/weather/Forecast.qml	3542	3cce55bf490338754384813f7cddb850fffbfca12a5889b84d7e9fa9d42e7daf	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/NavPane.qml	1222	f098b786866ed1974d8e248d3c5db217bfed450629039ce90ccce788a7904e4d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/Nexus.qml	2950	79b8cce0d7edcb52844640db5e4ec683ab15773605dd5900cdd211ed892e964e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/NexusState.qml	914	47f45e67f005e62fb2dd9f4742c01cddb1b4c6ee6fa262d2c363520896b79029	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/PageCompRegistry.qml	5605	ce2d0c6a670f77e2e3ee32af7a13959731e9ae057f9b953446f7ecce5c54d431	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/PageRegistry.qml	2501	460cd790c3c082f3455e33d952c93164ba364bcd23f5dcc3b1c3730bb79b8d11	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/Pages.qml	2459	c0b8dce3edb8aba28f1c77ab22ffa3c02da2dfd3d8cd2513fbb877983f5816a8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/WindowFactory.qml	1378	f347eea4b31134beb644bf342d0babe7b9cbb01cf678d63299ae2eb0e99b5ac4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/AnimatedLogo.qml	16469	d91ad38b8a17846c3289238c19636491acb876629778e96dddbe5579c21574ab	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/AudioDeviceList.qml	3106	45353542ec8e382d7336e72a6c36658bf8e0726aee857b09fb894f49bef609fd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/BlobPopup.qml	3296	0838742b5f9d3fb8abe94b3dba11a35bd4efcfbacc195cbc4ab2e40449c3c364	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/ConnectedRect.qml	528	131b59bb4e7f31976bc559960a0ee79f9a7e0b3c23fe8690a1d87064b2932ddc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/DialogRowButton.qml	7721	727a5d35670f37748747840ded40e8cfa922f3afe698a7dc6aab4c2a0172b323	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/DialogSelectButton.qml	3152	6b87ab5fb4a3d61b6f4692e9023d5c96116fb821488b45bbcfd5ee9c5e9465b4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/EthernetSection.qml	9288	a56b6222eff30507861bd00bba1c196aec1a658b5a361d9c340c17dc5a196ebb	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/InfoRow.qml	2040	88f48737f81eb359e7199e5e5c031a36039ac14e3b4a0640d999f7af514f3220	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/ItemList.qml	2827	1a88785b287cfcaf524ff8c2d962d73052e47e77570047193e2118fed318ea80	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/ListEditor.qml	9528	29c9af035890ad70f88f60bd1b940da12cc1b66dfce0e3692daa4df2daac7e3f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/NavRow.qml	91	fb376b72b7f6db45681986d703879154ed39f861ddab251f6870c5876208980b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/NetworkList.qml	6533	57585f622595d32b6344aa4677d543f186a9755be6b92fd0a9ce97116a3ad715	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/PageBase.qml	2232	cc1e5552780f796fe409a2f0db6fcc35cc6fd0127dddf31c5052b8da62cd5445	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/PopupRow.qml	3550	62d44ffa5c6613e9c789c4446cb822a6a1f870cf439a9608838c5ac6081d766c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/RowButton.qml	2273	13d995f9cd8ff4746b224691643a648af39ff78fd27675e0343a5bd59a3726c2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/SectionHeader.qml	480	eecfe13d3f4423b27cde003c93fd9340360b7fb12a0eed76576c6879b9579930	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/SelectRow.qml	1805	618dac7c8af00f1f6ada25dbe6fbd2965e6acdbdf5106d09ce3b1bf573219102	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/SliderRow.qml	2526	2aa69c8b1fefdc035c2d162505c5d8400a2de1760cc109341dc045308d704ba8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/StackPage.qml	3073	4fb085fe09e7f3fb562bff4adda7e388e4fe9b2d7fe5d14b1498e4cc364dcef5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/StepperRow.qml	1603	532820239160fd6c94114cc2a380de04eafa1dbaae8581a7818364f6903202f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/TextFieldRow.qml	2551	29d3147c7857cb5577ce49701de59fd60c42f8d8f3b0de080d43c5509d04ce28	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/ToggleRow.qml	2173	3b7420daf3ae184ad4d99e7e2450a1227b29c94ac9344b13f789b92bf2067f7f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/common/WallItem.qml	2996	d3bc3977dbe9ed34e97f77820d134c6a5e4c7ef382c19935a8a1de095b7e1568	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/navpane/NavLocations.qml	5253	7556881624a94722a19e9ba029bad5e758adb7e855a6ed57b8002822e1512b96	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/AboutPage.qml	4298	14b413013349ce4faf2caba7f91225134138417dd53447027c50850e26d6252d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/AppsPage.qml	6132	bb3a422b18029bb966b25bc51751a664209a2f2ce6ae7d2939247fd7e4865351	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/AudioPage.qml	2701	6d41c536db7117dbc9d931b0ac7a1f3e4a31f26ecbe83c89ea9051497b7a9b52	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/BluetoothPage.qml	8714	2e1c1e5d353a04fee008a1b049a9ff502d3bb90d0b4a254ca92b86ae6a57eb19	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/LanguageAndRegion.qml	6128	f9f1b19e1edfe05d576de5e6b45d71fee90e247a7bef3cc2c43eb2de35decdd6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/NetworkPage.qml	14264	e79b266466733138f424230536858f460794d8f70ec9d1d5dca478a816af0370	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/PanelsPage.qml	1760	3f6c248dda9ef0fa22f29b70e7fd164ae47d3b536efbdec5310dcaf2576d8070	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/ServicesPage.qml	7067	44f095513785ef5906459fb6229ae204f1ac2aedd8eec017de82a908bb1bbfdc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/WallpaperAndStyle.qml	9299	974977e3f9e6ee1e53a236f64c6da0b3a0802f0e45cac01c058dd6b90814d884	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/apps/AllApps.qml	3366	ca29a70b04c83e6bd11ca37f10246e4ba998fd6f5f5e29079dc778af6347b92d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/apps/AppInfo.qml	5498	a367b0c4f7df742117219ef9c33cd74e29a60f458550cb1315973823ae1f9349	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/audio/AppVolumes.qml	2209	beca823eac3ce0f55a19bd12be7df5fa269c355347a91d558f67e034359a3e66	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/bluetooth/BluetoothPairing.qml	6680	9ddf68f710cabdb4d021885c18b8053f9d590fbeaaaebf5db2bd783331aaea31	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/bluetooth/BtDeviceInfo.qml	8972	78c8fc39624cb93df6e2e99b42f66046ca0ee40d25baa519c706367726f45e58	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/network/AddNetworkPage.qml	8411	2205f9a93e561c50ba9f3cfd3e6df71980206d3a34f5fa8d087ba0f6d11748f5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/network/AddVpnPage.qml	8024	24fea177cbe71088be7cbb6f16949f1ac0d4392f3a3fed3b59883851079d0750	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/network/AllNetworksPage.qml	5492	265c16eacf23e75fd8db8453352a6ecc1d36217e14ea77d328c649acbd8cdcf3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/network/EthernetDetailPage.qml	12260	7460c111dc96c55ece848430c662e19acac2280c8abd395ed459124ce7a69ecc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/network/NetworkDetailPage.qml	17018	c1a7b44f0574c7e24965723569d7d12fb00b0f7a269a2a321b1dd15719fb5087	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/network/SavedNetworksPage.qml	4719	e4f490fd163b0a335afa227685a117f66e8277d7aa266b540f480387f52bacaa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/DashboardPanel.qml	4053	cb13e75d8d532e568e4c71f16023e5348f3cb9d200bd23b6d2937b6e1bf22bef	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/LauncherPanel.qml	4784	24dc1599c4d329bb942882379237a578839c6a61e9fe7ae0728ad416079e2e93	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/SidebarPanel.qml	1073	58abf6fa0a6d2ed09730213664376c722f6394bc570f892e0898b03fd6b47cc6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/TaskbarPanel.qml	3509	019d3eb6b4b1addb7894d4aeb09490f9f5ae7622ee9608e923b454d63205bd5f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/UtilitiesPanel.qml	4449	1f13ab63f7c1be935ae5b22a83dff413dd36d6cd170fe079708917185b428907	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/taskbar/BarActiveWindow.qml	1489	6c82b8ec5c34a215e514c287237d7f35b1df41159f8353cdad1865f896c7aec0	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/taskbar/BarClock.qml	1239	5b59e888e839e04954efda4062e2035fd7e89332c27269ae97edb4700a6144bf	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/taskbar/BarStatusIcons.qml	2971	81bdfa3a8b572854fd241135eda34f428fc0b36dbefb9ad5839fdb0d1ab52908	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/taskbar/BarTray.qml	1400	1ec8e7b2b3f48f8c907ee26101c2e5fb70b765a6d6a1753132c075729bb24664	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/panels/taskbar/BarWorkspaces.qml	3055	b64b6873121b1959afc3f221083c4ef24d537f41227f2942f48be6a1f8b38bb2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/services/NotificationsPage.qml	6711	9c7a44bb423d2e19d9200caa074230edc75e9d127f9f6aad20a984d4ca6a42e2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/wallandstyle/ColourSelect.qml	1324	13ed125b028da85ab86e23d15222731b5e5c1b3fe701810aba7134620d91033f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/wallandstyle/WallpaperCategory.qml	1532	e49c2f7a21519ede49f878cad9819fb4b011f7c8c93f117eb0835733555de0b6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/nexus/pages/wallandstyle/WallpaperSelect.qml	6516	892abc0f519d58b18b7c1b15da925278e06a78d0d664eafdfde685f32cefe36e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/notifications/Content.qml	6437	bebed5aff704c4ca8e73dee18fcadfaa29a4200882e20037c1ce434037cdc7df	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/notifications/Notification.qml	19226	2a7746add154d7cec3b74e313c65ed539be0015597b301caf604addbd2818c36	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/notifications/Wrapper.qml	600	7495ed90d38509005f013684acb8535823787c99d215b0c75e020c4268dfed39	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/osd/Content.qml	4219	9435648051cdc59b83efd90228f74c43985b891559520366c62e7a11241dadc2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/osd/Wrapper.qml	2868	aac845d3e40dc1dfa0cf5be87a817ac6eae4495864cd44b8c156b532eb76789e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/session/Content.qml	3875	828e58f2a16f4a99df6c8838b1116e90caf366efa70616afae9b6f19a14dd6c2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/session/Wrapper.qml	1056	d26511941d915d1ef5305d3c21b64161cc37d6b659b5be5391f27a8048cd8d78	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/Content.qml	914	83433f0ec8ae83ab112db77d6714ac2a268d1099806f8b5b8f8fa1910f139f34	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/Notif.qml	5755	c986d1ca73004a068c1eb55400c9b33af2b167f5efb9c47ca73a6fba4e9e59ad	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/NotifActionList.qml	6034	e7a555fef29509ba375e70afed7da8d97b1e3cba17011acec4dd84f6eec0406b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/NotifDock.qml	5910	20cf80f5e08098e9013c945962964be0f23339b2366ab51fd9474dbc07a555fa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/NotifDockList.qml	4381	46170b47c05aea5b78e7b40a50f016e3afe6c9389d461b21c734c7dabeda6582	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/NotifGroup.qml	9798	11d8edf2d9f62663870eeee290143d26f7eab6bec4f0d3c16a350164d59e90a8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/NotifGroupList.qml	4703	5245f021b413b4db889d3d86d4f18260ff77fe21242fe2b099f2c374168701b0	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/Props.qml	118	2689cf71454c14625afd7270f6e4aa36f150c1bafe8937a957b072881d487b14	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/sidebar/Wrapper.qml	1199	5e434b5319b47407119abbede6c371e9aac8631c4e8abd751b8f804147092c28	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/Background.qml	1477	0b5e6e86dd1ee046be2c0ce0a5af6fcd11f1d3dc963cfc4b5a514ff6b3b12df9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/Content.qml	2052	0972745cb43ce5894ad3da44f286b88418d0b1abd3cc401bbfc46963745a5299	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/RecordingDeleteModal.qml	7729	1f132a29b2edec60282244cd44c518371a5827d27dd4c34bd341e2a9c33d24fa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/Wrapper.qml	2788	8ca06d58e71eb89fca278328097869f1c377e1d56bf99f7c43b1527fbb3f0a44	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/cards/IdleInhibit.qml	3747	9c5b26774266e9414dfb4f060fca2b7e9b50be20a6f2568d791010a873196a8e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/cards/Record.qml	10202	3a579fadbb4c09be57b20cdd92d609ce6fa008f38efadf1729744b2f1ea9e071	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/cards/RecordingList.qml	7285	57b8f303ee7a990973ba2bfb68627c73b444a20b7fb9dfd088b7071694351896	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/cards/Toggles.qml	5385	e3ef2ec0c1d4241d0c67a9e6096b8f261efdf0dd73c385ed1728f1043386b9f9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/toasts/ToastItem.qml	4570	2a9d35b52e1e823e4283a83bc9d3d639f865409d4d5378c1cf270efdccf09666	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/utilities/toasts/Toasts.qml	4172	8a929f5ec48932d7d248a5dee4ac1ce98fd1fe2fee5581add68fa80a93244793	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/windowinfo/Buttons.qml	5656	e8cf997915bd587d3e6abf460ba6c25a9c66e6352f6405ffae1a1ff00fd893ed	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/windowinfo/Details.qml	5488	ea000fdbafc61bab927d84372d240f02e40061be656c5db0f64bdb560238e409	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/windowinfo/Preview.qml	3037	e1541adb79fda4db806de86733a725d2cf2bc1b64e8949fe361b262c0f5c951b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/modules/windowinfo/WindowInfo.qml	1498	ad60c980357833e07bcf686071a208e707e25e040680c02420fa8f3af5693f82	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Audio.qml	6146	d45d8f0c572d8c5b26a1fd8a890e331444136edee10c5c7fa80dfd66f33af3ce	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Brightness.qml	8365	55379d529ce80cd00bb7722632a7d60522e57c390a934fe06a03215845e60e1e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Colours.qml	15264	16fe586d412dcc3070b7319d61ea4480c4c074af647d220e2e0222b4cc22ac66	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/GameMode.qml	1896	c523d391fc5738757d464969e53dcda8c218595d2885abf44743c5393964eff1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Hypr.qml	8259	51589f5877342b1a35c78b45985a2cc54ff3fc5109fd3a4c484b63ac296ba92d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/IdleInhibitor.qml	1074	3a6f125d4f7fdbcd1fad4a86ccc4e2a64eb53fb46d03f8be654cf21b535d6e1f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Nmcli.qml	70010	e7f2dd58d2237fa2fa5c9b8da7b560fc42c2cb5008d62e5a2fa998c9ccfd905c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/NotifData.qml	8427	92f89f953417b34f3df93d7311206101ddc409530864863d6ce2b26af57063b7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Notifs.qml	4641	7a7d58b3cbec0b05d0eb5eaeae212e485bbe60dee6d3c71091148823c2264a10	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Players.qml	5218	6f30a04d038d6e6a4e92f789f7bf6aea19792202dae06388f5967c412044844d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Recorder.qml	3122	67e9c1cc29714264ad83cc09ccd2f6605ea50c8aec66b5cce724da34bfce797a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Screens.qml	330	a67f9402dc91deec37860ae3a6ff8f919404fa7af19bbbe7c541f74a41f49d30	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/ShellState.qml	2541	de2bd7208ddb31a38fa37f55b2c19be736a7fc4a3878665568e7d148aeb48175	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Time.qml	850	23d126e3823f339193c3b1716f922e2f46bb8dadeddc317c59838e21bfd9e3f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/VPN.qml	31145	5f7cbc974471606546ce9787f1d42d89919cf7af87a4a956e7354d5dc3d4ad69	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/WallpaperPauser.qml	4770	81531ba10c730e63bb3743f83d9219754b41b00666500bd4211605aaedb958c9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Wallpapers.qml	12754	797e94a8bab873b3b78be3a9af9ca4be7565f17e38c9436f65e17df674816984	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/services/Weather.qml	14526	4f50153b2e52c264ad92aa0a309629db9cd531a7fb077d23f5a31215042471d1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/shell.qml	848	2f565b2496db98684b1799a8961e7e7669723b3bad4cb84426d39036b7366fbb	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/Icons.qml	7472	5a2e6a5aa5d88e9ef956ab1bc09dd1d097bc123a635aa923d60016180c823b7e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/Images.qml	384	02b6f2e8bed87d801cbe1ebc53a3cfb2d8a5d914132fbe183955a55304ee2861	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/NetworkConnection.qml	4501	a582528bf3c456151e74c672ce11c18bf12775231fd07810d65f645d4882ff63	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/Paths.qml	1641	8717c6e48cf9ffd7c3dc8233e687f83652aa59ee59b031d289bc58e4885b7844	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/Searcher.qml	1582	e2e07fee106c95744a4859b3bd2ed2c45c6cd03507009a2dc028c47c4016419b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/Strings.qml	943	e95a20efc5aee569b163d57c9d5b02b8d3c5f266757ff4af7743d9f451942057	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/SysInfo.qml	4613	19eea7b47f46abf2da55e3f7cc90cd8da54b135d518a650ec194cce27fcc51c5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/scripts/fuzzysort.js	27426	19fdf028c3135674e346aedaa26b44b054437dc93b7d65a78fed14ec929184ba	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia-aw/utils/scripts/fzf.js	34869	ce06080572d93af0465a74d114ab3ca034b7e51ce7cfe5b4769ca9e6fd084e6d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/bongocat.gif	7350	1fba455dbbf57507f8021fa49ce7ebb1d4a6973f0f1b5a760ad60e473befddf4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/dino.png	9441	39015398cf0f6094b851d30163b7ca4e11d1b556bc66a10fb2bcab2a0e4be137	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/google-sans-flex/GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf	3997148	2510a8b7a24beb1fe8163e9a49813ccfe96b5453444b9443d42665ca4fa320c9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/google-sans-flex/LICENSE	4302	fb755fa3280d1d215a20df2e64fe6a0f75f8208439b11671978214aae60d2997	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/kurukuru.gif	99006	750d6115bb86008ffbeb09dccd2a8b1e20a466da26295fc724a2170be70f8be8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/logo.svg	4379	a699a549e370a68ce2eeb390c209b1dac13cd7df62bcfb44d2b95202754c286e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/pam.d/fprint	59	a8c05438bbe3343d842b222f435d1b24648a47b1d7cb1c6b26286e78b974af45	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/pam.d/howdy	59	de3f2c5a168aca57a68b8e1385168729f46365b4e1f5e6eb62028e699b345e10	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/pam.d/passwd	268	ab02891a8616badb86e014a3a09dafef229c5ff4a546cccb8904b06b3ef095cc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/wallpaper.webp	5571692	1b87f61b667d6a5fe4bc80b3ce761ba51a3ec0451e6705561a3632a5e9e7220c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/assets/wrap_term_launch.sh	85	5d49fcd54d4fcb7834c869a4a382ef32020926e0c25a641770814fe04551cd2f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/AnchorAnim.qml	1708	9d656ab66d9367a46d75603ee9a8537250ccdf61b0fbc53ef0e89a894f6ec719	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/Anim.qml	2151	b4c5e6a71bf673afa92c1c65d688454d847dcd8584763f7b3c63d2b2e32bc3e1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/AnimLoader.qml	845	5621670b4f2d97711571d842ae09da861f871e644b9afe5941b05384c8ae5c8f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/CAnim.qml	163	39a3ca97b01db880e292ad753935c1cbb0e3a60d93c1ffefbf3019a2044bfd11	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/Logo.qml	3242	8903d529a32ef7b1f9309feef0935205d545a7488a7552956cb36898b272b66d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/MaterialIcon.qml	349	70308f059443f12d04defa684c56b351f3b7c22ba7bd8f871d425255518b5769	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/ScreenState.qml	393	19098aca8f4b357cfcd3eb3a919fca231bc6ac0a07b1d392bb113352ebf0aff5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/StateLayer.qml	6082	8f34998baf9c14e4e45ff10d813f059ea414d38d267398248b0b470f89f0f612	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/StyledClippingRect.qml	151	b2cd81d881f000c131f1ff192471cd31cd6666c463ff15ed7ec9d0a0ce155ad5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/StyledRect.qml	117	e0b161e3a5876dd276a26de9c93e7a0335b74e759399f03d1bd78f712179286e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/StyledText.qml	789	f4cf3c9571a206ea2f26a8e7a93d3e6fd445e05ee91558362dbf0cb89c18e368	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/containers/StyledFlickable.qml	614	531148039587e360ef37d330b350891de017f3b965b5bc2823122b4df8422f6d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/containers/StyledListView.qml	613	b20a6f5857306586710bd66a867177440bd3679c8ee3d22d9fd71bf3dbe4b24c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/containers/StyledWindow.qml	356	fc3b79e63a890353accf857ccdbc7e40c8c91833f8ea7b81ff418bb86408affc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/containers/VerticalFadeFlickable.qml	1918	a6c2c3fc27616297b80fddbf8c94cab38ff576c2353b0b7419557b43ec72fc10	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/containers/VerticalFadeListView.qml	1952	3aa925c29a150b2c86a2f90dc7cf4017b2f016f4e335e7e22300091c696d5995	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/ButtonBase.qml	2768	6fad0b4054107bfaa021a2608f6afd452a9da63c80dac5935dfd63bca8c62b76	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/CircularIndicator.qml	2825	fa5ccc4c39451aa0d516ab2bbe523aae685e400f1e28d96ff7e6343ab182738d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/CircularProgress.qml	3909	7a9a6c458bc1226d5cf12a116ab9b548afa5dff392a038cd286fce845f274c36	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/CustomMouseArea.qml	537	76fb4fd1f8924acc82294fa5606f84bbf919f3fa79c7732d52ad7df5115aca7b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/FilledSlider.qml	3268	8773dca713ee89c2c2f17da23a71ed0365bb955882476492df8e186a9c759a39	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/IconButton.qml	1710	55de51ad579c966c8ccf8504fed23aa908e93e2cb14515936a41e8489eaa9291	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/IconTextButton.qml	2252	f9bc9a1f587f84ad861c51ac15551dbc8d1819604b67aff844532a37a7103b1f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/LoadingIndicator.qml	3586	9dde4a8bec380ed622004c941fc68ba82eb58c958e25eee985ad4a007b181bd6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/Menu.qml	6887	37788e7f392521f59ae22cd8a7e458d7307c7133b9f729249abb58ccdebaf854	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/MenuItem.qml	238	22641d916d45a07dae3433b7286de037f04d586dadf8fe66e778f6bf86a9b397	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/SearchBar.qml	2403	5727782ac353981d69048801ea8e07758716898dc078c3b891f0244ecb69e32b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/SplitButton.qml	4760	05779902f79d29bc2b793da71a47642aaa1f7e133caa9d836e1913d64a6fcc0f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledProgressBar.qml	7733	3cf0523868422d87c37997eb29d59a95d2613e1664748564bb9312b6d8c40cae	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledRadioButton.qml	1537	5f8f10f18f0e927355b277c14f79eb4bddb6a30d949706a8545542a67e1f2c8e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledScrollBar.qml	6386	06c8256f2c8fe90b61566f5b467c3c98781d09a0fe9993d7661b94f7ce5b10dd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledSlider.qml	5525	9cf87590407f2b87849dc4780203652bd4efaefa46f05678050a17b368cd72f4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledSpinBox.qml	4725	3401c5f2065782af9bd531dfbbad8fbf71bdb022967434740d29cdcf9fc7fe58	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledSwitch.qml	6073	c69d78fa605026b5446d40f85abc837b8acbdd82335be608a15883dc0654a8e4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/StyledTextField.qml	10596	d53cb05509638d54b5fcfe9f5a6cf17633606be04e1c2289a9c40c69224175c9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/TextButton.qml	1427	f559fbbf7daa1fe09b9cf8b422599d59fa7188d4b00bc934eaa3b5bce66bd33e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/controls/TextFieldBase.qml	2350	9c9f5f22021903602dab8ab95cbf631d47775770023e9831c5ad7453a5e155fd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/effects/ColouredIcon.qml	655	9904403fa23b2ab0d310f0f355ac6c964f413c2c817548a8295fcc85a804c105	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/effects/Colouriser.qml	242	2646e63eeb85b4b7e1ef48e867481521e3a9c9eb61b9268026f0a187a3b63c21	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/effects/Elevation.qml	400	1b10528634ae9c5397da7f6f60d155b18e0b7276fd8cb9554b9aad87775d5645	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/effects/Mask.qml	111	3b3c61882775eaf6b1d79d054b0d81da0fcb8f9a280f35fa43b28886070d1624	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/CurrentItem.qml	3112	4865e66d600dcdfe70d91a56dbc625714c73b1d20d57e1ae3de009de5c7c256d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/DialogButtons.qml	2786	7eeb4e0565c2a5e0b8c77ae0a49b5f9b5bd4de5535610878da8545019c3b4efe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/FileDialog.qml	2494	9a2cf466bf50da3c0e21d7d4e22bae96de67ecf679191bd8c2fd8e0086cf0689	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/FolderContents.qml	6510	a28f378a089b1ee7e977bbc5fc114fbeca6fa7afb22fba03747b981bd1dd462b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/HeaderBar.qml	5017	7a1c0e0f9229cc3dc0824783fefe142a794c813ff4d7650975513fe29c9611fa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/Sidebar.qml	4145	e3671d38688107dba5c888fbdaf61cffb5aa73ec00b213a0053ccc50b00ed86b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/filedialog/Sizes.qml	118	fd3637d2c748ba04d4e119df7d054d96fe2a7b54d59c9f2c9f45d4cc0d0b0663	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/images/CachingIconImage.qml	1014	d789eb02b012d4001ddde6bfd250440fc734eb325e8ba80201aa0a5d1590088f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/images/CachingImage.qml	365	1975baaa613da28cabd65a685ea0884682b475fd161d92d11cbee03ba7fbd159	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/images/FadeImage.qml	1862	0508b06456979d969c854ea21ed58ae83f625da0cbd71e2c399cbc243d40f57e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/misc/CustomShortcut.qml	143	b5351e36bc106c7e06206b597be28262715eb73423864a498f794423af147208	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/misc/Ref.qml	158	9d00330ddda0749f754260f0340dc59532051243a419a0e507e0f4a103104cd5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/widgets/CoverArt.qml	2497	373542849aa3a57f66e626357054453460bea101df34a7b5cafeecb30298e791	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/widgets/ExtraIndicator.qml	1079	14b9aa3fbe05811ee840d028e16395bd139e361e9fa4dfdc918f7af9dd91d33e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/components/widgets/WavyTopRect.qml	1185	673f19f6d52ac8ce33f007de59aadd391fd713b665ff11af842ea966d5dca9e6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/BatteryMonitor.qml	2602	b453eac2d132fe112d73fd2ba5bd3a760124e4486a93f97d29df924a74f1716d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/GSFLoader.qml	171	1b6750279cc8c35889ad801df78d73001c0163481c8ebea9a4f247dcaf3ca4ce	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/IdleMonitors.qml	2356	6a80dc23e6e4faf9924d445a609060b141ea07fbb237a365ae763763413b52af	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/ServiceLoader.qml	385	ba1f3ebd3208fd0c24781bbf76bf109566bb6ce7a0ab5d5ce3c7640dbdd4f777	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/Shortcuts.qml	5147	444d585eb0e38416c610d521ce708b28bf6e928847b99a0039a44aacba670d3a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/areapicker/AreaPicker.qml	3498	ca086c67278d3675ac8150785ecadd1a7771f8260880386fcef5a2eb73c63648	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/areapicker/Picker.qml	7901	682b71dd0ff02abea099d1ce6fb4f438fcd562b3f9b9c57a03c3fe819f14c378	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/background/Background.qml	4899	dc99ebea9dee7893a185322d07348b3f7b54337e55bc71626b0c755d9dfa1ddd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/background/DesktopClock.qml	5859	108c57b39a92b02615314b71579c3c3f4f5ff5b142449dacdc9b6562f50710d8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/background/Visualiser.qml	2744	060d214af6d9f97aa4e284fee3c77dc4f000f33bfd462f53aaec361e41da0311	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/background/Wallpaper.qml	3797	8339a889dd31202cb909b2423845f7f8f9e5990ac8545fe6aa600375036cadea	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/Bar.qml	7280	7223977acf4279d694414843885d07a1ca49d7ae00793a94e6b96c3de0024a15	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/BarWrapper.qml	2511	d393e75051ffe84672c536aeeec673d5aa77b53162299be8860b42f7e5b186ea	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/ActiveWindow.qml	4113	141b9ccca379eb7cce6643e7175d4f7d1e55a3169601461330c3576ef11429d9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/Clock.qml	4486	879e47048840ab8fe21fb81030c3985683dacc45a3e16825079f43285f75b047	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/OsIcon.qml	1156	ef3e9a19d933f11a39be7dc02d2a54fe4cb3e557410c589931fa6a311f503dbe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/Power.qml	855	b9cec6eef9df3c807128296877ef2fe28f9e0f51d2232d98b1463cdfdc2c753d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/StatusIcons.qml	5777	2e2dc140a2109481f430bf74efe88ff7d948e40aa6cc37a486bceac23d38b30e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/Tray.qml	3599	ffc8ed0a18e899bcadceca5336eed185130558f65f5361bfe76e872f0afdf40f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/TrayItem.qml	822	d39fa9a7d1ae72072f94dd59af2ec41cca2967c7c5c21439f42273ce4296ffc7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/status/BatteryStatus.qml	828	70eee8a13cc2fd0499a7b26d8dd634130a5d707f04ad6a3685d456ffcf0cee5f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/status/BluetoothStatus.qml	2275	b48500b71ec5ca9327ea620758ef54d27d4122b51b52f9619ffff86426730376	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/status/LockStatus.qml	1969	d9b5b0af2957b0e7a78dad963d550bb7ab94b835a04eb5fdd42bbf9a39811342	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/workspaces/ActiveIndicator.qml	2007	4be3a79ceac9f6e37effb0358c06336858b6ceb711360fbd6681179de031517f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/workspaces/GapMarkers.qml	1540	7bc61bf3708dbf0f049087dc15b71811fb18cd1f2b9ae0bc7193659aef9ed6e2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/workspaces/OccupiedBg.qml	3010	9b1018a0c9782c8f6a4493e8c1f25c62a823f41577cfa5425f95dc7a2aaf7b8f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/workspaces/SpecialWorkspaces.qml	6391	16b08befa5cc52885fb59466f159295a6fb5439f13e7a558b1e74b9d85f6e175	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/workspaces/Workspace.qml	8758	ef040ff72929a13791ccb484dfb39f19a4818c3fb9197ba8ea36d951bd3f9e50	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/components/workspaces/Workspaces.qml	7074	6ba4feb941c6e14277b9375c23134d25c55879077433a8734e39a53f73b7baf4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/ActiveWindow.qml	2818	bbf0371c2f774f147f6f6f6c167749c1e7f2161d8285c3bdbcd2fc4b8ffcd174	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/AudioPopout.qml	3324	7ea5e3158479af91f694ec134a053200ebbd4307f4e9364c37991dd251615990	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/Battery.qml	8226	7359e58ad66bf7bc8be737c4c563b350ab9c9120371bc8d981ef3bb0ec02a1a2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/Bluetooth.qml	7071	7a227a67a38a45d186120dcaab642c7eb802dd0118f84bf2b2de3853c6436120	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/ClipWrapper.qml	1627	7622cbb2909049ec2b43ef148ec3384cf46a4d0a2184529b970ad2c61bdc44a9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/Content.qml	6608	cb07dc42ecc66651c8e0f45b70621980543c28541cd024a363392ab31a1a1fcc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/LockStatus.qml	380	48b1c2af8b9604e56007e2be0c2e8d6caf97beba043f7dc67b89994b0c126dc8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/Network.qml	13816	2cc9daffe541b8eb4c9c968d6102005c5f5ff4d295f11465f1e864cb4811420c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/PopoutState.qml	132	7e202ed323c64a5e8b9e01062bc130ec72df52f57647dacf35234872a930b47a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/TrayMenu.qml	7481	e944a3940e03ad16d4bf8dd9b173a6b3ac51e0b9003e7cdd72ce6e11f32c0977	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/WirelessPassword.qml	22653	bab956a4939530753de0c341dfeee549dc9deae8c1d3122656a31825daa0facd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/Wrapper.qml	5997	03682cbad2e76be151e9520a00f095711e4114e478e165767425686de15be87a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/kblayout/KbLayout.qml	5630	34755e8783ac7b6aeb0e71435ad3f22afe3da6fe5994efededb8d807c80845aa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/bar/popouts/kblayout/KbLayoutModel.qml	6636	64c200fe4a34be1ddd81d22746154f70a7815faa144cc73bdc34496782a93e0d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/Content.qml	5989	74a4a36b5b9edb7c0b706a55cafa50e66b356add2e7aee4538e4dec93147254d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/Dash.qml	2127	f4379208a0e85fde33b7a1f358d5932353c0c73b6f21a72169290e3462c068c0	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/Media.qml	4621	26b735e17e93b9f61043bc3ed4ba857fa9a4d0bd5ccca896b3d69604bfa039db	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/Performance.qml	4779	4d789916d390d05cda55ab5644d9fdc8f0391898584dc5b0bcbc983643601d47	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/Tabs.qml	5245	a53b9a028515d93605429816e2d97564115a5c8f626c6cc90380cf065da45400	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/WeatherTab.qml	9415	fb5c8a529ee462f99a3063f5cbde86d518de75ee8599d3e66c8d7b0b652da831	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/Wrapper.qml	2027	1d3d1bb6641c9baa223a821e7dbca68d7aebb363575e6691ae42d132f9753d0c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/dash/Calendar.qml	8408	43fec6e6129d1fde3bdfcd190bc9b5a1b4fbf4531d59dcf1e567e922985649ee	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/dash/DateTime.qml	2620	651c1817bd0fef304f33a80bb22dce48cc3894063cc02be8ce064b3ee25f04b4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/dash/Media.qml	5160	b526526a3a1e8fbd63c2213ab6a01a3a21f19f07c1afa91d4de017150513e74d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/dash/Resources.qml	1572	1ddde3ab29a61da7373da2523de25030e95de25b9228892c4c7247804db2a0ce	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/dash/SmallWeather.qml	1691	9517df7f9dde6fc287180543b7af86db265b021c2aac890daa44c9d139f42730	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/dash/User.qml	8322	1cc273afb374ee49235ca1ad16a3bde4046498878c0bae8e4be5e6e4d1bf88c7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/media/BackgroundShapes.qml	3300	d12dac4b46c2160321a344d8b31af4e7250499ca4c2fc6293c51fdd12813621a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/media/CoverVisualiser.qml	2534	d326d57c082df97f29c7f7e90067519b52e63e0f39e2c825dfa0ac4df185d008	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/media/Details.qml	6405	9c81d9b1952f055560cd14e71c4ee58d2e47308d77b3821a33d20886534cfbf4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/media/LyricList.qml	9105	2274d3992d1eff15b32c9334abcc5f64090d0920719e191e8c1eea5642378b8e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/media/LyricsAndSelector.qml	2243	8a7fad5274884daa7abf8c68216d0332f2f6cc8148d2ea74a47ad98975a607cb	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/media/LyricsInfo.qml	6235	b317a2e51edf77a4a4618b5898497814fc4c8595a33b6ed8c25a30b269762745	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/performance/BatteryTank.qml	4719	2f797414d678535ca4f46909be5a10dc0ee2d870601ae32aeb29342a1c536424	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/performance/HeroCard.qml	4398	81c3604b91a29242c0b2000b2a26ec03f88e9d20ab067a93119bf12717bc26a7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/performance/MemoryCard.qml	2601	0d4d3dc7edf82eb1cb71270cc03faa1371ab3cb573ed986bd55436c4495ba13e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/performance/NetworkCard.qml	5852	2d18f130e65204866a78d67d208deb589cc0de8d3f615ae1727be423a86d9d8a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/dashboard/performance/StorageCard.qml	3931	6a90355537de504a26ab880300c06d67e85c369addd669f7d0ec42e776ce1d18	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/drawers/ContentWindow.qml	10994	404deaf9df20cd8b46ea82a144ac45eafe5e4dc065062f576f604cc4f8f5a12a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/drawers/Drawers.qml	405	0c959f41e5419de50c137441b580338f434a3ecd03622c45c52ec2fd590188a7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/drawers/Exclusions.qml	768	5ef6e34905a6034b7e9901b0e7d159fc337c27d3458dc08a1e5ff51481715764	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/drawers/Interactions.qml	13485	88ea719b1d0ab48c3e48ce7dc798220635f967261cd8fb5156d97b949063265d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/drawers/Panels.qml	4228	1166d39de4ee9d40ce4a19e189d7c162743c5ab954174ae5844ba42adca5e6fe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/drawers/Regions.qml	2370	a7da0518d8f8d9fcabcb90101e082baba1550395dffef5e6957edfc19bd0d675	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/AppList.qml	6913	11b85781e9a35e372f0266658419bea5d2cb297006208f90c6a0a27d57b42b9e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/Content.qml	4355	d3a3f3eaf365c169781035bf2fb27533bb0e4ae6235f202bf92940a50aafaa70	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/ContentList.qml	4695	a49736fd80f025274f00732473158f7a8a0709829e0f4726af5259d33c2310e4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/WallpaperList.qml	3289	4754d4ed7f7b265538aec0e969b23aef53b3e3d44c29333c645e9e9387a84dae	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/Wrapper.qml	1631	b7579e9914cb3b0a0dc156cb6b2296de76f6d89291fb192d1bc7a0bc49f770ea	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/items/ActionItem.qml	1722	da1fd29446f865e196e7c666bb5ae757e09f6a0c854990335bad399afca4b824	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/items/AppItem.qml	2465	1fa6918474e12c649debdbba9c4d70bcc5c2ed0c7f0bd0f3224698d8d2ec7c9e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/items/CalcItem.qml	3752	fb796488b4f1414e1fd38e585d90cb09f65993ee3118995709c2a0e045307295	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/items/SchemeItem.qml	2940	a99363cdfdfb7612f9af26decf49af860bbc15034c0ba5aac9710dc4bf607bb2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/items/VariantItem.qml	2092	1edab66efbef98b56a304372ffb65f1eaf9c3d71eabbf44bcb78b585018d9dfe	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/items/WallpaperItem.qml	2744	0b8b0a3916159f30072cd493653de60b74dc66964d5b2675f1c474c6a37bb3b1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/services/Actions.qml	2013	ee6cf7e9067eba0d4aeac8b412fffb50256c356487fdb6ea55972ef39b3dc1af	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/services/Apps.qml	2409	dc6b8778cb46e14c9f7b9920747a07f350369cf6a90bd2457ee1b935802d3832	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/services/M3Variants.qml	3071	9525ea54a4b83d080c72acab582f45c0ad6f97afbab1bc9e4c6ead9d668c75d6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/launcher/services/Schemes.qml	2382	79a36ae84ae7a0d370dc5260834e1c2795d903114555a40f66e658e08c8d19c1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Center.qml	1408	817b15a25e2ffd2ac2b5404c903c9d66c6ab540df3c056b31418b5f8b1a02078	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Content.qml	1171	79f3f560a9345c8611f1331ad781edda2d3ad117dd046440d514e1492e1d9aff	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Fetch.qml	6346	31c07542f66812ca4c9bc7e6781f812ab498b27ca8fb54ad5ffb865152b4bd41	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Lock.qml	1571	53780d8e5545007b2f546c4822567b4c7717b3e54235a7e3c67beb33e80c9178	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/LockSurface.qml	6505	c52ee7f235592984f1837296c570c2424074083578a2e4e5c967939a9c8f4237	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Media.qml	3326	1b70a911e7c4d2542a4baf4dd695e6050a8ae7a3d4859f083fc56a03b7ef08f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/NotifDock.qml	4013	aba23d04cd34cd4572bbc76d7cb289e65df3e2a6a96c61d7615399de6af2d622	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/NotifGroup.qml	12584	921b690e5a9363f84fa79e19104c98087536891d28f239328ee9d582f3b7387a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Pam.qml	7585	097230876dae0ea21921952ac1b081d8b1e4733fa11fe23d01065f9d309c771a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/Resources.qml	5353	5ec619f3eabdc83c962b6c9ad850a26f86d7df4c387d397da31d86f433dbfdd3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/WeatherInfo.qml	1315	37d81e6e10c11616d9cf98bb799a56f304403ca4f0a1160cc6e13dc1168e26f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/center/Clock.qml	2588	57e91ab131ac89fbd8b79c63434a0c8d9f9b6304cf39e1a265beabd04cbcdfe5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/center/InputField.qml	7525	95bf76b4d140afcc63fa26214a223a6b4095cacb2b627eef15f92af5f3807c7a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/center/PasswordInput.qml	5933	56e0a542ea61519160047971428039ef6c97b2447e7031e75eaec8c07c45a7cf	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/center/ProfilePic.qml	1244	b38f25dd2604223bbf2dae1f2046399bd80182c17742710893a06dad64fe90a9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/center/StateMessage.qml	8038	4cf8948acfececb5d8f28f26b4331b0583f60f2e88f15d7ee246306f3281870e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/weather/BriefInfo.qml	1953	43fa0225cc2085987f7a534ca53a24372d29ebf2ad881417503723b22008c409	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/lock/weather/Forecast.qml	3542	3cce55bf490338754384813f7cddb850fffbfca12a5889b84d7e9fa9d42e7daf	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/NavPane.qml	1222	f098b786866ed1974d8e248d3c5db217bfed450629039ce90ccce788a7904e4d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/Nexus.qml	2950	79b8cce0d7edcb52844640db5e4ec683ab15773605dd5900cdd211ed892e964e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/NexusState.qml	914	47f45e67f005e62fb2dd9f4742c01cddb1b4c6ee6fa262d2c363520896b79029	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/PageCompRegistry.qml	5605	ce2d0c6a670f77e2e3ee32af7a13959731e9ae057f9b953446f7ecce5c54d431	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/PageRegistry.qml	2501	460cd790c3c082f3455e33d952c93164ba364bcd23f5dcc3b1c3730bb79b8d11	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/Pages.qml	2459	c0b8dce3edb8aba28f1c77ab22ffa3c02da2dfd3d8cd2513fbb877983f5816a8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/WindowFactory.qml	1378	f347eea4b31134beb644bf342d0babe7b9cbb01cf678d63299ae2eb0e99b5ac4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/AnimatedLogo.qml	16469	d91ad38b8a17846c3289238c19636491acb876629778e96dddbe5579c21574ab	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/AudioDeviceList.qml	3106	45353542ec8e382d7336e72a6c36658bf8e0726aee857b09fb894f49bef609fd	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/BlobPopup.qml	3296	0838742b5f9d3fb8abe94b3dba11a35bd4efcfbacc195cbc4ab2e40449c3c364	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/ConnectedRect.qml	528	131b59bb4e7f31976bc559960a0ee79f9a7e0b3c23fe8690a1d87064b2932ddc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/DialogRowButton.qml	7721	727a5d35670f37748747840ded40e8cfa922f3afe698a7dc6aab4c2a0172b323	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/DialogSelectButton.qml	3152	6b87ab5fb4a3d61b6f4692e9023d5c96116fb821488b45bbcfd5ee9c5e9465b4	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/EthernetSection.qml	9288	a56b6222eff30507861bd00bba1c196aec1a658b5a361d9c340c17dc5a196ebb	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/InfoRow.qml	2040	88f48737f81eb359e7199e5e5c031a36039ac14e3b4a0640d999f7af514f3220	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/ItemList.qml	2827	1a88785b287cfcaf524ff8c2d962d73052e47e77570047193e2118fed318ea80	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/ListEditor.qml	9528	29c9af035890ad70f88f60bd1b940da12cc1b66dfce0e3692daa4df2daac7e3f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/NavRow.qml	91	fb376b72b7f6db45681986d703879154ed39f861ddab251f6870c5876208980b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/NetworkList.qml	6533	57585f622595d32b6344aa4677d543f186a9755be6b92fd0a9ce97116a3ad715	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/PageBase.qml	2232	cc1e5552780f796fe409a2f0db6fcc35cc6fd0127dddf31c5052b8da62cd5445	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/PopupRow.qml	3550	62d44ffa5c6613e9c789c4446cb822a6a1f870cf439a9608838c5ac6081d766c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/RowButton.qml	2273	13d995f9cd8ff4746b224691643a648af39ff78fd27675e0343a5bd59a3726c2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/SectionHeader.qml	480	eecfe13d3f4423b27cde003c93fd9340360b7fb12a0eed76576c6879b9579930	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/SelectRow.qml	1805	618dac7c8af00f1f6ada25dbe6fbd2965e6acdbdf5106d09ce3b1bf573219102	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/SliderRow.qml	2526	2aa69c8b1fefdc035c2d162505c5d8400a2de1760cc109341dc045308d704ba8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/StackPage.qml	3073	4fb085fe09e7f3fb562bff4adda7e388e4fe9b2d7fe5d14b1498e4cc364dcef5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/StepperRow.qml	1603	532820239160fd6c94114cc2a380de04eafa1dbaae8581a7818364f6903202f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/TextFieldRow.qml	2551	29d3147c7857cb5577ce49701de59fd60c42f8d8f3b0de080d43c5509d04ce28	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/ToggleRow.qml	2173	3b7420daf3ae184ad4d99e7e2450a1227b29c94ac9344b13f789b92bf2067f7f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/common/WallItem.qml	2996	d3bc3977dbe9ed34e97f77820d134c6a5e4c7ef382c19935a8a1de095b7e1568	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/navpane/NavLocations.qml	5253	7556881624a94722a19e9ba029bad5e758adb7e855a6ed57b8002822e1512b96	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/AboutPage.qml	4298	14b413013349ce4faf2caba7f91225134138417dd53447027c50850e26d6252d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/AppsPage.qml	6132	bb3a422b18029bb966b25bc51751a664209a2f2ce6ae7d2939247fd7e4865351	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/AudioPage.qml	2701	6d41c536db7117dbc9d931b0ac7a1f3e4a31f26ecbe83c89ea9051497b7a9b52	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/BluetoothPage.qml	8714	2e1c1e5d353a04fee008a1b049a9ff502d3bb90d0b4a254ca92b86ae6a57eb19	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/LanguageAndRegion.qml	6128	f9f1b19e1edfe05d576de5e6b45d71fee90e247a7bef3cc2c43eb2de35decdd6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/NetworkPage.qml	14264	e79b266466733138f424230536858f460794d8f70ec9d1d5dca478a816af0370	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/PanelsPage.qml	1760	3f6c248dda9ef0fa22f29b70e7fd164ae47d3b536efbdec5310dcaf2576d8070	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/ServicesPage.qml	7067	44f095513785ef5906459fb6229ae204f1ac2aedd8eec017de82a908bb1bbfdc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/WallpaperAndStyle.qml	6660	510906901f1f61657330f0e1e58f22e4ac087378c0a12d0f22078c0a34b7001e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/apps/AllApps.qml	3366	ca29a70b04c83e6bd11ca37f10246e4ba998fd6f5f5e29079dc778af6347b92d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/apps/AppInfo.qml	5498	a367b0c4f7df742117219ef9c33cd74e29a60f458550cb1315973823ae1f9349	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/audio/AppVolumes.qml	2209	beca823eac3ce0f55a19bd12be7df5fa269c355347a91d558f67e034359a3e66	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/bluetooth/BluetoothPairing.qml	6680	9ddf68f710cabdb4d021885c18b8053f9d590fbeaaaebf5db2bd783331aaea31	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/bluetooth/BtDeviceInfo.qml	8972	78c8fc39624cb93df6e2e99b42f66046ca0ee40d25baa519c706367726f45e58	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/network/AddNetworkPage.qml	8411	2205f9a93e561c50ba9f3cfd3e6df71980206d3a34f5fa8d087ba0f6d11748f5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/network/AddVpnPage.qml	8024	24fea177cbe71088be7cbb6f16949f1ac0d4392f3a3fed3b59883851079d0750	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/network/AllNetworksPage.qml	5492	265c16eacf23e75fd8db8453352a6ecc1d36217e14ea77d328c649acbd8cdcf3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/network/EthernetDetailPage.qml	12260	7460c111dc96c55ece848430c662e19acac2280c8abd395ed459124ce7a69ecc	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/network/NetworkDetailPage.qml	17018	c1a7b44f0574c7e24965723569d7d12fb00b0f7a269a2a321b1dd15719fb5087	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/network/SavedNetworksPage.qml	4719	e4f490fd163b0a335afa227685a117f66e8277d7aa266b540f480387f52bacaa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/DashboardPanel.qml	4053	cb13e75d8d532e568e4c71f16023e5348f3cb9d200bd23b6d2937b6e1bf22bef	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/LauncherPanel.qml	4784	24dc1599c4d329bb942882379237a578839c6a61e9fe7ae0728ad416079e2e93	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/SidebarPanel.qml	1073	58abf6fa0a6d2ed09730213664376c722f6394bc570f892e0898b03fd6b47cc6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/TaskbarPanel.qml	3509	019d3eb6b4b1addb7894d4aeb09490f9f5ae7622ee9608e923b454d63205bd5f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/UtilitiesPanel.qml	4449	1f13ab63f7c1be935ae5b22a83dff413dd36d6cd170fe079708917185b428907	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/taskbar/BarActiveWindow.qml	1489	6c82b8ec5c34a215e514c287237d7f35b1df41159f8353cdad1865f896c7aec0	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/taskbar/BarClock.qml	1239	5b59e888e839e04954efda4062e2035fd7e89332c27269ae97edb4700a6144bf	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/taskbar/BarStatusIcons.qml	2971	81bdfa3a8b572854fd241135eda34f428fc0b36dbefb9ad5839fdb0d1ab52908	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/taskbar/BarTray.qml	1400	1ec8e7b2b3f48f8c907ee26101c2e5fb70b765a6d6a1753132c075729bb24664	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/panels/taskbar/BarWorkspaces.qml	3055	b64b6873121b1959afc3f221083c4ef24d537f41227f2942f48be6a1f8b38bb2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/services/NotificationsPage.qml	6711	9c7a44bb423d2e19d9200caa074230edc75e9d127f9f6aad20a984d4ca6a42e2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/wallandstyle/ColourSelect.qml	1324	13ed125b028da85ab86e23d15222731b5e5c1b3fe701810aba7134620d91033f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/wallandstyle/WallpaperCategory.qml	1532	e49c2f7a21519ede49f878cad9819fb4b011f7c8c93f117eb0835733555de0b6	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/nexus/pages/wallandstyle/WallpaperSelect.qml	6516	892abc0f519d58b18b7c1b15da925278e06a78d0d664eafdfde685f32cefe36e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/notifications/Content.qml	6437	bebed5aff704c4ca8e73dee18fcadfaa29a4200882e20037c1ce434037cdc7df	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/notifications/Notification.qml	19226	2a7746add154d7cec3b74e313c65ed539be0015597b301caf604addbd2818c36	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/notifications/Wrapper.qml	600	7495ed90d38509005f013684acb8535823787c99d215b0c75e020c4268dfed39	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/osd/Content.qml	4219	9435648051cdc59b83efd90228f74c43985b891559520366c62e7a11241dadc2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/osd/Wrapper.qml	2868	aac845d3e40dc1dfa0cf5be87a817ac6eae4495864cd44b8c156b532eb76789e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/session/Content.qml	3875	828e58f2a16f4a99df6c8838b1116e90caf366efa70616afae9b6f19a14dd6c2	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/session/Wrapper.qml	1056	d26511941d915d1ef5305d3c21b64161cc37d6b659b5be5391f27a8048cd8d78	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/Content.qml	914	83433f0ec8ae83ab112db77d6714ac2a268d1099806f8b5b8f8fa1910f139f34	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/Notif.qml	5755	c986d1ca73004a068c1eb55400c9b33af2b167f5efb9c47ca73a6fba4e9e59ad	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/NotifActionList.qml	6034	e7a555fef29509ba375e70afed7da8d97b1e3cba17011acec4dd84f6eec0406b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/NotifDock.qml	5910	20cf80f5e08098e9013c945962964be0f23339b2366ab51fd9474dbc07a555fa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/NotifDockList.qml	4381	46170b47c05aea5b78e7b40a50f016e3afe6c9389d461b21c734c7dabeda6582	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/NotifGroup.qml	9798	11d8edf2d9f62663870eeee290143d26f7eab6bec4f0d3c16a350164d59e90a8	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/NotifGroupList.qml	4703	5245f021b413b4db889d3d86d4f18260ff77fe21242fe2b099f2c374168701b0	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/Props.qml	118	2689cf71454c14625afd7270f6e4aa36f150c1bafe8937a957b072881d487b14	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/sidebar/Wrapper.qml	1199	5e434b5319b47407119abbede6c371e9aac8631c4e8abd751b8f804147092c28	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/Background.qml	1477	0b5e6e86dd1ee046be2c0ce0a5af6fcd11f1d3dc963cfc4b5a514ff6b3b12df9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/Content.qml	2052	0972745cb43ce5894ad3da44f286b88418d0b1abd3cc401bbfc46963745a5299	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/RecordingDeleteModal.qml	7729	1f132a29b2edec60282244cd44c518371a5827d27dd4c34bd341e2a9c33d24fa	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/Wrapper.qml	2788	8ca06d58e71eb89fca278328097869f1c377e1d56bf99f7c43b1527fbb3f0a44	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/cards/IdleInhibit.qml	3747	9c5b26774266e9414dfb4f060fca2b7e9b50be20a6f2568d791010a873196a8e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/cards/Record.qml	10202	3a579fadbb4c09be57b20cdd92d609ce6fa008f38efadf1729744b2f1ea9e071	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/cards/RecordingList.qml	7285	57b8f303ee7a990973ba2bfb68627c73b444a20b7fb9dfd088b7071694351896	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/cards/Toggles.qml	5385	e3ef2ec0c1d4241d0c67a9e6096b8f261efdf0dd73c385ed1728f1043386b9f9	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/toasts/ToastItem.qml	4570	2a9d35b52e1e823e4283a83bc9d3d639f865409d4d5378c1cf270efdccf09666	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/utilities/toasts/Toasts.qml	4172	8a929f5ec48932d7d248a5dee4ac1ce98fd1fe2fee5581add68fa80a93244793	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/windowinfo/Buttons.qml	5656	e8cf997915bd587d3e6abf460ba6c25a9c66e6352f6405ffae1a1ff00fd893ed	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/windowinfo/Details.qml	5488	ea000fdbafc61bab927d84372d240f02e40061be656c5db0f64bdb560238e409	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/windowinfo/Preview.qml	3037	e1541adb79fda4db806de86733a725d2cf2bc1b64e8949fe361b262c0f5c951b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/modules/windowinfo/WindowInfo.qml	1498	ad60c980357833e07bcf686071a208e707e25e040680c02420fa8f3af5693f82	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Audio.qml	6146	d45d8f0c572d8c5b26a1fd8a890e331444136edee10c5c7fa80dfd66f33af3ce	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Brightness.qml	8365	55379d529ce80cd00bb7722632a7d60522e57c390a934fe06a03215845e60e1e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Colours.qml	14417	c984e0afa48ec02212f17e0c2b2971fefb335b8904a708e7ad0dfea18408f79d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/GameMode.qml	1896	c523d391fc5738757d464969e53dcda8c218595d2885abf44743c5393964eff1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Hypr.qml	8259	51589f5877342b1a35c78b45985a2cc54ff3fc5109fd3a4c484b63ac296ba92d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/IdleInhibitor.qml	1074	3a6f125d4f7fdbcd1fad4a86ccc4e2a64eb53fb46d03f8be654cf21b535d6e1f	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Nmcli.qml	70010	e7f2dd58d2237fa2fa5c9b8da7b560fc42c2cb5008d62e5a2fa998c9ccfd905c	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/NotifData.qml	8427	92f89f953417b34f3df93d7311206101ddc409530864863d6ce2b26af57063b7	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Notifs.qml	4641	7a7d58b3cbec0b05d0eb5eaeae212e485bbe60dee6d3c71091148823c2264a10	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Players.qml	5218	6f30a04d038d6e6a4e92f789f7bf6aea19792202dae06388f5967c412044844d	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Recorder.qml	3122	67e9c1cc29714264ad83cc09ccd2f6605ea50c8aec66b5cce724da34bfce797a	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Screens.qml	330	a67f9402dc91deec37860ae3a6ff8f919404fa7af19bbbe7c541f74a41f49d30	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/ShellState.qml	2541	de2bd7208ddb31a38fa37f55b2c19be736a7fc4a3878665568e7d148aeb48175	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Time.qml	850	23d126e3823f339193c3b1716f922e2f46bb8dadeddc317c59838e21bfd9e3f3	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/VPN.qml	31145	5f7cbc974471606546ce9787f1d42d89919cf7af87a4a956e7354d5dc3d4ad69	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Wallpapers.qml	3476	4ca7c20c2b6e7b7c38e19781835b7d31aed0e76d3b9be1bf7d4411045879b397	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/services/Weather.qml	14526	4f50153b2e52c264ad92aa0a309629db9cd531a7fb077d23f5a31215042471d1	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/shell.qml	848	2f565b2496db98684b1799a8961e7e7669723b3bad4cb84426d39036b7366fbb	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/Icons.qml	7472	5a2e6a5aa5d88e9ef956ab1bc09dd1d097bc123a635aa923d60016180c823b7e	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/Images.qml	384	02b6f2e8bed87d801cbe1ebc53a3cfb2d8a5d914132fbe183955a55304ee2861	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/NetworkConnection.qml	4501	a582528bf3c456151e74c672ce11c18bf12775231fd07810d65f645d4882ff63	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/Paths.qml	1641	8717c6e48cf9ffd7c3dc8233e687f83652aa59ee59b031d289bc58e4885b7844	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/Searcher.qml	1582	e2e07fee106c95744a4859b3bd2ed2c45c6cd03507009a2dc028c47c4016419b	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/Strings.qml	943	e95a20efc5aee569b163d57c9d5b02b8d3c5f266757ff4af7743d9f451942057	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/SysInfo.qml	4613	19eea7b47f46abf2da55e3f7cc90cd8da54b135d518a650ec194cce27fcc51c5	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/scripts/fuzzysort.js	27426	19fdf028c3135674e346aedaa26b44b054437dc93b7d65a78fed14ec929184ba	Caelestia QML kaynak/varlık
+home/.config/quickshell/caelestia/utils/scripts/fzf.js	34869	ce06080572d93af0465a74d114ab3ca034b7e51ce7cfe5b4769ca9e6fd084e6d	Caelestia QML kaynak/varlık
+home/.config/systemd/user/default.target.wants/filter-chain.service	451	72baca9f9f13887086c6260ee6c12fe5e2e8f6e393a3e47b02cbc9fc5ef9cb97	Kullanıcı servisi/zamanlayıcı
+home/.config/systemd/user/sockets.target.wants/pipewire.socket	192	0314a8abf591bc159e8af842a627917bb99f78f8bd8fee6f5e0f9157ca9da208	Kullanıcı servisi/zamanlayıcı
+home/.config/systemd/user/taildrop-al.service	274	1a28538af9adb6b5b0b18bbbe93be8bfb79072779b5effcacbd9b9c54406cc0f	Kullanıcı servisi/zamanlayıcı
+home/.config/systemd/user/yedek-sunucu.service	165	9db3b17f7151ca519e49d11708b257a7bb0ac00f9a38a7724e869912d78d8b2a	Kullanıcı servisi/zamanlayıcı
+home/.config/systemd/user/yedek-sunucu.timer	153	4b7fdae6c860e5287c9fcf10ce7ad3d50a57832a23bfa7b58de58a593f093322	Kullanıcı servisi/zamanlayıcı
+home/.config/xdg-desktop-portal/hyprland-portals.conf	269	0962cef989e6337cf4b1abacaf0f19038d66812441226f9e3357c19ef46c4b79	Masaüstü ayarı / kaynak belgesi
+home/.config/xdg-terminals.list	19	7ffa013565376340acebd7a3ac5bab0ab822270fec9bc168600b14e7f4a61cc7	Masaüstü ayarı / kaynak belgesi
+home/.config/xsettingsd/xsettingsd.conf	421	6425e6fee68f94bf0b21bd1ffc2d4925c910c3a5931ae21f1c38f9039124c7c7	Masaüstü ayarı / kaynak belgesi
+home/.local/bin/arayuz-ayarlari	292	f730d9f97cf887965822f230ebbf4209d00cca49f66155edd7074a5fd7901f1d	Yerel yardımcı komut
+home/.local/bin/arayuz-komut	944	669af99f218284e679517cb870bdc7b37e9ea9a14558367fbea46023ebc2a2bf	Yerel yardımcı komut
+home/.local/bin/arayuz-sec	1787	e8e50fe5094140b172a9b93ad15258c5eec7f0316382f2570b806ad069b8d173	Yerel yardımcı komut
+home/.local/bin/bulut-giris	1132	b77e9db6744ac0eea6f6bf8f148c043abf18cccf9a3e3206791496a20a8b102d	Yerel yardımcı komut
+home/.local/bin/bulut-yukle	1338	5ed5244a7bd10fdfc200698b1b279b04543255de936f9663fee58be55cb0606e	Yerel yardımcı komut
+home/.local/bin/caelestia	345	88b4d93f0bbff16c9c4bf5baf0233eca6da50201cb51257c2269724b37fa69e5	Yerel yardımcı komut
+home/.local/bin/copyq	476	8342ade365aa6d9265f0de091a1fe9a8f6c195e62dae9dffd8be621321fec07f	Yerel yardımcı komut
+home/.local/bin/discord	337	8e47a2a04bc3c52e691d4c9aa445c15544af6e2887b80c16bf1369d9c2b4a5ca	Yerel yardımcı komut
+home/.local/bin/discord-mullvad	337	8e47a2a04bc3c52e691d4c9aa445c15544af6e2887b80c16bf1369d9c2b4a5ca	Yerel yardımcı komut
+home/.local/bin/galeri-preset-indir	2358	bc9c2841a58b38751845ff2638a66ede9bdb110d283e2e4cd68f12295711d1c8	Yerel yardımcı komut
+home/.local/bin/hareketli-duvar	736	2c33fa5a2fc42f193dabe901f9ebc09d0e69927251f0a343b657e3f0686493e5	Yerel yardımcı komut
+home/.local/bin/iletisim-baslat	1174	c57e2691ef5ae7ce8ada9a3c3c02e15958375d31ad24712f3073430448ebc1bf	Yerel yardımcı komut
+home/.local/bin/izgara-ac	614	5c870d05a539f35c65a12bc4e34cd99b1020f7e58678cacb5d4b631165b095b6	Yerel yardımcı komut
+home/.local/bin/kilavuz	13107	76cfd57471666799f8d39b392841f645177d724af37ef289979187f9081434fc	Yerel yardımcı komut
+home/.local/bin/kisayol-ac	521	e6fffd7893a73ddc5b10f24bda10158c4066084be791acf808475d34534150a2	Yerel yardımcı komut
+home/.local/bin/kisayol-rehberi	19794	9c44b6a9750bd363af540c2ca756b6f9d637508af7be6a59353d19bcfc29d38d	Yerel yardımcı komut
+home/.local/bin/masaustu-foto	568	a5036ec885f97951badb8560a21016e70c415464cff4d8c2e4b4a6f0b2518cdf	Yerel yardımcı komut
+home/.local/bin/mpvpaper	310	27c853ada8b131c11fa950734281c88cfc82f03912f7410493bdfc78f223e04f	Yerel yardımcı komut
+home/.local/bin/pencere-ara	5356	7251bc81eb518b1153ce6a5b148a32117323bd4c7ce3d4a56ceebd076d028fae	Yerel yardımcı komut
+home/.local/bin/pencere-gec	433	c6130365ad80bccd8896ff73c5c706316af0d46da845b48b7ed779e9e4cd19e1	Yerel yardımcı komut
+home/.local/bin/pencere-kucult	3718	3ab605bc7fb04c1c42954e78f9f4ee1cff56d7f4ba1d757eb09ad74f36b9a113	Yerel yardımcı komut
+home/.local/bin/pencere-tus	303	7477093b1478e4e91a13260071ffdfae6681cf6caaaec4159e44ba489de20e5f	Yerel yardımcı komut
+home/.local/bin/sunucu-bagla	786	9700a194cee767f669571f02686e03ce0f80ca035172458b4bc748c682a7f185	Yerel yardımcı komut
+home/.local/bin/sunucudan-gonder	462	0b628c0aa3a83da44555c58e39a639acbd602ca99d29bf2a2566bc70e3a54468	Yerel yardımcı komut
+home/.local/bin/swappy	68	e59f02de54acbc1a34d8d30bcd9ce0a0b709287e55411668162b086e995e2d22	Yerel yardımcı komut
+home/.local/bin/taildrop-gonder	1006	25d1a3057271ff52bd8e6df2baa5841ba59565a964e8e2a30c4d79c5c959798d	Yerel yardımcı komut
+home/.local/bin/tailscale-anahtar	1088	4755bc0f1fde93e6cab382c51e2251cb4f6190991cd1d7f44630b7b1d823290a	Yerel yardımcı komut
+home/.local/bin/tailscale-durum	751	28888487858b67b7e6f871e2caf9653e9ef80a7afe5e58d7cdcdc5c32840ced7	Yerel yardımcı komut
+home/.local/bin/uygulama-izgara	4261	fa1e703c33d9b288a5d54f0794fc91b9cb5098d80908282824fc833b3796cde4	Yerel yardımcı komut
+home/.local/bin/uygulama-klasor	42441	f10f3234770dd2df6bb7f07793b576447ff6af0f6b64f34c4ea37e382bb1517c	Yerel yardımcı komut
+home/.local/bin/yedek-geri	1876	f49a1d7abc6dc01c0a3ea92c3a05d33d8247efe69a0f1b0da594f1d8546bf081	Yerel yardımcı komut
+home/.local/bin/yedek-sunucu	2456	106013068198a82568d6d4321a6b31983644b8c0861c225cbd732123f67b5ccf	Yerel yardımcı komut
+home/.local/share/applications/arayuz-Caelestia.desktop	191	295b3bb146f9fe58ca46e80cc6576337f37bf4c61fc393401186f1fc60394295	Uygulama/web başlatıcı
+home/.local/share/applications/arayuz-end4-pC.desktop	187	148ea3df2fdb5e3f76e0bd294495bc44dda5a3aec211b559264d537d6d92aa55	Uygulama/web başlatıcı
+home/.local/share/applications/arayuz-sec.desktop	175	87d3e46e53feb2e63ac38af87a1a58fa0e3191106690161c60db91bf57237248	Uygulama/web başlatıcı
+home/.local/share/applications/assistant.desktop	233	7a0b4aa2adb79a4a4cfb0eb6dd0c8953fcbf01ae8a27fb8aa3fbeaed3ccfb5da	Uygulama/web başlatıcı
+home/.local/share/applications/avahi-discover.desktop	5727	7c490083e91e508aeecb38777bc22e9af6d3107ea8889885623c432c35c433da	Uygulama/web başlatıcı
+home/.local/share/applications/bssh.desktop	5171	902253cb4f2efb68b4a8c3ffc676defde2dd46cc8fa71dafd42b6809733de6bb	Uygulama/web başlatıcı
+home/.local/share/applications/bvnc.desktop	5105	9ddd4da3f7ca1827bd3991ed5d1149fcb31718aa85d35e83b06d7e24fff01cf4	Uygulama/web başlatıcı
+home/.local/share/applications/chatgpt.desktop	599	204099b8c16241b1dea70dd34ca0781ed44ac945ee651d35d7aa74f94cb02e62	Uygulama/web başlatıcı
+home/.local/share/applications/cmake-gui.desktop	260	9f71c199701e821cc41af619fca999e7302da960d599a3a7bbccd15054b3dfa3	Uygulama/web başlatıcı
+home/.local/share/applications/com.anthropic.Claude.desktop	1238	1d3711f38ce4b1c65b97c4cd2cc08744fdf2238b4464d741b47557a9ee0cfc65	Uygulama/web başlatıcı
+home/.local/share/applications/com.github.hluk.copyq.desktop	215	7d0773079cd7c2552869dafcd4e8d0edee01b803a141af19b98d0161b310d588	Uygulama/web başlatıcı
+home/.local/share/applications/designer.desktop	248	2431233f64ca14e8ad5f43fa3e50366ef4c4a28efb3923e201bf1204b1b5aa5b	Uygulama/web başlatıcı
+home/.local/share/applications/discord.desktop	369	89be0c6f754dae91e7e73a810fdca3dad175334d42ad690ef3f9540ae4d91ac3	Uygulama/web başlatıcı
+home/.local/share/applications/flugel--t-tools.desktop	239	c962a9e3c45454bfb3c9b9f600557678a43ae03138d8f68be4e7c5c5a677b2ee	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-adguard.desktop	238	b453b4d04b8d6b53346da43c85895dc7b87129f613a9a8471cc10d7f46ef1b55	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-bazarr.desktop	245	9c64be27f0620770ec3899944695a37149251ffee9b83b4ed1b0f20ebc6e2b95	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-beszel.desktop	248	e14f28f72451b56478cea2b3090cc1b4ac6e18687601f182303827963f2e442c	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-bookstack.desktop	251	26287236d133f9de4624f59b0d8cd45c7ee71e6c5d6da725f151e0a05913e922	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-cockpit.desktop	234	8833a93a9f90fc33941c3991ae5041440d95ccaa16f05c5cd06b9e62d7254cdb	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-convertx.desktop	248	5aaf24a8a51a3c555177d0d27bf6c1babac2fdbbca79bd7b41f24f2d55799d30	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-dockge.desktop	230	5fe287848e9098e0ed8c0750ee00baa9cb9c8153f50f1c8a41bd9e3d8ddb3328	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-filebrowser.desktop	248	dec8ff7a6316506c15b13055da9ba6921d091b8d1d2b3835526b88485a287c5f	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-flugel-akış.desktop	239	ab6b8392617feb2f443885640446c01e9490fc8cc25cfc873dad4e795d361365	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-glpi.desktop	230	3e7d6140b4f2f066f81ebbd447222280287ecaad9898ce56cd7e80c1cac40d9b	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-guacamole.desktop	252	d9e469846b2792639eb7abb271f5804462945b7054ee861d5df59a68b037367c	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-homepage.desktop	235	41cf93d44b024d970dd02802efa67398b02cdb752ba8e7aa6f97ea1f08beb1c9	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-immich.desktop	236	9275f6b29275de0f8846e6bd47e4d2842b2cc95807760f10a397fa13048c9910	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-jackett.desktop	237	4d04f9e334a33bcca1391dc3f61e759c087150cfc89ae70fd10fbf3415bf4f03	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-jellyfin.desktop	234	f8bbc88cc8fbf6fcd67036bbc40110ac96cd86bc3953238e70afcd46d0574727	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-kavita.desktop	257	67aa9bf59da448f508b9a382948d449bb24c3eda5d875f1d0cfaf9e3cff0d05d	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-komga.desktop	230	ec00163f4e022a34f587f7fdec6afd997158338c84a243c3d8ed411d1cbdfd18	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-l-ngarr.desktop	242	8a52fe8594ed4b28d8df65651db87774c7983373c414733955aff74bdd171caf	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-nextcloud--web-.desktop	238	9ee43215274d4f6ec567ec7daa3ea740e79f9fc6407779cb9a7f9d241538d4ce	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-open-webui.desktop	241	eacb5a809f26bc5a487cd183c36116bb5c946d5e23b0978a04d27d69d6b182df	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-openbooks.desktop	242	14656497b16d3af7e3164881fe6d8d1a93d55e0bfcf55fb886024fa3c2b40db9	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-plex.desktop	230	0390847b27b5162958b05a6be2e0c87f2695a26c73ef735ac3859898bbd40b08	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-portainer.desktop	235	f75574ffc2dde6b4e003f560c555b047b83379d2c8a5c7be60a4568db56096d9	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-prowlarr.desktop	245	d74dd8c2dabace2d47aaa5def8f464432d720afaab24c11127d0f71cbd2bd25c	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-radarr.desktop	228	3daf5508613b32c9df3bdffbfbb5743ecadc5f0cfbdd64299fbb91af5f04a656	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-sonarr.desktop	228	812d45912a4ad2dab884d022e260e053d8cce8c8f2c167dc287050027d5e9356	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-st-rl-ng-pdf.desktop	236	b21cb4439ae544c4608ecc8057f9d2cca559c042ba887927c414d5bfaddf076f	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-sunucu-durumu.desktop	263	647093adf100836ef0ef4af2ace1caaaa92bb765f79958c122f3641b571b91f5	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-transmission--web-.desktop	265	0e4860e9266a33353df7d23e3d2e1ca82d4d4a3f40b2b12fe66cf1a96a34ac46	Uygulama/web başlatıcı
+home/.local/share/applications/flugel-upt-me-kuma.desktop	242	fecf23ba5da640d02ff8a11ad9ccb6c7b811627a2c1aac97db66fcf7316681a3	Uygulama/web başlatıcı
+home/.local/share/applications/foot-server.desktop	259	3f8a00d80c60329d62ad987e0759fab843f803ad829a0c161041091da98da148	Uygulama/web başlatıcı
+home/.local/share/applications/footclient.desktop	256	749daa39428840f99af77bdc262d3d237dbebc02d0dab480189ee707da2462ce	Uygulama/web başlatıcı
+home/.local/share/applications/gammastep-indicator.desktop	618	16df9bd7c286b2e25233464528c434c367d72bd0765cedbe237725c25635ac47	Uygulama/web başlatıcı
+home/.local/share/applications/google-chrome.desktop	8783	7ad083897689c54f01d9b5aa30bfcf9ef18ddbc1280550fac6f6a7eeb4acfdf3	Uygulama/web başlatıcı
+home/.local/share/applications/hareketli-duvar.desktop	197	14a0b5baefff737a7191d7280fb8da9f190aa0fbf435c2d556bdad3be2f6317a	Uygulama/web başlatıcı
+home/.local/share/applications/jconsole-java-openjdk.desktop	370	f86b1bbd6ac0efb4d7fa110223e0c2c68714db7ea8f34bbbf4e8fcf11d46d6d8	Uygulama/web başlatıcı
+home/.local/share/applications/jconsole-java17-openjdk.desktop	370	273ce4b2c8b30e86dc9aebe339773b8a5a01c5ced9485fb2c0d2be7d0b6f710a	Uygulama/web başlatıcı
+home/.local/share/applications/jshell-java-openjdk.desktop	232	b36ff26086d02943074f308ca87494b87a03689ebefb7bf763254befef0e67bc	Uygulama/web başlatıcı
+home/.local/share/applications/jshell-java17-openjdk.desktop	232	c4103b40a95553a93fd500beee3c393aa21c718c62d386869a1ca89e307c92a6	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-base.desktop	1702	9fedbc62d0d09b5da9d69002d5896e5d872b722aa6b546b8e06eaa4655e5d44d	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-calc.desktop	3023	a7dc56dd7c729b6c97cf8101a5242a7edbe23e85ad930c1aebe130a89bb631d7	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-draw.desktop	2207	b5f912f1c916449e8dfd46db8295be46d8c67796c1a3c5abdd23b52f50067a06	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-impress.desktop	2579	c63af35a676fc01e3f449de1bb2f5f25332d5be60e1ba6603ba2044b4a197642	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-math.desktop	1841	9166fbcb7c9918a687177244e31a3d04babeb5ef84da817332d5bda792ab738d	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-startcenter.desktop	2602	204d463c8832161638e55bef8f71a6dddc278ff9eeb68978f557c38fdef378c1	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-writer.desktop	3068	cf6979f30239722cb670b59a47c4dda9a5d23756c01da52cdaa7e1fa0db2208f	Uygulama/web başlatıcı
+home/.local/share/applications/libreoffice-xsltfilter.desktop	550	73ca34fb7486cc9c77018dad5895fc2e1b875d5c6de67ab68b51d88f66f6d75e	Uygulama/web başlatıcı
+home/.local/share/applications/linguist.desktop	241	8ac35f284c61b69a5db1a9dff14274c99e828c1cc07f105f48064e388781ac7b	Uygulama/web başlatıcı
+home/.local/share/applications/lstopo.desktop	1344	0c20c000cccc2de0bf0162ad89e2b7124de2e8200f28da04e66b93142839fe30	Uygulama/web başlatıcı
+home/.local/share/applications/mimeapps.list	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b	Uygulama/web başlatıcı
+home/.local/share/applications/org.kde.kwrite.desktop	9572	9ef22a59bb08ff7f85d2b38aa73243c5141653a1a576116cbdbef0fe6f417a69	Uygulama/web başlatıcı
+home/.local/share/applications/qdbusviewer.desktop	212	266488b0cc5e2158797d72015b2b6b83b07327374afc31d36ce1501d0c1f81e8	Uygulama/web başlatıcı
+home/.local/share/applications/qv4l2.desktop	288	602db2f759847861c17fca0a5104c323600bf5af69607be7379a985982a25556	Uygulama/web başlatıcı
+home/.local/share/applications/qvidcap.desktop	205	bb4a96b83e6ab374ac7ed53d809a6df16928daec666546c1b66a92b3230f0184	Uygulama/web başlatıcı
+home/.local/share/applications/stoken-gui-small.desktop	270	7991c747cadd423b56ba5bdcacd5204839c7a03fd5664ca9cff309e2d9aef815	Uygulama/web başlatıcı
+home/.local/share/applications/stoken-gui.desktop	254	f4731e97727cab509a25f41b09b93c98b253170973a481dec7047190836a1089	Uygulama/web başlatıcı
+home/.local/share/applications/terminator.desktop	6023	ebe380646127d331432510f97ad7737cc278fbd61978077e188c7d0fbaccfbaa	Uygulama/web başlatıcı
+home/.local/share/applications/yad-icon-browser.desktop	908	aff6cd9a2c8fb1bd76286c602a6d3de62ded01f34c5b305180c26e3545f5ba58	Uygulama/web başlatıcı
+home/.local/share/applications/yad-settings.desktop	627	383f7b9fad13174181ec0ce2d9ac702c98c2a547a2ff11d6a397af8d4c200df5	Uygulama/web başlatıcı
+home/.local/share/kio/servicemenus/bulut-yukle.desktop	421	605fac8a87ce2dc05072189de873b318340cd74c97f807657243c728204f3228	Dolphin sağ tık menüsü
+home/.local/share/kio/servicemenus/com.anthropic.Claude.OpenInCode.desktop	364	819f528df3663f59c4c4bd52a0825a330edd74ff8c082f30c9c919aaaef4c23e	Dolphin sağ tık menüsü
+home/.local/share/kio/servicemenus/com.anthropic.Claude.SendTo.desktop	358	54abe337e301f121a2c9dabfd6c409b19287125f5f379b633130ea95c4181a35	Dolphin sağ tık menüsü
+home/.local/share/kio/servicemenus/taildrop.desktop	242	93c6b64c8fb1020df942a3f1eadf8285726c68819ec25755a120eb0f1f78cc35	Dolphin sağ tık menüsü
+home/.local/share/user-places.xbel	6780	a984a73376fe3f1753accf25dab754ea0c4f30062c013f4e5cd34114f952aef7	Masaüstü ayarı / kaynak belgesi
+home/.local/state/arayuz-secimi	8	b4fa4317e6849cb827e15f831b3588749f4e54df7d7470072bea91d388b19ed4	Masaüstü ayarı / kaynak belgesi
+home/.local/state/caelestia/scheme.json	3180	76e93164fe19d9fe7d403adeb8852b37bdd6fe36398826d3143bb64a541285b1	Masaüstü ayarı / kaynak belgesi
+home/.local/state/caelestia/sequences.txt	465	ffb9709f706f96db2cbd40cf9ad35eebfcf2fd04354e0680df5b4a49392e1bf0	Masaüstü ayarı / kaynak belgesi
+home/.local/state/quickshell/user/generated/color.txt	7	0660f5cf3aaa990a5f4efbbc65670049d6928d9707e238fc5514f206b4772164	Etkin üretilmiş renk paleti
+home/.local/state/quickshell/user/generated/colors-lock.json	1578	8f51836ae2eb5e050a00b7970cf5cae954c3d815e16d770abed668dd157860a5	Etkin üretilmiş renk paleti
+home/.local/state/quickshell/user/generated/colors.json	1578	d14a873a34b3c973a5aadac6b1b309afe8c73910b9cf412af0e9f8a066903b66	Etkin üretilmiş renk paleti
+home/.local/state/quickshell/user/generated/material_colors.scss	1983	b7256c5f2680e39c1a1f02131fda3a5eacca006efdd475132d8c46cc277525de	Etkin üretilmiş renk paleti
+home/.local/state/quickshell/user/generated/material_colors_lock.scss	1983	218baee9d0c35a2c9f5e9ed11bf8f497dbcb2936daf5f1004ddc205687d61655	Etkin üretilmiş renk paleti
+home/.local/state/quickshell/user/generated/terminal/kitty-theme.conf	1484	c5fb0842f81a86bfc4458fcd8fb42af89819668921885af6b7fdb65fdc66be73	Etkin üretilmiş renk paleti
+home/.local/state/quickshell/user/generated/terminal/sequences.txt	418	ec8c5dc68c4bfbb93d1458b4dca01980f72d2f95420d94a69b91c9964d0d9f95	Etkin üretilmiş renk paleti
+home/.local/state/uygulama-klasor/pinler.json	64	8a70d361bac56c36fb986ec149ae841d67b679193400f4c4c58360fcf45ef0d0	Masaüstü ayarı / kaynak belgesi
+home/Pictures/Wallpapers/end4-pC/02-blue-teal.png	15654232	c4fe5375ef8b06c7a69cf138b7812c3f4d38eb84a27e0a884837ee48136c977e	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/03-teal-green.png	14260679	554bce0d86f35246647225f23cb6eacda69b1a283be01fbc6ce4a911f5a04d26	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/11.png	2305131	0b4403669d0fe83393db2f5ff90aa98b56a82d33a05ecf4310c403c019fd17c8	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/128845239331438728.jpg	52935	1521332312977130578662ee0b62dc5fea468290f2de445ebed3ca7b11926c22	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/1363442.jpeg	10079466	8fe3fbe1df43f2507138ed29fe657f16a79901df8a331528d62e586fe0e7d17b	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/141050669_p0_master1200_upscayl_3x_digital-art-4x.png	9346443	f21d32f0f4fbc91db3fb4006310963318633c388a90b2974ba9042ba6a41a097	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/186125397097371601.jpg	117520	ddafcdf584c08d998935bf6308c594098d32fb0ee37e00bcaa666b0df04f01e8	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/351912467223297.jpg	105296	cdb95ed195b5e4648d2c2a1e90dc5fc2c7282de4bdf9fa3b763f2eb6a3e4b3cf	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/41939840275275243.jpg	67232	7d716b390c7e2e129accb74221217097ad8a8459436ab499bced60bebe1534df	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/Gg2GuKlaMAUYacY.jpg	1870702	9c5bb94f1c18b398061328c0880abf65523673308d2744e46d08fbc567f9a44e	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/Go8NIhea4AAm2ok.jpg	1182853	642e4d6aac8ec4ed944e2fce27cb1b7534eaf247cab96d0deeaa11933900674f	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/HR3o96cawAAsabt.jpg	95941	740c530c714e2633283246289b9fde189bf381335dfdee1c9e2006dced29e9bc	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/HRLkV4BawAAVEkM.jpg	2604999	6d451ee1a828f43d37ed7a56e1d6975284bb167f2c8d8b60a20f662513402843	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/HSAhH3DWwAgXnCK.jpg	1555824	73fedd87b27300bfb92793950520fa2d38176167d2d51c9c2995f39c0844fae5	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/__caelus_evanescia_and_trailblazer_honkai_and_1_more_drawn_by_moehikaru__016342373b07a92aea5453e3799c78e2.jpg	10635568	ef530491cd75dd7b1556eb0cbfd2778bf1df50c866cb5a110a7606f825f27852	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/a8mc0spbo7gg1.jpeg	3906960	34f21712ef9c69e5d2c28ebd9269620e166de6ba26394d9b7f50c1425c1ccd38	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/be3ad4731f3bd5a39d703052aef77126.jpg	121107	4d7541023a0f9ba58c7906e37c77ee2e2444bafe02007a85725ad43d69fd9587	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/card_after_training83_converted.jpg	558681	c73c26f29c18b5f6064a303d5a8ed55f2dec822fe3bcadcdf8a30b6b93c947a7	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/card_after_training85_converted.jpg	269568	c0c4ee24337db8505a507a3e2baf74b3505c21a594a4b1330d57dde5dfc74fb4	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/evanescia.jpg	6075986	35d8a8a70db2cf49b154a044e32869f798d3ea9e6d0fa9d6a4d713613f4b129c	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/pinterest/pinterest-1052505375417663222.jpg	512831	156940d3cbfb598107e4d361e0bd1f194417d319142d15ad1855cb6e2cec03e2	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/pinterest/pinterest-651262796161454673.png	4817231	48e4f78a829c7745df355d87849ceaf198a2ecddd8b69204bd7dd7adfc873324	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/unsplash-iiy0rCWN2kc.jpg	378726	cfc586741f61f339bf1e072a769c23765b0b0114c4d7387aef077290d7261c48	Ayar/önayar görseli
+home/Pictures/Wallpapers/end4-pC/𐙚.jpg	79086	e699c7359e85e6a5a66d4eae25b18524573c33b51f36a080eb0c996999181ccb	Ayar/önayar görseli
+home/Pictures/Wallpapers/rezero-6k63z6.png	3895080	a1196896a0db1a335fa272268caf0eb7fce6ff35cb926e5213f5c184a667c74c	Ayar/önayar görseli
+home/Pictures/avatar/pp-guvercin.png	150363	bde4aa0aca943a5c2dc7cf68fb37171be907fd70ac249a10b3e0013e2e566d9e	Ayar/önayar görseli
+home/Pictures/avatar/subaru-if.png	2297621	95c58ecada6a0608b92b234cf5c891418b440c2d62467f259d6673d8a2e10bc3	Ayar/önayar görseli
+licenses/caelestia-cli-aw/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
+licenses/caelestia-dots/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
+licenses/caelestia-shell-aw/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
+licenses/end4-pC/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
+licenses/mpvpaper/LICENSE	35149	3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986	Kaynak lisansı
+manifest.json	555622	2eeaf66a4fcd466f12b2bb4a594ff227f7830348576bc02bf6c873c4d90daea7	Masaüstü ayarı / kaynak belgesi
+missing-original-paths.json	3	37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570	Masaüstü ayarı / kaynak belgesi
+packages/explicit-foreign.txt	280	fa46dd94ce58f299f829a39f01a682111599cdf9babfe171c0a9e3e2a192d708	Paket/sürüm envanteri
+packages/explicit-repository.txt	3658	0810c6fd51fb6c4d2b4e0148b1a7faabff7fc8c432c86b90fc1066426a6d9c6b	Paket/sürüm envanteri
+packages/installed-versions.txt	35975	8824723c87258f74e885420a2b0ce0107e8d1200ded35681612f518ea3378174	Paket/sürüm envanteri
+sources.json	984	48568fd6824084d948c8df183ebf0588054a56051a381d8e8acab056d66f9f73	Masaüstü ayarı / kaynak belgesi
+system/etc/netns/discord-mullvad/nsswitch.conf	377	8aa9dd9356b0fcf7e7adb1b98a9b185589a1ff68039f0f94ddc2b6cc52d7ee33	Discord Mullvad ayrı ağ alanı
+system/etc/netns/discord-mullvad/resolv.conf	50	9e365112f5415459ac47af1d515829105df8d92af196d2a42b1f7dfec94a6ee3	Discord Mullvad ayrı ağ alanı
+system/etc/sudoers.d/discord-mullvad	213	8515767675e2aec33a7b1ceaf2d516e1447aaacb991fb2685dfa75bb18c6b72a	Discord Mullvad ayrı ağ alanı
+system/etc/systemd/system/discord-mullvad.service	349	2ace81613cceded6a27be2f2582f78ea1cc5b80f411dea8c152fc65bd09984ea	Discord Mullvad ayrı ağ alanı
+system/usr/local/libexec/discord-mullvad-network	3023	c1b0634451cc2a29bb0f1793dabbc2292c3e2c6631a18955ac8ad30c0e856694	Discord Mullvad ayrı ağ alanı
+system/usr/local/libexec/discord-mullvad-run	1366	92441af82eb16e5d62931d751b77b07115c6d78c984d0cdb02098ef5b23bf474	Discord Mullvad ayrı ağ alanı
+templates/libreoffice-appearance.xcu	699	de435d14304dd8a1e5ea85952ada552c43179ed029c8ca95abc7ee9473da5a11	Masaüstü ayarı / kaynak belgesi
+tools/install-discord-network.sh	1371	a7486cf59f0e7c265fa84ad49377818b8ab8c44f83581d320916984f3b31931e	Yedekli geri yükleme aracı
+tools/restore.py	3550	b0be3947052009fa28a7fac6afb9ecf773e701b4a36578ff824390ea4120e39a	Yedekli geri yükleme aracı

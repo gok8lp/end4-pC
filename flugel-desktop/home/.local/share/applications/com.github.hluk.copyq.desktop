@@ -1,0 +1,9 @@
+[Desktop Entry]
+Hidden=true
+Type=Application
+Name=CopyQ
+Comment=Clipboard history with image previews
+Exec=/home/flugel/.local/bin/copyq --start-server toggle
+Icon=edit-paste
+Categories=Utility;
+StartupNotify=false

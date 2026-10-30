@@ -1,0 +1,332 @@
+{
+  "appearance": {
+    "extraBackgroundTint": true,
+    "fakeScreenRounding": 0,
+    "fonts": {
+      "expressive": "Space Grotesk",
+      "iconNerd": "JetBrains Mono NF",
+      "main": "Google Sans Flex",
+      "monospace": "JetBrains Mono NF",
+      "numbers": "Google Sans Flex",
+      "reading": "Readex Pro",
+      "title": "Google Sans Flex"
+    },
+    "palette": {
+      "accentColor": "",
+      "type": "scheme-rainbow"
+    },
+    "transparency": {
+      "automatic": true,
+      "backgroundTransparency": 0.11,
+      "contentTransparency": 0.57,
+      "enable": false
+    },
+    "wallpaperTheming": {
+      "enableAppsAndShell": true,
+      "enableQtApps": false,
+      "enableTerminal": false,
+      "lockKonsoleColors": true,
+      "terminalGenerationProps": {
+        "forceDarkMode": false,
+        "harmonizeThreshold": 100,
+        "harmony": 0.6,
+        "termFgBoost": 0.35
+      },
+      "enableGtkApps": false
+    }
+  },
+  "background": {
+    "centeredWallpaper": false,
+    "centeredWallpaperColor": "layer1",
+    "centeredWallpaperOnlyWhenLocked": true,
+    "centeredWallpaperShape": "Cookie12Sided",
+    "centeredWallpaperSize": 400,
+    "enableWallpaperPreview": false,
+    "hideWhenFullscreen": true,
+    "lockWall": "/home/flugel/Pictures/Wallpapers/end4-pC/02-blue-teal.png",
+    "parallax": {
+      "autoVertical": false,
+      "enableSidebar": false,
+      "enableWorkspace": false,
+      "vertical": false,
+      "widgetsFactor": 1.2,
+      "workspaceZoom": 1.07
+    },
+    "screenList": [],
+    "showBlur": false,
+    "showGrid": true,
+    "showSnapLines": true,
+    "splitRatio": "25",
+    "splitSide": "left",
+    "thumbnailPath": "/home/flugel/.config/quickshell/end4-pC/assets/images/default_wallpaper.png",
+    "wallpaperAnimation": "transition",
+    "wallpaperPath": "/home/flugel/Pictures/Wallpapers/end4-pC/03-teal-green.png",
+    "widgets": {
+      "calendar": {
+        "enable": true,
+        "placementStrategy": "free",
+        "sizeMode": "1x2",
+        "x": 1152,
+        "y": 864
+      },
+      "clock": {
+        "color": "",
+        "cookie": {
+          "aiStyling": false,
+          "constantlyRotate": true,
+          "dateInClock": true,
+          "dateStyle": "bubble",
+          "dialNumberStyle": "numbers",
+          "hourHandStyle": "hollow",
+          "hourMarks": false,
+          "minuteHandStyle": "bold",
+          "secondHandStyle": "dot",
+          "sides": 14,
+          "timeIndicators": false,
+          "useSineCookie": true
+        },
+        "digital": {
+          "adaptiveAlignment": true,
+          "animateChange": true,
+          "font": {
+            "family": "Google Sans Flex",
+            "roundness": 12.42580521547562,
+            "size": 82.69469080701337,
+            "weight": 350.7849923915382,
+            "width": 65.3117629485769
+          },
+          "showDate": true,
+          "vertical": true
+        },
+        "enable": true,
+        "pixel": {
+          "orientation": "horizontal"
+        },
+        "placementStrategy": "free",
+        "quote": {
+          "enable": true,
+          "followClock": true,
+          "text": ""
+        },
+        "showOnlyWhenLocked": false,
+        "style": "pixel",
+        "styleLocked": "pixel",
+        "x": 768,
+        "y": 852
+      },
+      "customImage": {
+        "enable": false,
+        "path": "/home/flugel/Pictures/Wallpapers/end4-pC/128845239331438728.jpg",
+        "placementStrategy": "free",
+        "shape": "PixelCircle",
+        "size": 253.3671875,
+        "x": 840,
+        "y": 264
+      },
+      "images": {
+        "enable": false,
+        "placementStrategy": "free",
+        "x": 1596,
+        "y": 732
+      },
+      "media": {
+        "backgroundShape": "Cookie4Sided",
+        "enable": true,
+        "placementStrategy": "free",
+        "showControls": true,
+        "showLyrics": false,
+        "showTitles": true,
+        "sizeMode": "1x1",
+        "x": 348,
+        "y": 864
+      },
+      "notes": {
+        "enable": false,
+        "placementStrategy": "free",
+        "x": 48,
+        "y": 732
+      },
+      "resources": {
+        "enable": true,
+        "placementStrategy": "free",
+        "vertical": true,
+        "x": 1620,
+        "y": 360
+      },
+      "timers": {
+        "enable": true,
+        "placementStrategy": "free",
+        "vertical": true,
+        "x": 168,
+        "y": 360
+      },
+      "todo": {
+        "enable": false,
+        "placementStrategy": "free",
+        "x": 420,
+        "y": 240
+      },
+      "userCard": {
+        "enable": true,
+        "placementStrategy": "free",
+        "sizeMode": "1x2",
+        "x": 492,
+        "y": 864
+      },
+      "visualizer": {
+        "enable": true,
+        "placementStrategy": "free",
+        "x": 0,
+        "y": 840
+      },
+      "weather": {
+        "enable": true,
+        "expanded": false,
+        "placementStrategy": "free",
+        "sizeMode": "1x1",
+        "x": 1440,
+        "y": 864
+      },
+      "worldClock": {
+        "clockCount": 2,
+        "enable": false,
+        "placementStrategy": "free",
+        "sizeMode": "4x1",
+        "timezones": [
+          "Asia/Kolkata",
+          "Asia/Manila",
+          "Asia/Tokyo",
+          "Asia/Seoul"
+        ],
+        "x": 408,
+        "y": 540
+      }
+    },
+    "widgetsLocked": true
+  },
+  "bar": {
+    "autoHide": {
+      "enable": false,
+      "hoverRegionWidth": 2,
+      "pushWindows": false,
+      "showWhenPressingSuper": {
+        "delay": 140,
+        "enable": true
+      }
+    },
+    "borderless": "transparent",
+    "bottom": false,
+    "cornerStyle": 1,
+    "divider": {
+      "spacing": 20,
+      "style": "rect"
+    },
+    "floatStyleShadow": true,
+    "followFrameColor": true,
+    "frameColor": "black",
+    "frameThickness": 8,
+    "groupColor": "primaryContainer",
+    "indicators": {
+      "notifications": {
+        "showUnreadCount": true
+      }
+    },
+    "layouts": {
+      "leftLayout": [],
+      "middleLayout": [
+        "utilButtons",
+        "workspaces",
+        "batteryIndicator",
+        "systemIcons",
+        "sysTray",
+        "networkSpeed"
+      ],
+      "rightLayout": []
+    },
+    "media": {
+      "alwaysVisible": false,
+      "maxWidth": 280,
+      "minWidth": 100,
+      "onlyTitle": false,
+      "preferredPlayer": ""
+    },
+    "resources": {
+      "alwaysShowCpu": true,
+      "alwaysShowCpuTemp": true,
+      "alwaysShowDisk": true,
+      "alwaysShowRam": true,
+      "alwaysShowSwap": true,
+      "cpuWarningThreshold": 90,
+      "memoryWarningThreshold": 95,
+      "showValue": false,
+      "style": "filled",
+      "swapWarningThreshold": 85
+    },
+    "screenList": [],
+    "showBackground": true,
+    "showFrame": false,
+    "tooltips": {
+      "clickToShow": false
+    },
+    "topLeftIcon": "spark",
+    "utilButtons": {
+      "isRecording": false,
+      "showColorPicker": true,
+      "showDarkModeToggle": true,
+      "showKeyboardToggle": true,
+      "showMicToggle": false,
+      "showPerformanceProfileToggle": false,
+      "showScreenRecord": false,
+      "showScreenSnip": true,
+      "showWallpaperToggle": false
+    },
+    "verbose": true,
+    "vertical": false,
+    "workspaces": {
+      "alwaysShowNumbers": false,
+      "indicatorStyle": "icon",
+      "monochromeIcons": true,
+      "numberMap": [],
+      "showAppIcons": true,
+      "showNumberDelay": 300,
+      "shown": 5,
+      "useNerdFont": false
+    }
+  },
+  "dock": {
+    "enable": true,
+    "height": 60,
+    "hoverRegionHeight": 2,
+    "hoverToReveal": true,
+    "ignoredAppRegexes": [],
+    "monochromeIcons": false,
+    "pinnedApps": [
+      "io.missioncenter.missioncenter",
+      "org.kde.dolphin",
+      "com.obsproject.studio",
+      "spotify",
+      "discord",
+      "zen-twilight",
+      "steam",
+      "dev.zed.zed",
+      "ferdium"
+    ],
+    "pinnedOnStartup": false,
+    "showAppsButton": true,
+    "showBackground": true,
+    "showMedia": true,
+    "showPinButton": false
+  },
+  "profile": {
+    "avatarPath": "/home/flugel/Pictures/avatar",
+    "avatarPicture": "/home/flugel/Pictures/avatar/subaru-if.png",
+    "descriptionText": "::distro::",
+    "displayName": "",
+    "onlinePresets": false,
+    "uploadGuideSeen": false
+  },
+  "_presetMeta": {
+    "origin": "https://github.com/Blapples/wallpapers",
+    "name": "glassy"
+  }
+}

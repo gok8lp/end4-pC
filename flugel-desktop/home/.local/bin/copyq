@@ -1,0 +1,11 @@
+#!/bin/sh
+COPYQ_ROOT="$HOME/.local/share/flugel-tools/copyq/usr"
+export LD_LIBRARY_PATH="$COPYQ_ROOT/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export XDG_DATA_DIRS="$COPYQ_ROOT/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+COPYQ_PLUGINS=""
+for COPYQ_PLUGIN_FILE in "$COPYQ_ROOT"/lib/copyq/plugins/*.so; do
+    COPYQ_PLUGINS="${COPYQ_PLUGINS:+$COPYQ_PLUGINS;}$COPYQ_PLUGIN_FILE"
+done
+export COPYQ_PLUGINS
+export QT_QPA_PLATFORM=wayland
+exec "$COPYQ_ROOT/bin/copyq" "$@"

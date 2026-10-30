@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+# galeri-preset-indir — end4-pC "Browse Online" akışının birebir komut satırı karşılığı (Blapples/wallpapers galerisi).
+# Kullanım: galeri-preset-indir ena kanade himeko mizuki   → ~/.cache/quickshell/presets/<ad>.json + assets/<ad>/
+import json, os, subprocess, sys, urllib.parse, urllib.request
+REPO = "Blapples/wallpapers"; RAW = f"https://raw.githubusercontent.com/{REPO}/main/"
+CACHE = os.path.expanduser("~/.cache/quickshell/presets")
+tree = None
+
+def q(p): return RAW + "/".join(urllib.parse.quote(x) for x in p.split("/"))
+def get(p): return urllib.request.urlopen(q(p), timeout=60).read()
+
+def indir(ad):
+    global tree
+    if tree is None:
+        tree = json.load(urllib.request.urlopen(f"https://api.github.com/repos/{REPO}/git/trees/main?recursive=1", timeout=30))["tree"]
+    pre = f"presets/{ad}/"
+    dosyalar = [x["path"] for x in tree if x["type"] == "blob" and x["path"].startswith(pre)]
+    jsn = next(p for p in dosyalar if p.endswith(".json") and not p.endswith("meta.json"))
+    meta = json.loads(get(pre + "meta.json"))
+    adir = f"{CACHE}/assets/{ad}"; os.makedirs(adir, exist_ok=True)
+    istek = {}
+    for w in meta.get("wallpapers", []): istek[w.split("/")[-1]] = w
+    for p in dosyalar:
+        n = p.split("/")[-1]
+        if n.endswith(".json") or n.startswith("preview"): continue
+        istek[n] = p
+    for n, p in istek.items():
+        hedef = f"{adir}/{n}"
+        if not os.path.exists(hedef):
+            open(hedef, "wb").write(get(p))
+    staging = f"{CACHE}/.{ad}.json.tmp"; open(staging, "wb").write(get(jsn))
+    jq = '$files as $files | def fix: walk(if type == "string" then ((split("/") | last) as $base | if ($files | index($base)) then ($dir + "/" + $base) else . end) else . end); fix | if (.background.collage.tree? // null) != null then .background.collage.tree |= (try (fromjson | fix | tojson) catch .) else . end | if has("profile") then .profile.avatarPath = $dir else . end | ._presetMeta.source = "online"'
+    cikti = subprocess.run(["jq", "--arg", "dir", adir, "--argjson", "files", json.dumps(list(istek)), jq, staging], capture_output=True, text=True, check=True).stdout
+    open(f"{CACHE}/{ad}.json", "w").write(cikti); os.remove(staging)
+    print("tamam:", ad, len(istek), "dosya")
+
+os.makedirs(CACHE, exist_ok=True)
+for a in sys.argv[1:]: indir(a)

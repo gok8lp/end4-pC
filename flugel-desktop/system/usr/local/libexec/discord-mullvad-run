@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+import os,pwd,subprocess,sys
+# GUI environment is only forwarded to the unprivileged Discord process.
+uid=int(os.environ.get('SUDO_UID','-1'))
+if os.geteuid()!=0 or uid!=1000: sys.exit('This launcher is restricted to the desktop user')
+user=pwd.getpwuid(uid)
+os.environ['PATH']='/usr/bin:/bin'
+subprocess.run(['/usr/bin/systemctl','start','discord-mullvad.service'],check=True)
+try:
+    subprocess.run(['/usr/local/libexec/discord-mullvad-network','check'],check=True)
+except subprocess.CalledProcessError:
+    subprocess.run(['/usr/bin/systemctl','restart','discord-mullvad.service'],check=True)
+    subprocess.run(['/usr/local/libexec/discord-mullvad-network','check'],check=True)
+env={'HOME':user.pw_dir,'USER':user.pw_name,'LOGNAME':user.pw_name,'PATH':'/usr/local/bin:/usr/bin:/bin','XDG_RUNTIME_DIR':f'/run/user/{uid}','DBUS_SESSION_BUS_ADDRESS':f'unix:path=/run/user/{uid}/bus'}
+for key in ('WAYLAND_DISPLAY','DISPLAY','XAUTHORITY','XDG_SESSION_TYPE','XDG_CURRENT_DESKTOP','LANG','LC_ALL'):
+    if key in os.environ: env[key]=os.environ[key]
+args=['/usr/bin/ip','netns','exec','discord-mullvad','/usr/bin/setpriv',f'--reuid={uid}',f'--regid={user.pw_gid}','--init-groups','--inh-caps=-all','--ambient-caps=-all','/usr/bin/env','-i']
+args += [k+'='+v for k,v in env.items()]
+args += ['/usr/bin/discord',*sys.argv[1:]]
+os.execv(args[0],args)

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Caelestia Arayüzü
+Exec=/home/flugel/.local/bin/arayuz-sec Caelestia
+Icon=preferences-desktop-theme
+Categories=Settings;DesktopSettings;
+Terminal=false

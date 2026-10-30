@@ -1,0 +1,177 @@
+#!/usr/bin/env bash
+# kilavuz - Türkçe aranabilir terminal rehberi (bash + isteğe bağlı fzf)
+# Kullanım: kilavuz [--ara kelime] [--kategori ad] [--liste] [--fzf] [--yardim]
+VER=1.0
+veri() { cat <<'DATA'
+Klavye/Kabuk|Ctrl+R|Geçmişte ters arama (fzf varsa bulanık)|Ctrl+R sonra "docker" yaz
+Klavye/Kabuk|Ctrl+A / Ctrl+E|Satır başına / sonuna git|Ctrl+A
+Klavye/Kabuk|Ctrl+W|Önceki kelimeyi sil|Ctrl+W
+Klavye/Kabuk|Ctrl+U / Ctrl+K|İmleçten başa / sona kadar sil|Ctrl+K
+Klavye/Kabuk|Ctrl+L|Ekranı temizle|Ctrl+L
+Klavye/Kabuk|Ctrl+C / Ctrl+Z|Süreci durdur / askıya al (fg ile geri getir)|sleep 100; Ctrl+Z; fg
+Klavye/Kabuk|Alt+. veya !$|Önceki komutun son argümanı|mkdir proje && cd !$
+Klavye/Kabuk|!!|Son komutu tekrarla|sudo !!
+Klavye/Kabuk|Tab Tab|Otomatik tamamlama seçenekleri|git ch<Tab>
+Klavye/Kabuk|komut &, jobs, fg, bg|Arka plan işleri yönetimi|sleep 60 & jobs
+Klavye/Kabuk|Yönlendirme (> >> 2>&1)|Çıktıyı dosyaya yaz / ekle / hataları birleştir|komut > cikti.txt 2>&1
+Klavye/Kabuk|Boru (¦)|Bir komutun çıktısını diğerine ver|ls ¦ wc -l
+Klavye/Kabuk|history|Komut geçmişini göster|history ¦ grep ssh
+Dosya Sistemi|Dizin yapısı|/etc ayarlar, /var değişken veri/log, /home kullanıcılar, /usr programlar, /tmp geçici, /opt ek yazılım|ls /
+Dosya Sistemi|df -h|Disklerde boş/dolu alan|df -h /
+Dosya Sistemi|du -sh * ¦ sort -h|Dizin boyutlarını sırala|du -sh * ¦ sort -h ¦ tail
+Dosya Sistemi|lsblk -f|Disk, bölüm ve dosya sistemi listesi|lsblk -f
+Dosya Sistemi|mount / umount|Disk bağla / ayır|sudo mount /dev/sdb1 /mnt
+Dosya Sistemi|findmnt|Bağlama noktalarını ağaç olarak göster|findmnt
+Dosya Sistemi|chmod / chown|İzin ve sahip değiştir|chmod 755 betik.sh; sudo chown $USER: dosya
+Dosya Sistemi|ln -s|Sembolik bağ oluştur|ln -s /hedef kisayol
+Dosya Sistemi|ncdu|Etkileşimli disk kullanımı (kuruluysa)|ncdu ~
+Dosya İşlemleri|ls -lah|Ayrıntılı listele, gizliler dahil|ls -lah
+Dosya İşlemleri|cp -r / mv / rm -r|Kopyala / taşı / sil (rm geri alınamaz!)|cp -r kaynak/ hedef/
+Dosya İşlemleri|mkdir -p|İç içe dizin oluştur|mkdir -p a/b/c
+Dosya İşlemleri|cat, less, head, tail -f|Görüntüle; tail -f canlı log izler|tail -f /var/log/pacman.log
+Dosya İşlemleri|tar|Arşivle/aç: -czf oluştur, -xf aç|tar -czf yedek.tar.gz dizin/ ; tar -xf yedek.tar.gz
+Dosya İşlemleri|rsync -avh --progress|Hızlı, devam edilebilir kopya/yedek|rsync -avh kaynak/ hedef/
+Dosya İşlemleri|trash-put (varsa)|Silmek yerine çöpe at|trash-put dosya
+Dosya İşlemleri|sort, uniq, wc, cut|Metin işleme|sort dosya ¦ uniq -c ¦ sort -nr
+Dosya İşlemleri|sed / awk|Metin değiştir / sütun işle|sed -i 's/eski/yeni/g' d.txt; awk '{print $1}' d.txt
+Arama|grep -rn|Dosya içeriğinde ara|grep -rn "kelime" .
+Arama|rg (ripgrep)|Çok hızlı içerik arama (kuruluysa)|rg -i "kelime" --type py
+Arama|find|Ada/boyuta/tarihe göre dosya bul|find . -name "*.log" -mtime +7
+Arama|fd (varsa)|find'ın kolay alternatifi|fd ".pdf" ~/Documents
+Arama|fzf|Bulanık arama; boruyla her listeyle çalışır|vim $(fzf)
+Arama|locate / plocate|Veritabanından anında dosya bul|locate resim.png
+Arama|which / type / command -v|Komutun yolunu/türünü göster|type ls
+Arama|man, tldr, --help|Komut yardımı; tldr kısa örnek verir|man tar; tldr tar
+Süreçler|ps aux ¦ grep|Çalışan süreçleri listele|ps aux ¦ grep firefox
+Süreçler|top / htop / btop|Canlı süreç izleme|btop
+Süreçler|kill / pkill / killall|Süreç sonlandır (önce -15, olmazsa -9)|pkill -f betik; kill -9 1234
+Süreçler|systemctl|Servis yönet: status, start, stop, enable, restart|systemctl status docker
+Süreçler|journalctl|Sistem günlükleri|journalctl -u docker -b -e
+Süreçler|nohup / tmux|Oturum kapansa da çalışmaya devam ettir|tmux new -s is; Ctrl+B sonra D
+Süreçler|ss -tulpn|Dinlenen portlar ve süreçler|sudo ss -tulpn
+Süreçler|lsof -i :PORT|Portu kim kullanıyor|sudo lsof -i :8080
+Süreçler|free -h, uptime|Bellek ve yük durumu|free -h
+Paket (pacman/yay)|pacman -Syu|Sistemi tam güncelle (kısmi güncelleme yapma)|sudo pacman -Syu
+Paket (pacman/yay)|pacman -S / -Rns|Kur / bağımlılıklarıyla birlikte kaldır|sudo pacman -S vim; sudo pacman -Rns vim
+Paket (pacman/yay)|pacman -Ss / -Qs / -Qi|Depoda ara / kurulularda ara / bilgi|pacman -Ss firefox; pacman -Qi vim
+Paket (pacman/yay)|pacman -Ql / -Qo|Paket dosyaları / dosya hangi pakette|pacman -Qo /usr/bin/ls
+Paket (pacman/yay)|pacman -Qdtq|Yetim paketleri listele|pacman -Qdtq
+Paket (pacman/yay)|pacman -Qdtq ¦ sudo pacman -Rns -|Yetim paketleri kaldır (önce listeyi kontrol et)|pacman -Qdtq
+Paket (pacman/yay)|paccache -rk2|Paket önbelleğini temizle (son 2 sürüm kalır)|sudo paccache -rk2
+Paket (pacman/yay)|yay -Syu|Depo + AUR güncelle|yay -Syu
+Paket (pacman/yay)|yay -S / yay -Ss|AUR dahil kur / ara|yay -S paket-bin
+Paket (pacman/yay)|yay -Sc|Yay/pacman önbelleğini temizle|yay -Sc
+Paket (pacman/yay)|/etc/pacman.conf|Depolar ve seçenekler (Color, ParallelDownloads)|grep -v '^#' /etc/pacman.conf
+Paket (pacman/yay)|Kilit hatası|db.lck: pacman çalışmıyorsa kilidi sil|sudo rm /var/lib/pacman/db.lck
+Paket (pacman/yay)|flatpak|Flatpak uygulamaları: list, update, uninstall --unused|flatpak update; flatpak uninstall --unused
+SSH|ssh kullanıcı@sunucu|Uzak bağlantı|ssh kullanici@192.168.1.10
+SSH|ssh-keygen -t ed25519|Anahtar çifti üret (özel anahtarı ASLA paylaşma)|ssh-keygen -t ed25519 -C "not"
+SSH|ssh-copy-id|Genel anahtarı sunucuya kur|ssh-copy-id kullanici@sunucu
+SSH|~/.ssh/config|Kısa isimler tanımla (Host, HostName, User, Port)|Host ev\n  HostName 192.168.1.10\n  User kullanici
+SSH|ssh -L yerel:host:uzak|Port yönlendirme (tünel)|ssh -L 8080:localhost:80 sunucu
+SSH|ssh -J|Atlama sunucusu üzerinden bağlan|ssh -J jump hedef
+SSH|scp / rsync -e ssh|Uzak kopya|scp dosya sunucu:/tmp/
+SSH|ssh-add -l|Ajandaki anahtarları listele|ssh-add -l
+SSH|ssh -v|Bağlantı sorunlarında ayrıntılı çıktı|ssh -vvv sunucu
+SSH|İzinler|~/.ssh 700, özel anahtar 600 olmalı|chmod 700 ~/.ssh; chmod 600 ~/.ssh/id_ed25519
+Docker|docker ps -a|Konteynerleri listele (-a durmuşlar dahil)|docker ps -a
+Docker|docker run|Konteyner başlat|docker run -d --name web -p 8080:80 nginx
+Docker|docker logs -f|Konteyner günlüğü|docker logs -f --tail 100 web
+Docker|docker exec -it|Çalışan konteynerde kabuk aç|docker exec -it web sh
+Docker|docker stop/start/restart/rm|Konteyner yaşam döngüsü|docker restart web
+Docker|docker images / pull / rmi|İmaj işlemleri|docker pull nginx
+Docker|docker compose up -d|Compose servislerini başlat|docker compose up -d
+Docker|docker compose down / logs / pull|Durdur / günlük / imajları güncelle|docker compose logs -f servis
+Docker|docker system df|Docker disk kullanımı|docker system df
+Docker|docker system prune|Kullanılmayanları temizle (-a ile imajlar da; dikkat)|docker system prune
+Docker|docker inspect / stats|Ayrıntı / kaynak kullanımı|docker stats
+Docker|docker grubu|sudo'suz kullanım: gruba ekle, oturumu yenile|sudo usermod -aG docker $USER
+Tailscale|tailscale status|Ağdaki cihazlar ve durum|tailscale status
+Tailscale|tailscale up / down|Bağlan / bağlantıyı kes|sudo tailscale up
+Tailscale|tailscale ip -4|Kendi Tailscale IP'n|tailscale ip -4
+Tailscale|tailscale ping cihaz|Cihaza erişimi test et|tailscale ping cihaz
+Tailscale|tailscale ssh|Tailscale üzerinden SSH|tailscale ssh kullanici@cihaz
+Tailscale|--exit-node|Çıkış düğümü kullan|sudo tailscale set --exit-node=cihaz
+Tailscale|tailscale file cp|Cihazlar arası dosya gönder|tailscale file cp dosya cihaz:
+Tailscale|tailscale netcheck|Ağ/NAT tanılama|tailscale netcheck
+Mullvad|mullvad status|VPN bağlantı durumu|mullvad status
+Mullvad|mullvad connect / disconnect|Bağlan / kes|mullvad connect
+Mullvad|mullvad relay set location|Ülke/şehir seç|mullvad relay set location se
+Mullvad|mullvad lockdown-mode set on|VPN dışı trafiği engelle (kill switch)|mullvad lockdown-mode set on
+Mullvad|mullvad lan set allow|Yerel ağ erişimine izin ver|mullvad lan set allow
+Mullvad|mullvad split-tunnel|Uygulama bazlı VPN dışı bırakma|mullvad split-tunnel add PID
+Mullvad|Tailscale ile birlikte|Çakışırsa Mullvad'da split-tunnel/lan izni ver|mullvad lan set allow
+Mullvad|IP kontrolü|Çıkış IP'sini doğrula|curl -s https://am.i.mullvad.net/connected
+Git|git status / diff|Durum / değişiklikler|git status -sb
+Git|git add / commit|Hazırla ve kaydet|git add -p; git commit -m "mesaj"
+Git|git log --oneline --graph|Kısa geçmiş grafiği|git log --oneline --graph -20
+Git|git switch / branch|Dal değiştir / oluştur|git switch -c yeni-dal
+Git|git pull --rebase / push|Güncelle / gönder|git pull --rebase; git push
+Git|git stash|Değişiklikleri geçici sakla|git stash; git stash pop
+Git|git restore|Dosya değişikliğini geri al|git restore dosya
+Git|git commit --amend|Son commit'i düzelt (yayınlanmamışsa)|git commit --amend
+Git|git reflog|Kaybolan commit'leri kurtar|git reflog
+Git|git clone --depth 1|Hızlı sığ klon|git clone --depth 1 URL
+Git|git config --global|Ad/e-posta ayarla|git config --global user.name "Ad"
+Git|.gitignore|Takip edilmeyecekleri yaz; sırları (.env) buraya ekle|echo ".env" >> .gitignore
+Sorun Giderme|journalctl -p 3 -b|Bu açılıştaki hatalar|journalctl -p 3 -b
+Sorun Giderme|systemctl --failed|Başarısız servisler|systemctl --failed
+Sorun Giderme|dmesg -T ¦ tail|Çekirdek mesajları|sudo dmesg -T ¦ tail
+Sorun Giderme|ping / mtr / dig|Ağ, rota ve DNS sınama|ping -c3 1.1.1.1; dig arch.org
+Sorun Giderme|ip a / ip r|Ağ arayüzleri ve rotalar|ip -br a
+Sorun Giderme|nmcli|NetworkManager: wifi ve bağlantılar|nmcli dev wifi list
+Sorun Giderme|Disk dolu|df -h, du -sh, docker system df, paccache ile bul ve temizle|du -xh / --max-depth=1 2>/dev/null ¦ sort -h ¦ tail
+Sorun Giderme|Pacman imza/anahtar hatası|Anahtarlığı yenile|sudo pacman -Sy archlinux-keyring
+Sorun Giderme|Güncelleme sonrası bozulma|Arch haber sayfasını kontrol et; önbellekten eski sürüme dön|sudo pacman -U /var/cache/pacman/pkg/paket.pkg.tar.zst
+Sorun Giderme|Port meşgul|Portu kullanan süreci bul|sudo ss -tulpn ¦ grep :8080
+Sorun Giderme|Donan program|Kibarca sonra zorla kapat|pkill firefox; pkill -9 firefox
+Sorun Giderme|Wi-Fi/ses/Bluetooth|Servisi yeniden başlat|systemctl restart NetworkManager; systemctl --user restart pipewire
+Alias|alias ll='ls -lah'|Kısayol komutlar ~/.bashrc'ye eklenir|alias ll='ls -lah'
+Alias|alias ..='cd ..'|Üst dizine çık|alias ..='cd ..'
+Alias|alias gs='git status -sb'|Git kısayolları|alias gl='git log --oneline --graph'
+Alias|alias guncelle='sudo pacman -Syu'|Sistem güncelleme kısayolu|alias guncelle='yay -Syu'
+Alias|alias dps='docker ps -a'|Docker kısayolu|alias dcu='docker compose up -d'
+Alias|alias yetim='pacman -Qdtq'|Yetim paket listesi|alias yetim='pacman -Qdtq'
+Alias|alias portlar='sudo ss -tulpn'|Dinlenen portlar|alias portlar='sudo ss -tulpn'
+Alias|alias ipim='curl -s ifconfig.me'|Dış IP'ni göster|alias ipim='curl -s ifconfig.me'
+Alias|Kalıcı yapmak|~/.bashrc'ye ekle, sonra yükle|source ~/.bashrc
+DATA
+}
+yardim() { cat <<H
+kilavuz $VER - Türkçe terminal rehberi
+  kilavuz                  fzf varsa etkileşimli, yoksa tam liste
+  kilavuz --ara KELİME     başlık/açıklama/örnekte ara (--ara a b: hepsi geçmeli)
+  kilavuz --kategori AD    bir kategoriyi göster (örn. docker, git, ssh)
+  kilavuz --kategoriler    kategorileri listele
+  kilavuz --liste          her şeyi yazdır
+  kilavuz --fzf            fzf ile gez
+H
+}
+fmt() { # stdin: kategori|baslik|aciklama|ornek
+  local b="" r="" d=""; [ -t 1 ] && { b=$'\e[1;36m'; d=$'\e[2m'; r=$'\e[0m'; }
+  local k son=""
+  while IFS='|' read -r k t a o; do
+    if [ "$k" != "$son" ]; then printf '\n%s== %s ==%s\n' "$b" "$k" "$r"; son=$k; fi
+    printf '  %s%s%s\n      %s\n' "$b" "$t" "$r" "$a"
+    [ -n "$o" ] && printf '      %sörnek:%s %b\n' "$d" "$r" "$o"
+  done | tr "\001" "|"
+}
+# Ayrıştırma: örnek alanı '|' içerebildiği için ilk üç '|' ayırıcıdır; fazlası örneğe aittir.
+temiz() { veri | sed "s/¦/\x01/g" | awk -F'|' '{k=$1;t=$2;a=$3;o=$4; for(i=5;i<=NF;i++)o=o"|"$i; print k"|"t"|"a"|"o}'; }
+cmd="${1:-}"
+case "$cmd" in
+  -h|--yardim|--help) yardim ;;
+  --liste) temiz | fmt ;;
+  --kategoriler) temiz | cut -d'|' -f1 | uniq ;;
+  --kategori|-k) [ -z "${2:-}" ] && { echo "Kategori adı gerekli"; exit 1; }
+     q="${2,,}"; temiz | awk -F"|" -v q="$q" 'index(tolower($1),q)' | fmt ;;
+  --ara|-a) shift; [ $# -eq 0 ] && { echo "Aranacak kelime gerekli"; exit 1; }
+     out=$(temiz); for w in "$@"; do out=$(printf '%s\n' "$out" | grep -iF -- "$w"); done
+     if [ -z "$out" ]; then echo "Sonuç yok: $*"; exit 1; fi
+     printf '%s\n' "$out" | fmt ;;
+  --fzf|"")
+     if command -v fzf >/dev/null && [ -t 1 ] && [ -t 0 ]; then
+        temiz | awk -F'|' '{printf "%-18s %-34s %s   [örnek: %s]\n",$1,$2,$3,$4}' | tr '\001' '|' | fzf --prompt='kilavuz> ' --header='yaz ve ara, ESC çık' --no-sort
+     else temiz | fmt; fi ;;
+  *) echo "Bilinmeyen seçenek: $cmd"; yardim; exit 1 ;;
+esac

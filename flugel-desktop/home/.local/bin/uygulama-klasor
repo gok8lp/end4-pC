@@ -1,0 +1,970 @@
+#!/usr/bin/python3 -I
+# uygulama-klasor — Super+A: GNOME tarzı, klasörlü tam ekran uygulama ızgarası (GTK3 + gtk-layer-shell).
+# Arka planda hazır bekler; SIGUSR1 ile açılır/kapanır (izgara-ac). Esc ya da boş alana tıklama kapatır.
+# Klasörler ızgaranın içindedir (kategori başına); yazınca bütün uygulamalarda arar.
+# Renkler Caelestia'nın ~/.local/state/caelestia/scheme.json şemasından, her açılışta değiştiyse yenilenir.
+import json
+import os
+import signal
+import subprocess
+import sys
+from pathlib import Path
+
+import gi
+
+gi.require_version("Gdk", "3.0")
+gi.require_version("Gtk", "3.0")
+gi.require_version("GdkPixbuf", "2.0")
+gi.require_version("GtkLayerShell", "0.1")
+gi.require_version("Pango", "1.0")
+from gi.repository import Gdk, GdkPixbuf, Gio, GLib, Gtk, GtkLayerShell, Pango  # noqa: E402
+
+try:
+    import cairo
+except ImportError:  # önizleme kalitesi için isteğe bağlı
+    cairo = None
+
+HOME = Path.home()
+SCHEME = HOME / ".local/state/caelestia/scheme.json"
+STATE = HOME / ".local/state/uygulama-klasor"
+KULLANIM = STATE / "kullanim.json"
+PINLER = STATE / "pinler.json"
+PIDFILE = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "uygulama-klasor.pid"
+APP_DIRS = [HOME / ".local/share/applications", Path("/usr/share/applications"),
+            HOME / ".local/share/flatpak/exports/share/applications",
+            Path("/var/lib/flatpak/exports/share/applications")]
+
+# Klasörler (sıra ızgaradaki sıradır). İlk eşleşen kategori kazanır.
+KLASORLER = [
+    ("Sunucu", "network-server", None),
+    ("Medya", "applications-multimedia", {"AudioVideo", "Audio", "Video", "Player"}),
+    ("Oyunlar", "applications-games", {"Game"}),
+    ("İnternet", "applications-internet", {"Network", "WebBrowser", "Email", "Chat", "InstantMessaging"}),
+    ("Ofis", "applications-office", {"Office", "WordProcessor", "Spreadsheet", "Presentation"}),
+    ("Grafik", "applications-graphics", {"Graphics", "Photography", "2DGraphics", "RasterGraphics"}),
+    ("Geliştirme", "applications-development", {"Development", "IDE", "TextEditor"}),
+    ("Sistem", "applications-system", {"System", "Settings", "Monitor", "TerminalEmulator", "PackageManager"}),
+    ("Araçlar", "applications-utilities", {"Utility", "Accessories", "FileManager", "Archiving"}),
+]
+TEK_UYGULAMA_KLASORDE = False  # bir klasörde tek uygulama varsa ızgaraya çıkar (GNOME gibi)
+
+
+def sunucu_mu(app):
+    f = app.get_filename() or ""
+    return os.path.basename(f).startswith("flugel-") or "flugelserver" in (app.get_commandline() or "")
+
+
+def klasor_bul(app):
+    if sunucu_mu(app):
+        return "Sunucu"
+    cats = set((app.get_categories() or "").split(";")) - {""}
+    for ad, _, eslesen in KLASORLER:
+        if eslesen and cats & eslesen:
+            return ad
+    return None
+
+
+def uygulamalar():
+    gorulen, liste = set(), []
+    for a in Gio.AppInfo.get_all():
+        if not isinstance(a, Gio.DesktopAppInfo) or not a.should_show():
+            continue
+        if a.get_id() in gorulen:
+            continue
+        gorulen.add(a.get_id())
+        liste.append(a)
+    liste.sort(key=lambda a: a.get_display_name().casefold())
+    return liste
+
+
+END4_RENK = HOME / ".local/state/quickshell/user/generated/colors.json"
+
+
+def renkler():
+    # Etkin arayüz end4-pC ise onun Material renkleri (snake_case → camelCase, '#' yok); yoksa Caelestia şeması
+    try:
+        d = json.loads(END4_RENK.read_text())
+        renk = {}
+        for k, v in d.items():
+            if isinstance(v, str) and v.startswith("#") and len(v) >= 7:
+                parcalar = k.split("_")
+                renk[parcalar[0] + "".join(p.title() for p in parcalar[1:])] = v[1:7]
+        if renk:
+            return renk, d.get("mode") == "light" or False
+    except (OSError, ValueError):
+        pass
+    try:
+        d = json.loads(SCHEME.read_text())
+        return d["colours"], d.get("mode") == "light"
+    except (OSError, ValueError, KeyError):
+        return {}, False
+
+
+def rgba(c, ad, yedek, a):
+    h = c.get(ad, yedek)
+    return f"rgba({int(h[0:2], 16)},{int(h[2:4], 16)},{int(h[4:6], 16)},{a})"
+
+
+
+
+def json_oku(yol, varsayilan):
+    try:
+        return json.loads(yol.read_text())
+    except (OSError, ValueError):
+        return varsayilan
+
+
+def json_yaz(yol, veri):
+    try:
+        yol.parent.mkdir(parents=True, exist_ok=True)
+        yol.write_text(json.dumps(veri))
+    except OSError as e:
+        print("yazılamadı:", yol, e, file=sys.stderr)
+
+
+def css_uret():
+    c, light = renkler()
+    fg = "#" + c.get("onSurface", "e6e2df")
+    alt = "#" + c.get("onSurfaceVariant", "c9c5bd")
+    return f"""
+    window#izgara {{ background-color: rgba(0,0,0,0.42); }}
+    #panel {{ background-color: {rgba(c, "surfaceContainer", "211f1e", 0.62)}; border-radius: 30px;
+             border: 1px solid {rgba(c, "outlineVariant", "49473f", 0.7)}; }}
+    #arama {{ min-height: 40px; padding: 0 18px; font-size: 16px; border-radius: 999px;
+             border: 2px solid {rgba(c, "outlineVariant", "49473f", 0.6)};
+             background: {rgba(c, "surfaceContainerHigh", "2b2a28", 1)}; color: {fg}; box-shadow: none; }}
+    #arama:focus {{ border-color: #{c.get("primary", "cac6b0")}; }}
+    .oge {{ border-radius: 18px; padding: 8px 4px; background: transparent; border: 2px solid transparent; box-shadow: none; }}
+    .oge:hover {{ background: {rgba(c, "surfaceContainerHighest", "373533", 1)}; }}
+    .oge:focus {{ background: {rgba(c, "primaryContainer", "4a4838", 1)}; border-color: #{c.get("primary", "cac6b0")}; }}
+    .oge label {{ color: {fg}; font-size: 13px; }}
+    .pano-satir {{ border-radius: 12px; padding: 5px 10px; background: {rgba(c, "surfaceContainerHigh", "2b2a28", 1)};
+                  border: 2px solid transparent; box-shadow: none; }}
+    .pano-satir:hover {{ background: {rgba(c, "surfaceContainerHighest", "373533", 1)}; }}
+    .pano-satir:focus {{ background: {rgba(c, "primaryContainer", "4a4838", 1)}; border-color: #{c.get("primary", "cac6b0")}; }}
+    .pano-satir label {{ color: {fg}; font-size: 12px; }}
+    .klasor-kutu {{ border-radius: 20px; padding: 10px; background: {rgba(c, "surfaceContainerHighest", "373533", 1)}; }}
+    .bolum {{ color: {alt}; font-size: 11px; font-weight: bold; letter-spacing: 1px; }}
+    .ipucu {{ color: {alt}; font-size: 11px; }}
+    #baslik {{ color: {fg}; font-size: 20px; font-weight: bold; }}
+    #geri {{ border-radius: 999px; padding: 5px 14px; color: {fg}; background: {rgba(c, "surfaceContainerHigh", "2b2a28", 1)}; border: none; }}
+    window.popup.background, .csd.popup decoration {{ background: transparent; box-shadow: none; border: none; }}
+    menu#baglam {{ background-color: {rgba(c, "surfaceContainerHigh", "2b2a28", 0.72)}; border-radius: 14px; padding: 6px;
+                  border: 1px solid {rgba(c, "outlineVariant", "49473f", 0.7)}; }}
+    menu#baglam menuitem {{ padding: 8px 16px; border-radius: 10px; color: {fg}; font-size: 13px; }}
+    menu#baglam menuitem:hover {{ background: {rgba(c, "surfaceContainerHighest", "373533", 1)}; }}
+    menu#baglam separator {{ margin: 4px 6px; }}
+    separator {{ background: {rgba(c, "outlineVariant", "49473f", 0.5)}; min-height: 1px; }}
+    """
+
+
+class Onizleme(Gtk.DrawingArea):
+    """Panodaki görselin üstüne gelince küçük resimden büyüyen, akıcı (easeOutCubic) önizleme."""
+
+    def __init__(self):
+        super().__init__(halign=Gtk.Align.FILL, valign=Gtk.Align.FILL)
+        self.pb = None
+        self.yuzey = None  # hedef boyuta bir kez ölçeklenmiş cairo yüzeyi: her karede pixbuf dönüştürmek takılmaya yol açıyordu
+        self.t = 0.0
+        self.kaynak = (0, 0, 1, 1)
+        self.anim = None
+        self.connect("draw", self.ciz)
+        # Wayland'da set_overlay_pass_through tek başına yetmez: tam ekran önizleme katmanı tıklamaları yutuyordu.
+        self.connect("realize", lambda w: w.get_window().set_pass_through(True))
+
+    def ac(self, pb, kaynak):
+        if pb is not self.pb:
+            self.pb, self.yuzey = pb, None
+        self.kaynak = kaynak
+        self._git(1.0, 320)
+
+    def kapat(self):
+        self._git(0.0, 220)
+
+    def _hedef(self):
+        al = self.get_allocation()
+        pw, ph = self.pb.get_width(), self.pb.get_height()
+        sc = min(al.width * 0.78 / pw, al.height * 0.66 / ph, 1.8)
+        return pw * sc, ph * sc
+
+    def _yuzey(self):
+        if self.yuzey is None:
+            tw, th = self._hedef()
+            kucuk = self.pb.scale_simple(max(1, int(tw)), max(1, int(th)), GdkPixbuf.InterpType.HYPER)
+            self.yuzey = Gdk.cairo_surface_create_from_pixbuf(kucuk, 1, None)
+        return self.yuzey
+
+    def _git(self, hedef, sure):
+        if self.anim:
+            self.remove_tick_callback(self.anim)
+        t0, basla = self.t, None
+
+        def adim(_w, saat):
+            nonlocal basla
+            simdi = saat.get_frame_time()
+            if basla is None:
+                basla = simdi
+            k = min(1.0, (simdi - basla) / 1000 / sure)
+            # easeOutQuint açılışta, easeInOutCubic kapanışta: daha yumuşak başlangıç ve bitiş
+            e = 1 - (1 - k) ** 5 if hedef > t0 else (4 * k ** 3 if k < 0.5 else 1 - (-2 * k + 2) ** 3 / 2)
+            self.t = t0 + (hedef - t0) * e
+            self.queue_draw()
+            if k >= 1.0:
+                self.anim = None
+                if hedef == 0.0:
+                    self.pb = self.yuzey = None
+                return GLib.SOURCE_REMOVE
+            return GLib.SOURCE_CONTINUE
+
+        self.anim = self.add_tick_callback(adim)
+
+    def ciz(self, _w, cr):
+        if self.pb is None or self.t <= 0.001:
+            return False
+        al = self.get_allocation()
+        yuzey = self._yuzey()
+        pw, ph = yuzey.get_width(), yuzey.get_height()
+        tw, th = pw, ph
+        tx, ty = (al.width - tw) / 2, (al.height - th) / 2
+        kx, ky, kw, kh = self.kaynak
+        t = self.t
+        x, y = kx + (tx - kx) * t, ky + (ty - ky) * t
+        w, h = kw + (tw - kw) * t, kh + (th - kh) * t
+        r = 8 + 10 * t
+
+        def yuvarlak(px, py, pwid, phei, rad):
+            cr.new_sub_path()
+            cr.arc(px + pwid - rad, py + rad, rad, -1.5708, 0)
+            cr.arc(px + pwid - rad, py + phei - rad, rad, 0, 1.5708)
+            cr.arc(px + rad, py + phei - rad, rad, 1.5708, 3.1416)
+            cr.arc(px + rad, py + rad, rad, 3.1416, 4.7124)
+            cr.close_path()
+
+        # yumuşak gölge: büyüdükçe belirginleşen iç içe yarı saydam katmanlar
+        for i in range(4, 0, -1):
+            cr.set_source_rgba(0, 0, 0, 0.09 * t)
+            yuvarlak(x - i * 4, y - i * 4 + 6 * t, w + i * 8, h + i * 8, r + i * 4)
+            cr.fill()
+        cr.save()
+        yuvarlak(x, y, w, h, r)
+        cr.clip()
+        cr.translate(x, y)
+        cr.scale(w / pw, h / ph)
+        cr.set_source_surface(yuzey, 0, 0)
+        if cairo is not None:
+            # animasyon sürerken hızlı süzgeç, durunca en iyi kalite
+            cr.get_source().set_filter(cairo.FILTER_BEST if self.anim is None else cairo.FILTER_BILINEAR)
+        cr.paint_with_alpha(min(1.0, 0.35 + t))
+        cr.restore()
+        cr.set_source_rgba(1, 1, 1, 0.35 * t)
+        cr.set_line_width(1.5)
+        yuvarlak(x, y, w, h, r)
+        cr.stroke()
+        return False
+
+
+class Izgara(Gtk.Window):
+    def __init__(self):
+        super().__init__(title="Uygulamalar")
+        self.set_name("izgara")
+        GtkLayerShell.init_for_window(self)
+        GtkLayerShell.set_namespace(self, "app-izgara")
+        GtkLayerShell.set_layer(self, GtkLayerShell.Layer.OVERLAY)
+        GtkLayerShell.set_keyboard_mode(self, GtkLayerShell.KeyboardMode.EXCLUSIVE)
+        for k in (GtkLayerShell.Edge.TOP, GtkLayerShell.Edge.BOTTOM, GtkLayerShell.Edge.LEFT, GtkLayerShell.Edge.RIGHT):
+            GtkLayerShell.set_anchor(self, k, True)
+        GtkLayerShell.set_exclusive_zone(self, -1)  # çubukların üzerinde, tüm ekranı kaplar: tek tıklanabilen katman
+        self.set_app_paintable(False)
+        scr = self.get_screen()
+        if scr.get_rgba_visual():
+            self.set_visual(scr.get_rgba_visual())
+
+        self.css = Gtk.CssProvider()
+        Gtk.StyleContext.add_provider_for_screen(scr, self.css, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+        self.son_css = ""
+        self.son_damga = None
+        self.olc = None
+        self.pano_kar = 44
+        self.nav = []
+        self.kullanim = json_oku(KULLANIM, {})
+        self.pinler = json_oku(PINLER, [])
+        self.son_acilan = (None, 0)
+
+        # Panel: ekranın ortasında, yaklaşık %60×%65; kendi içindeki tıklamalar pencereyi kapatmaz
+        self.panel = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, name="panel")
+        self.icerik = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=14,
+                              margin_top=24, margin_bottom=22, margin_start=28, margin_end=28)
+        self.panel.pack_start(self.icerik, True, True, 0)
+        self.onizleme = Onizleme()
+        self.onizleme_cache = {}
+        self.arama = Gtk.SearchEntry(name="arama", placeholder_text="Uygulama ara…")
+        self.arama.connect("search-changed", lambda *_: self.yenile_gorunum())
+        self.arama.connect("activate", self.ilkini_ac)
+        self.icerik.pack_start(self.arama, False, False, 0)
+
+        self.yigin = Gtk.Stack(transition_type=Gtk.StackTransitionType.CROSSFADE, transition_duration=120)
+        self.ana = self._kaydirmali_izgara()
+        self.yigin.add_named(self.ana[0], "ana")
+        klasor_kutu = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        ust = Gtk.Box(spacing=12)
+        geri = Gtk.Button(label="‹ Geri", name="geri")
+        geri.connect("clicked", lambda *_: self.klasorden_don())
+        self.baslik = Gtk.Label(name="baslik", xalign=0)
+        ust.pack_start(geri, False, False, 0)
+        ust.pack_start(self.baslik, True, True, 0)
+        klasor_kutu.pack_start(ust, False, False, 0)
+        self.klasor_izgara = self._kaydirmali_izgara()
+        klasor_kutu.pack_start(self.klasor_izgara[0], True, True, 0)
+        self.yigin.add_named(klasor_kutu, "klasor")
+        self.icerik.pack_start(self.yigin, True, True, 0)
+
+        self.icerik.pack_start(Gtk.Separator(), False, False, 0)
+        # alt şerit: sol = sık kullanılanlar + sabitlenenler, sağ = pano
+        self.alt = Gtk.Box(spacing=26, homogeneous=True)
+        sol = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.sik_baslik = self._bolum("SIK KULLANILANLAR")
+        self.sik_kutu = Gtk.Box(spacing=6, halign=Gtk.Align.START)
+        self.pin_baslik = self._bolum("SABİTLENENLER")
+        self.pin_kutu = Gtk.Box(spacing=6, halign=Gtk.Align.START)
+        for w in (self.sik_baslik, self.sik_kutu, self.pin_baslik, self.pin_kutu):
+            sol.pack_start(w, False, False, 0)
+        sag = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        sag.pack_start(self._bolum("PANO · KOPYALANAN METİNLER"), False, False, 0)
+        self.metin_kutu = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5, halign=Gtk.Align.START)
+        sag.pack_start(self.metin_kutu, False, False, 0)
+        sag.pack_start(self._bolum("PANO · KOPYALANAN GÖRSELLER"), False, False, 0)
+        self.gorsel_kutu = Gtk.Box(spacing=10, halign=Gtk.Align.START)
+        sag.pack_start(self.gorsel_kutu, False, False, 0)
+        self.alt.pack_start(sol, True, True, 0)
+        self.alt.pack_start(sag, True, True, 0)
+        self.icerik.pack_start(self.alt, False, False, 0)
+
+        dis = Gtk.EventBox(halign=Gtk.Align.CENTER, valign=Gtk.Align.CENTER)
+        dis.connect("button-press-event", lambda *_: True)  # panel içi boş tık: yutulur
+        ov = Gtk.Overlay()
+        ov.add(self.panel)
+        ov.add_overlay(self.onizleme)
+        ov.set_overlay_pass_through(self.onizleme, True)
+        self.ov = ov
+        dis.add(ov)
+        self.add(dis)
+        self.dis = dis
+        self.panel_anim = None
+        self.kapaniyor = False
+
+        self.connect("key-press-event", self.tus)
+        self.connect("button-press-event", self.bos_tik)
+        self.connect("delete-event", lambda *_: self.gizle() or True)
+        self.yukle()
+
+    def _bolum(self, metin):
+        l = Gtk.Label(label=metin, xalign=0, margin_top=8, margin_bottom=2)
+        l.get_style_context().add_class("bolum")
+        return l
+
+    def _kaydirmali_izgara(self):
+        sc = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
+        fb = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=True, max_children_per_line=6,
+                         min_children_per_line=3, column_spacing=10, row_spacing=6,
+                         halign=Gtk.Align.CENTER, valign=Gtk.Align.START, activate_on_single_click=False)
+        fb.set_focus_vadjustment(sc.get_vadjustment())
+        sc.add(fb)
+        return sc, fb
+
+    # ---------- ortama uyum ----------
+    def odak_monitor(self):
+        disp = Gdk.Display.get_default()
+        mons = [disp.get_monitor(i) for i in range(disp.get_n_monitors())]
+        if not mons:
+            return None
+        try:
+            out = subprocess.run(["hyprctl", "-j", "monitors"], capture_output=True, text=True, timeout=1).stdout
+            odak = next((m for m in json.loads(out) if m.get("focused")), None)
+        except (OSError, ValueError, subprocess.SubprocessError):
+            odak = None
+        if odak:
+            for m in mons:
+                g = m.get_geometry()
+                if (g.x, g.y) == (odak["x"], odak["y"]):
+                    return m
+            for m in mons:
+                if m.get_model() == odak["name"]:
+                    return m
+        return disp.get_primary_monitor() or mons[0]
+
+    def uyarla(self):
+        mon = self.odak_monitor()
+        if mon is None:
+            return
+        g = mon.get_geometry()
+        u = max(0.8, min(1.35, min(g.width / 1920, g.height / 1080)))
+        pw = int(max(820, min(g.width * 0.62, 1300)))
+        ph = int(max(620, min(g.height * 0.76, 960)))
+        tw, th = int(128 * u), int(112 * u)
+        sutun = max(3, min(9, (pw - 80) // (tw + 10)))
+        alt_h = int(310 * u)
+        olc = (tw, th, int(56 * u), int(28 * u), sutun, pw, ph, alt_h)
+        try:
+            GtkLayerShell.set_monitor(self, mon)
+        except (TypeError, ValueError):
+            pass
+        if olc == self.olc:
+            return
+        self.olc = olc
+        for fb in (self.ana[1], self.klasor_izgara[1]):
+            fb.set_max_children_per_line(sutun)
+        self.panel.set_size_request(pw, ph)
+        self.pano_kar = max(26, int(((pw - 56 - 26) / 2 - 24) / 7.4))
+        self.yenile_gorunum()
+
+    # ---------- veri ----------
+    def damga(self):
+        return [d.stat().st_mtime for d in APP_DIRS if d.is_dir()]
+
+    def yukle(self):
+        self.son_damga = self.damga()
+        self.apps = uygulamalar()
+        self.app_id = {a.get_id(): a for a in self.apps}
+        # pencere sınıfı → masaüstü kimliği (StartupWMClass yoksa dosya adı; web uygulamaları kendi sınıfını bildirir)
+        # dosya adı eşleşmesi önceliklidir: google-chrome → google-chrome.desktop (com.google.Chrome değil)
+        self.sinif_id = {}
+        for a in self.apps:
+            if a.get_startup_wm_class():
+                self.sinif_id.setdefault(a.get_startup_wm_class().lower(), a.get_id())
+        for a in self.apps:
+            i = a.get_id()
+            self.sinif_id[(i[:-8] if i.endswith(".desktop") else i).lower()] = i
+        gruplar = {}
+        for a in self.apps:
+            gruplar.setdefault(klasor_bul(a), []).append(a)
+        self.gruplar = gruplar
+        self.yenile_gorunum()
+
+    def tema(self):
+        css = css_uret()
+        if css != self.son_css:
+            self.css.load_from_data(css.encode())
+            self.son_css = css
+
+    # ---------- görünüm ----------
+    def temizle(self, kap):
+        for ch in kap.get_children():
+            kap.remove(ch)
+
+    def uygulama_dugmesi(self, a, boyut=None, kucuk=False):
+        tw, th, ikon, mini, *_ = self.olc or (128, 112, 56, 28)
+        b = Gtk.Button(relief=Gtk.ReliefStyle.NONE)
+        b.get_style_context().add_class("oge")
+        v = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+        ic = a.get_icon() or Gio.ThemedIcon.new("application-x-executable")
+        img = Gtk.Image.new_from_gicon(ic, Gtk.IconSize.DIALOG)
+        img.set_pixel_size(boyut or (int(ikon * 0.7) if kucuk else ikon))
+        lbl = Gtk.Label(label=a.get_display_name(), max_width_chars=12 if kucuk else 14, ellipsize=3,
+                        justify=Gtk.Justification.CENTER)
+        v.pack_start(img, False, False, 0)
+        v.pack_start(lbl, False, False, 0)
+        b.add(v)
+        b.set_tooltip_text(a.get_description() or a.get_display_name())
+        b.connect("clicked", lambda *_: self.ac(a))
+        b.connect("button-press-event", self.sag_tik, a)
+        b.app_info = a
+        if not kucuk:
+            b.set_size_request(tw, th)
+        return b
+
+    def sag_tik(self, b, ev, a):
+        if ev.button == 3:
+            self.baglam_menusu(b, ev, a)
+            return True
+        return False
+
+    def baglam_menusu(self, b, ev, a):
+        """Ubuntu tarzı sağ tık menüsü: Aç, uygulamanın kendi eylemleri, dock'a sabitle / kaldır."""
+        menu = Gtk.Menu()
+        menu.set_name("baglam")
+        # yarı saydam arka plan için menünün açılır penceresi RGBA olmalı
+        ust = menu.get_toplevel()
+        if ust.get_screen().get_rgba_visual():
+            ust.set_visual(ust.get_screen().get_rgba_visual())
+
+        def oge(etiket, fn, ikon=None):
+            it = Gtk.MenuItem()
+            kutu = Gtk.Box(spacing=10)
+            if ikon:
+                kutu.pack_start(Gtk.Image.new_from_icon_name(ikon, Gtk.IconSize.MENU), False, False, 0)
+            kutu.pack_start(Gtk.Label(label=etiket, xalign=0), True, True, 0)
+            it.add(kutu)
+            it.connect("activate", lambda *_: fn())
+            menu.append(it)
+
+        # dock düğmesi en üstte: tek tıkla sabitle / kaldır
+        sabit = a.get_id() in self.dock_pinli()
+        oge("Dock'tan kaldır" if sabit else "Dock'a sabitle", lambda: self.pin_degistir(a),
+            "list-remove-symbolic" if sabit else "view-pin-symbolic")
+        menu.append(Gtk.SeparatorMenuItem())
+        oge("Aç", lambda: self.ac(a), "media-playback-start-symbolic")
+        try:
+            eylemler = list(a.list_actions())
+        except (AttributeError, GLib.Error):
+            eylemler = []
+        if eylemler:
+            menu.append(Gtk.SeparatorMenuItem())
+            for eylem in eylemler:
+                oge(a.get_action_name(eylem), lambda e=eylem: self.eylem_ac(a, e))
+        menu.show_all()
+        menu.attach_to_widget(b, None)
+        if ev is not None:
+            menu.popup_at_pointer(ev)
+        else:
+            menu.popup_at_widget(b, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST, None)
+
+    def eylem_ac(self, a, eylem):
+        try:
+            a.launch_action(eylem, Gdk.Display.get_default().get_app_launch_context())
+            self.kullanim[a.get_id()] = self.kullanim.get(a.get_id(), 0) + 1
+            self.son_acilan = (a.get_id(), GLib.get_monotonic_time())
+            json_yaz(KULLANIM, self.kullanim)
+        except GLib.Error as e:
+            print("eylem açılamadı:", a.get_id(), eylem, e.message, file=sys.stderr)
+        self.gizle()
+
+    def klasor_dugmesi(self, ad, ikon, liste):
+        tw, th, _i, mini, *_ = self.olc or (128, 112, 56, 28)
+        b = Gtk.Button(relief=Gtk.ReliefStyle.NONE)
+        b.get_style_context().add_class("oge")
+        v = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
+        kare = Gtk.Grid(row_spacing=4, column_spacing=4, halign=Gtk.Align.CENTER)
+        kare.get_style_context().add_class("klasor-kutu")
+        for i, a in enumerate(liste[:4]):
+            im = Gtk.Image.new_from_gicon(a.get_icon() or Gio.ThemedIcon.new(ikon), Gtk.IconSize.DND)
+            im.set_pixel_size(mini)
+            kare.attach(im, i % 2, i // 2, 1, 1)
+        v.pack_start(kare, False, False, 0)
+        v.pack_start(Gtk.Label(label=f"{ad} · {len(liste)}"), False, False, 0)
+        b.add(v)
+        b.connect("clicked", lambda *_: self.klasor_ac(ad, liste))
+        b.set_size_request(tw, th)
+        return b
+
+    def yenile_gorunum(self):
+        fb = self.ana[1]
+        self.temizle(fb)
+        q = self.arama.get_text().strip().casefold()
+        if q:
+            # Adı eşleşenler önce: yoksa "chr" aramasında Chrome ile açılan web uygulamaları Chrome'un önüne geçiyordu
+            bulunan = []
+            for a in self.apps:
+                ad = a.get_display_name().casefold()
+                metin = " ".join(filter(None, [ad, a.get_generic_name() or "",
+                                               " ".join(a.get_keywords() or []), a.get_executable() or ""])).casefold()
+                if q in metin:
+                    bulunan.append((0 if ad.startswith(q) else 1 if q in ad else 2, a))
+            for _, a in sorted(bulunan, key=lambda x: x[0]):
+                fb.add(self.uygulama_dugmesi(a))
+            self.yigin.set_visible_child_name("ana")
+        else:
+            for ad, ikon, _ in KLASORLER:
+                liste = self.gruplar.get(ad, [])
+                if len(liste) >= 2:
+                    fb.add(self.klasor_dugmesi(ad, ikon, liste))
+            serbest = list(self.gruplar.get(None, []))
+            for ad, _, _ in KLASORLER:
+                if len(self.gruplar.get(ad, [])) == 1:
+                    serbest += self.gruplar[ad]
+            for a in sorted(serbest, key=lambda a: a.get_display_name().casefold()):
+                fb.add(self.uygulama_dugmesi(a))
+        fb.show_all()
+
+    def alt_yenile(self):
+        for kap in (self.sik_kutu, self.pin_kutu, self.metin_kutu, self.gorsel_kutu):
+            self.temizle(kap)
+        sik = sorted((i for i in self.kullanim if i in self.app_id), key=lambda i: -self.kullanim[i])[:6]
+        for i in sik:
+            self.sik_kutu.pack_start(self.uygulama_dugmesi(self.app_id[i], kucuk=True), False, False, 0)
+        if not sik:
+            self.sik_kutu.pack_start(self._ipucu("Uygulama açtıkça burada görünür"), False, False, 0)
+        self.pinler = self.dock_pinli()
+        pinli = [self.app_id[i] for i in self.pinler]
+        for a in pinli[:6]:
+            self.pin_kutu.pack_start(self.uygulama_dugmesi(a, kucuk=True), False, False, 0)
+        if not pinli:
+            self.pin_kutu.pack_start(self._ipucu("Bir uygulamaya sağ tıkla: menüden dock'a sabitle (Ins tuşu da sabitler)"), False, False, 0)
+        metinler, gorseller = self.pano_oku()
+        for id_, metin in metinler:
+            b = Gtk.Button(relief=Gtk.ReliefStyle.NONE, halign=Gtk.Align.START)
+            b.get_style_context().add_class("pano-satir")
+            l = Gtk.Label(label=metin, xalign=0, wrap=True, wrap_mode=Pango.WrapMode.WORD_CHAR,
+                          ellipsize=Pango.EllipsizeMode.END, lines=2, max_width_chars=self.pano_kar)
+            l.set_width_chars(min(len(metin), self.pano_kar))
+            b.add(l)
+            b.set_tooltip_text(metin if len(metin) > self.pano_kar * 2 else None)
+            b.connect("clicked", lambda _b, i=id_: self.pano_kopyala(i, None))
+            self.metin_kutu.pack_start(b, False, False, 0)
+        if not metinler:
+            self.metin_kutu.pack_start(self._ipucu("Pano geçmişi boş"), False, False, 0)
+        # Görsel satırı panelin sağ yarısına sığmalı: geniş küçük resimler katmanı ekran dışına taşıyordu
+        butce = max(200, int((self.olc[5] - 56 - 26) / 2 - 24)) if self.olc else 400
+        kullanilan = 0
+        for id_, pb in gorseller:
+            gen = pb.get_width() + 30  # düğme dolgusu + aralık
+            if kullanilan and kullanilan + gen > butce:
+                break
+            kullanilan += gen
+            b = Gtk.Button(relief=Gtk.ReliefStyle.NONE)
+            b.get_style_context().add_class("oge")
+            b.add(Gtk.Image.new_from_pixbuf(pb))
+            b.connect("clicked", lambda _b, i=id_: self.pano_kopyala(i, "image/png"))
+            b.gorsel_id = id_
+            # Hareket olayının koordinatları iç EventBox'a göre geliyordu; fare takibi düğmenin kendi olaylarıyla
+            b.connect("enter-notify-event", lambda w, _e, i=id_: self.onizle_ac(w, i))
+            b.connect("leave-notify-event", lambda w, _e: self.onizleme.kapat() if not w.has_focus() else None)
+            b.connect("focus-in-event", lambda w, _e, i=id_: self.onizle_ac(w, i))
+            b.connect("focus-out-event", lambda *_: self.onizleme.kapat())
+            self.gorsel_kutu.pack_start(b, False, False, 0)
+        if not gorseller:
+            self.gorsel_kutu.pack_start(self._ipucu("Kopyalanan görsel yok"), False, False, 0)
+        self.alt.show_all()
+
+    def onizle_ac(self, dugme, id_):
+        pb = self.onizleme_cache.get(id_)
+        if pb is None:
+            pb = self.pano_resim(id_, 1000)
+            if pb is None:
+                return False
+            self.onizleme_cache[id_] = pb
+        xy = dugme.translate_coordinates(self.ov, 0, 0)
+        if xy is None:
+            return False
+        al = dugme.get_allocation()
+        oran = (al.height - 8) / max(pb.get_height(), 1)
+        kw, kh = pb.get_width() * oran, pb.get_height() * oran
+        self.onizleme.ac(pb, (xy[0] + 4, xy[1] + 4, kw, kh))
+        return False
+
+    def _ipucu(self, metin):
+        l = Gtk.Label(label=metin, xalign=0)
+        l.get_style_context().add_class("ipucu")
+        return l
+
+    def pano_oku(self):
+        metinler, gorseller = [], []
+        try:
+            out = subprocess.run(["cliphist", "list"], capture_output=True, text=True, timeout=2).stdout
+        except (OSError, subprocess.SubprocessError):
+            return metinler, gorseller
+        for satir in out.splitlines()[:80]:
+            id_, _, icerik = satir.partition("\t")
+            if icerik.startswith("[[ binary data"):
+                if len(gorseller) < 5 and any(t in icerik for t in ("png", "jpg", "jpeg", "bmp", "webp")):
+                    pb = self.pano_kucuk_resim(id_)
+                    if pb:
+                        gorseller.append((id_, pb))
+            elif len(metinler) < 3 and icerik.strip():
+                metinler.append((id_, " ".join(icerik.split())[:400]))
+            if len(metinler) >= 3 and len(gorseller) >= 5:
+                break
+        return metinler, gorseller
+
+    def pano_resim(self, id_, azami):
+        """Pano kaydını çözüp en uzun kenarı `azami` pikseli geçmeyecek biçimde pixbuf döndürür."""
+        try:
+            veri = subprocess.run(["cliphist", "decode", id_], capture_output=True, timeout=3).stdout
+            yuk = GdkPixbuf.PixbufLoader()
+
+            def boyut(l, w, h):
+                k = min(1.0, azami / max(w, h))
+                l.set_size(max(1, int(w * k)), max(1, int(h * k)))
+
+            yuk.connect("size-prepared", boyut)
+            yuk.write(veri)
+            yuk.close()
+            return yuk.get_pixbuf()
+        except (GLib.Error, OSError, subprocess.SubprocessError):
+            return None
+
+    def pano_kucuk_resim(self, id_):
+        pb = self.pano_resim(id_, 600)
+        if pb is None:
+            return None
+        oran = 52 / max(pb.get_height(), 1)
+        return pb.scale_simple(max(1, int(pb.get_width() * oran)), 52, GdkPixbuf.InterpType.BILINEAR)
+
+    def pano_kopyala(self, id_, tur):
+        try:
+            veri = subprocess.run(["cliphist", "decode", id_], capture_output=True, timeout=2).stdout
+            subprocess.Popen(["wl-copy"] + (["--type", tur] if tur else []), stdin=subprocess.PIPE).communicate(veri)
+        except (OSError, subprocess.SubprocessError) as e:
+            print("pano kopyalanamadı:", e, file=sys.stderr)
+        self.gizle()
+
+    # ---------- gezinme ----------
+    def satirlar(self):
+        """Ok tuşu gezinmesi için görünür düğmeleri satır satır döndürür."""
+        satirlar = []
+        fb = (self.klasor_izgara if self.yigin.get_visible_child_name() == "klasor" else self.ana)[1]
+        satir, y = [], None
+        for ch in fb.get_children():
+            dug = ch.get_child()
+            ay = ch.get_allocation().y
+            if y is None or abs(ay - y) > 8:
+                if satir:
+                    satirlar.append(satir)
+                satir, y = [], ay
+            satir.append(dug)
+        if satir:
+            satirlar.append(satir)
+        for kap in (self.sik_kutu, self.pin_kutu):
+            s = [b for b in kap.get_children() if isinstance(b, Gtk.Button)]
+            if s:
+                satirlar.append(s)
+        for b in self.metin_kutu.get_children():
+            if isinstance(b, Gtk.Button):
+                satirlar.append([b])
+        g = [b for b in self.gorsel_kutu.get_children() if isinstance(b, Gtk.Button)]
+        if g:
+            satirlar.append(g)
+        return satirlar
+
+    def hareket(self, dx, dy):
+        satirlar = self.satirlar()
+        if not satirlar:
+            return False
+        odak = self.get_focus()
+        r = c = None
+        for i, s in enumerate(satirlar):
+            for j, b in enumerate(s):
+                if b is odak:
+                    r, c = i, j
+        if r is None:
+            if dy > 0 or dx != 0:
+                satirlar[0][0].grab_focus()
+                return True
+            return False
+        if dy:
+            nr = r + dy
+            if nr < 0:
+                self.arama.grab_focus()
+                return True
+            if nr >= len(satirlar):
+                return True
+            satirlar[nr][min(c, len(satirlar[nr]) - 1)].grab_focus()
+        else:
+            nc = c + dx
+            if 0 <= nc < len(satirlar[r]):
+                satirlar[r][nc].grab_focus()
+            elif dx > 0 and r + 1 < len(satirlar) and r < len(satirlar) - 1:
+                satirlar[r + 1][0].grab_focus()
+            elif dx < 0 and r > 0:
+                satirlar[r - 1][-1].grab_focus()
+        return True
+
+    # ---------- eylemler ----------
+    def dock_pinli(self):
+        """Dock'ta sabitli uygulamaların masaüstü kimlikleri; tek doğru kaynak dock ayarıdır.
+        Ayrı pinler.json ile tutulunca dock'ta olan uygulama için menü "sabitle" diyor, kaldırmak iki tık sürüyordu."""
+        try:
+            liste = json.loads((HOME / ".config/illogical-impulse/config.json").read_text())["dock"]["pinnedApps"]
+        except (OSError, ValueError, KeyError, TypeError):
+            return []
+        kucuk = {i[:-8].lower() if i.endswith(".desktop") else i.lower(): i for i in self.app_id}
+        return [kucuk[str(ad).lower()] for ad in liste if str(ad).lower() in kucuk]
+
+    def pin_degistir(self, a):
+        i = a.get_id()
+        sabit = i not in self.dock_pinli()
+        self.dock_sabitle(i, sabit)
+        self.pinler = self.dock_pinli()
+        json_yaz(PINLER, self.pinler)
+        self.alt_yenile()
+
+    def dock_sabitle(self, desktop_id, sabit):
+        """end4-pC dock'unu da günceller: sağ tık / Ins ile uygulama dock'a sabitlenir ya da çıkarılır."""
+        yol = HOME / ".config/illogical-impulse/config.json"
+        ad = desktop_id[:-8] if desktop_id.endswith(".desktop") else desktop_id
+        try:
+            c = json.loads(yol.read_text())
+            liste = c.setdefault("dock", {}).setdefault("pinnedApps", [])
+            vardi = [x for x in liste if str(x).lower() == ad.lower()]
+            if sabit and not vardi:
+                liste.append(ad)
+            elif not sabit:
+                liste[:] = [x for x in liste if str(x).lower() != ad.lower()]
+            else:
+                return
+            gecici = yol.with_name(yol.name + ".tmp-izgara")
+            gecici.write_text(json.dumps(c, indent=2, ensure_ascii=False))
+            os.replace(gecici, yol)
+        except (OSError, ValueError) as e:
+            print("dock sabitlenemedi:", e, file=sys.stderr)
+
+    # ---------- kullanım sayacı ----------
+    def olay_dinle(self):
+        """Hyprland olaylarını dinler: dock'tan, terminalden vb. açılan uygulamalar da sık kullanılanlara sayılır."""
+        yol = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "hypr" / os.environ.get("HYPRLAND_INSTANCE_SIGNATURE", "") / ".socket2.sock"
+        try:
+            baglanti = Gio.SocketClient().connect(Gio.UnixSocketAddress.new(str(yol)), None)
+        except GLib.Error:
+            GLib.timeout_add_seconds(10, lambda: self.olay_dinle() and False)
+            return
+        self.olay_baglanti = baglanti
+        self.olay_akis = Gio.DataInputStream.new(baglanti.get_input_stream())
+        self.olay_akis.read_line_async(GLib.PRIORITY_LOW, None, self._olay_geldi)
+
+    def _olay_geldi(self, akis, sonuc):
+        try:
+            satir, _ = akis.read_line_finish_utf8(sonuc)
+        except GLib.Error:
+            satir = None
+        if satir is None:  # Hyprland yeniden başladı ya da bağlantı koptu
+            GLib.timeout_add_seconds(10, lambda: self.olay_dinle() and False)
+            return
+        if satir.startswith("openwindow>>"):
+            parca = satir[len("openwindow>>"):].split(",", 3)
+            if len(parca) >= 3:
+                self.pencere_acildi(parca[2])
+        akis.read_line_async(GLib.PRIORITY_LOW, None, self._olay_geldi)
+
+    def pencere_acildi(self, sinif):
+        sinif = sinif.lower()
+        i = self.sinif_id.get(sinif)
+        if i is None:
+            return
+        son_id, son_zaman = self.son_acilan
+        if son_id == i and GLib.get_monotonic_time() - son_zaman < 15_000_000:
+            return  # ızgaradan açıldı, zaten sayıldı
+        self.kullanim[i] = self.kullanim.get(i, 0) + 1
+        json_yaz(KULLANIM, self.kullanim)
+
+    def ac(self, a):
+        try:
+            ctx = Gdk.Display.get_default().get_app_launch_context()
+            a.launch([], ctx)
+            self.kullanim[a.get_id()] = self.kullanim.get(a.get_id(), 0) + 1
+            self.son_acilan = (a.get_id(), GLib.get_monotonic_time())
+            json_yaz(KULLANIM, self.kullanim)
+        except GLib.Error as e:
+            print("açılamadı:", a.get_id(), e.message, file=sys.stderr)
+        self.gizle()
+
+    def klasor_ac(self, ad, liste):
+        self.baslik.set_text(ad)
+        fb = self.klasor_izgara[1]
+        self.temizle(fb)
+        for a in liste:
+            fb.add(self.uygulama_dugmesi(a))
+        fb.show_all()
+        self.yigin.set_visible_child_name("klasor")
+        GLib.idle_add(lambda: (self.hareket(0, 1) and False))
+
+    def klasorden_don(self):
+        self.yigin.set_visible_child_name("ana")
+        self.arama.grab_focus()
+
+    def ilkini_ac(self, *_):
+        s = self.satirlar()
+        if s:
+            s[0][0].clicked()
+
+    def tus(self, _w, ev):
+        k = ev.keyval
+        if k == Gdk.KEY_Escape:
+            if self.yigin.get_visible_child_name() == "klasor":
+                self.klasorden_don()
+            elif self.arama.get_text():
+                self.arama.set_text("")
+            else:
+                self.gizle()
+            return True
+        odak = self.get_focus()
+        aramada = odak is self.arama or self.arama.is_focus()
+        if k in (Gdk.KEY_Down, Gdk.KEY_Up):
+            return self.hareket(0, 1 if k == Gdk.KEY_Down else -1)
+        if k in (Gdk.KEY_Left, Gdk.KEY_Right) and not aramada:
+            return self.hareket(1 if k == Gdk.KEY_Right else -1, 0)
+        if k == Gdk.KEY_Insert and odak is not None and hasattr(odak, "app_info"):
+            self.pin_degistir(odak.app_info)
+            return True
+        if not aramada and ev.string and ev.string.isprintable() and not (ev.state & Gdk.ModifierType.CONTROL_MASK):
+            self.arama.grab_focus_without_selecting()
+        return False
+
+    def bos_tik(self, _w, ev):
+        self.gizle()
+        return True
+
+    def _panel_canlandir(self, acilis, bitince=None):
+        """Panel açılırken aşağıdan kayarak belirir, kapanırken tersine; ekranın kare saatine bağlı."""
+        if self.panel_anim:
+            self.dis.remove_tick_callback(self.panel_anim)
+        o0, basla = self.dis.get_opacity(), None
+        hedef, sure = (1.0, 240) if acilis else (0.0, 170)
+
+        def adim(_w, saat):
+            nonlocal basla
+            simdi = saat.get_frame_time()
+            if basla is None:
+                basla = simdi
+            k = min(1.0, (simdi - basla) / 1000 / sure)
+            e = 1 - (1 - k) ** 3 if acilis else k ** 2
+            o = o0 + (hedef - o0) * e
+            self.dis.set_opacity(o)
+            self.dis.set_margin_top(int((1 - o) * 48))  # dikey ortalı: 48 px kenar boşluğu ≈ 24 px kayma
+            if k >= 1.0:
+                self.panel_anim = None
+                if bitince:
+                    bitince()
+                return GLib.SOURCE_REMOVE
+            return GLib.SOURCE_CONTINUE
+
+        self.panel_anim = self.dis.add_tick_callback(adim)
+
+    def goster(self):
+        self.kapaniyor = False
+        if not self.get_visible():
+            if self.damga() != self.son_damga:
+                self.yukle()
+            self.tema()
+            self.arama.set_text("")
+            self.yigin.set_visible_child_name("ana")
+            self.uyarla()
+            self.alt_yenile()
+            self.dis.set_opacity(0.0)
+            self.dis.set_margin_top(48)
+            self.show_all()
+            self.present()
+            self.arama.grab_focus()
+        self._panel_canlandir(True)
+
+    def gizle(self):
+        if self.kapaniyor or not self.get_visible():
+            return
+        self.kapaniyor = True
+        self.onizleme.kapat()
+
+        def bitti():
+            if self.kapaniyor:
+                self.kapaniyor = False
+                self.hide()
+
+        self._panel_canlandir(False, bitti)
+
+    def degistir(self):
+        GLib.idle_add(lambda: (self.gizle() if self.get_visible() and not self.kapaniyor else self.goster()) and False)
+        return GLib.SOURCE_CONTINUE
+
+
+def main():
+    os.environ.setdefault("GDK_BACKEND", "wayland")
+    w = Izgara()
+    w.tema()
+    w.olay_dinle()
+    PIDFILE.write_text(str(os.getpid()))
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGUSR1, w.degistir)
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGTERM, lambda: Gtk.main_quit() or False)
+    if "--goster" in sys.argv:
+        GLib.idle_add(lambda: w.goster() and False)
+    Gtk.main()
+
+
+if __name__ == "__main__":
+    main()

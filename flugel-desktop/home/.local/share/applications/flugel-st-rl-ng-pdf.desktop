@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Stirling PDF
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:8095/
+Exec=google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:41443/
+Icon=application-pdf
+Categories=Network;

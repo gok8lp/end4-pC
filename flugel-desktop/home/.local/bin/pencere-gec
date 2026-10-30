@@ -1,0 +1,7 @@
+#!/bin/bash
+# pencere-gec — Alt+Tab: en son kullanılan önceki pencereye geç (MRU), çalışma alanı farklıysa oraya gider, pencereyi öne alır.
+adr=$(hyprctl clients -j | python3 -c "
+import json,sys
+c=[w for w in json.load(sys.stdin) if w['mapped'] and not w['hidden'] and w['focusHistoryID']==1]
+print(c[0]['address'] if c else '')")
+[ -n "$adr" ] && hyprctl dispatch "hl.dsp.focus({ window = 'address:$adr' })" >/dev/null

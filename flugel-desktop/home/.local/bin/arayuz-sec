@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -eu
+state="${XDG_STATE_HOME:-$HOME/.local/state}/arayuz-secimi"
+choice="${1:-menu}"
+if [[ "$choice" == menu ]]; then
+    choice=$(printf 'end4-pC
+Caelestia
+' | fuzzel --dmenu --prompt 'Arayüz: ') || exit 0
+fi
+if [[ "$choice" == baslat ]]; then
+    choice=$(cat "$state" 2>/dev/null || printf Caelestia)
+fi
+case "$choice" in
+end4-pC)
+    qs kill -c caelestia >/dev/null 2>&1 || true
+    qs kill -c caelestia-aw >/dev/null 2>&1 || true
+    export ILLOGICAL_IMPULSE_VIRTUAL_ENV="$HOME/.local/share/end4-pc/venv"
+    export PATH="$HOME/.local/bin:$ILLOGICAL_IMPULSE_VIRTUAL_ENV/bin:$PATH"
+    export QT_QPA_PLATFORM=wayland
+    qs -c end4-pC -n -d >"${state}.log" 2>&1
+    sleep 2
+    if ! qs list -c end4-pC 2>/dev/null | grep -q 'Process ID'; then
+        caelestia shell -d
+        notify-send 'Arayüz' 'end4-pC açılamadı; Caelestia geri yüklendi.'
+        exit 1
+    fi
+    printf 'end4-pC\n' > "$state"
+    video=$(python3 -c 'import json,os; print(json.load(open(os.path.expanduser("~/.config/illogical-impulse/config.json")))["background"]["wallpaperPath"])')
+    case "$video" in
+      *.mp4|*.webm|*.mkv|*.mov) "$HOME/.local/bin/hareketli-duvar" "$video" ;;
+    esac
+    ;;
+Caelestia|caelestia)
+    choice=Caelestia
+    qs kill -c end4-pC >/dev/null 2>&1 || true
+    qs kill -p "$HOME/.config/quickshell/end4-pC/welcome.qml" >/dev/null 2>&1 || true
+    pkill -x mpvpaper >/dev/null 2>&1 || true
+    hyprctl reload >/dev/null
+    printf 'Caelestia\n' > "$state"
+    if [[ -f "$HOME/.local/share/caelestia-aw/ready" ]]; then
+      "$HOME/.local/bin/caelestia" shell -d
+    else
+      /usr/bin/caelestia shell -d
+    fi
+    ;;
+*) exit 1 ;;
+esac
+printf '%s
+' "$choice" > "$state"
+notify-send 'Arayüz' "$choice etkin. Geçiş menüsü: Super + Ctrl + F12"

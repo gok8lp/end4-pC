@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Homepage
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:3010/
+Exec=/usr/bin/google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:37443/
+Icon=user-home
+Categories=Network;

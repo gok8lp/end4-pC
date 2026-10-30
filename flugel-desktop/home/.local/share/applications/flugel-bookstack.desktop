@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=BookStack
+Comment=flugelserver: https://flugelserver.tail42f1f4.ts.net:46443/
+Exec=/usr/bin/google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:46443/
+Icon=accessories-dictionary
+Categories=Network;

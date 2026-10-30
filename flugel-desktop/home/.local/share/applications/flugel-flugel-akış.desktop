@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=FLUGEL Akış
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:3012
+Exec=/usr/bin/google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:8443/
+Icon=feedreader
+Categories=Network;

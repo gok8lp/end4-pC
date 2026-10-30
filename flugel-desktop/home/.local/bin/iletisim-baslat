@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+"""Start enabled Win+D apps without opening the special workspace."""
+import fcntl,json,os,pathlib,subprocess
+home=pathlib.Path.home()
+lock=open(pathlib.Path(os.environ['XDG_RUNTIME_DIR'])/'iletisim-baslat.lock','w')
+try:
+    fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+except BlockingIOError:
+    raise SystemExit(0)
+config=json.loads((home/'.config/caelestia/cli.json').read_text())
+clients=json.loads(subprocess.check_output(['/usr/bin/hyprctl','clients','-j']))
+apps=config['toggles']['communication']
+state=home/'.local/state'
+state.mkdir(parents=True,exist_ok=True)
+with (state/'iletisim-baslangic.log').open('a') as log:
+    for name in ('whatsapp','telegram','discord'):
+        app=apps.get(name,{})
+        if not app.get('enable') or not app.get('command'):
+            continue
+        classes=[r.get('class') for r in app.get('match',[]) if r.get('class')]
+        if any(c.get('class') in classes for c in clients):
+            continue
+        if name=='discord':
+            subprocess.run(['/usr/bin/nm-online','--quiet','--timeout=60'],check=False)
+        subprocess.Popen(app['command'],stdout=log,stderr=log,start_new_session=True)

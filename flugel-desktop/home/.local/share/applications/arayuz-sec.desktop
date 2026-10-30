@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Arayüz Seç
+Exec=/home/flugel/.local/bin/arayuz-sec 
+Icon=preferences-desktop-theme
+Categories=Settings;DesktopSettings;
+Terminal=false

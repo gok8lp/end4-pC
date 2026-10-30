@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Prowlarr
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:9696/
+Exec=/usr/bin/google-chrome-stable --app=http://flugelserver.tail42f1f4.ts.net:9696/
+Icon=applications-internet
+Categories=Network;

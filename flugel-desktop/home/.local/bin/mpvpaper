@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eu
+case "${1:-}" in -h|--help|-d|--help-output) exec "$HOME/.local/libexec/mpvpaper" "$@" ;; esac
+exec systemd-run --user --collect --quiet --unit="end4-wallpaper-$RANDOM" --setenv="WAYLAND_DISPLAY=$WAYLAND_DISPLAY" --setenv="DISPLAY=${DISPLAY:-}" "$HOME/.local/libexec/mpvpaper" "$@"

@@ -1,0 +1,2 @@
+Defaults!/usr/local/libexec/discord-mullvad-run env_keep += "WAYLAND_DISPLAY DISPLAY XAUTHORITY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP LANG LC_ALL"
+flugel ALL=(root) NOPASSWD: /usr/local/libexec/discord-mullvad-run

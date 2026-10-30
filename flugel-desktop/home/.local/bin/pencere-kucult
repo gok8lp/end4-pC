@@ -1,0 +1,81 @@
+#!/bin/bash
+# pencere-kucult — Chrome'un "simge durumuna küçült" düğmesini (Hyprland'da olay üretmez) fare tıklamasından yakalar.
+#   tikla : sol tık bırakılınca çağrılır; imleç Chrome başlık çubuğundaki küçült düğmesindeyse pencereyi gizler.
+#   geri  : gizlenenlerden birini geri getirir (tek ise doğrudan, birden fazlaysa fuzzel listesi).
+#   dock <appId> : dock simgesi tıklaması (Windows görev çubuğu gibi): küçültülmüşse geri getir, açık ve odaktaysa küçült, değilse öne getir.
+#   Super+Alt+M ile geri.
+STATE="${XDG_STATE_HOME:-$HOME/.local/state}/pencere-kucult"; LIST="$STATE/liste"
+mkdir -p "$STATE"; touch "$LIST"
+mod_ws() { hyprctl dispatch "hl.dsp.window.move({ workspace = \"$1\", window = \"address:$2\", follow = false })" >/dev/null; }
+# Odaklarken Hyprland imleci pencereye taşıyor; dock tıklamasında imleç yerinde kalsın
+odakla() { # $1 adres
+  local cx cy
+  read -r cx cy < <(hyprctl -j cursorpos | python3 -c "import json,sys;d=json.load(sys.stdin);print(d['x'],d['y'])")
+  hyprctl dispatch "hl.dsp.focus({ window = \"address:$1\" })" >/dev/null
+  hyprctl dispatch "hl.dsp.cursor.move({ x = $cx, y = $cy })" >/dev/null
+}
+
+kucult() { # $1 adres $2 başlık $3 çalışma alanı
+  printf '%s\t%s\t%s\n' "$1" "$3" "$2" >> "$LIST"
+  mod_ws "special:kucultulen" "$1"
+}
+
+geri_getir() { # $1 adres
+  local satir ws
+  if satir=$(grep -m1 "^$1"$'\t' "$LIST"); then
+    ws=$(cut -f2 <<<"$satir")
+    grep -v "^$1"$'\t' "$LIST" > "$LIST.tmp"; mv "$LIST.tmp" "$LIST"
+  else
+    ws=$(hyprctl -j activeworkspace | python3 -c "import json,sys;print(json.load(sys.stdin)['id'])")
+  fi
+  mod_ws "$ws" "$1"
+  odakla "$1"
+}
+
+case "$1" in
+  tikla)
+    read -r cx cy < <(hyprctl -j cursorpos | python3 -c "import json,sys;d=json.load(sys.stdin);print(d['x'],d['y'])")
+    hyprctl -j clients | python3 -c "
+import json,sys
+cx,cy=$cx,$cy
+for c in json.load(sys.stdin):
+    if c['class'] not in ('google-chrome','chromium','Google-chrome') or not c['mapped'] or c['hidden'] or c['workspace']['name'].startswith('special'): continue
+    x,y=c['at']; w,h=c['size']
+    rx=x+w-cx; ry=cy-y
+    if 61<=rx<=89 and 0<=ry<=40:
+        print(c['address'],c['workspace']['name'],c['title'].replace('\t',' '),sep='\t'); break
+" | while IFS=$'\t' read -r adr ws baslik; do kucult "$adr" "$baslik" "$ws"; done ;;
+  geri)
+    n=$(grep -c . "$LIST")
+    [ "$n" -eq 0 ] && { notify-send -a pencere-kucult "Küçültülmüş pencere yok" 2>/dev/null; exit 0; }
+    if [ "$n" -eq 1 ]; then geri_getir "$(cut -f1 "$LIST")"
+    else
+      sec=$(cut -f3 "$LIST" | fuzzel --dmenu --index --prompt "Geri getir: ") || exit 0
+      geri_getir "$(sed -n "$((sec+1))p" "$LIST" | cut -f1)"
+    fi ;;
+  dock)
+    id="${2,,}"
+    read -r eylem adr ws baslik < <(python3 - "$id" <<'PY'
+import json,subprocess,sys
+want=sys.argv[1]
+def hc(*a): return json.loads(subprocess.run(["hyprctl","-j",*a],capture_output=True,text=True).stdout)
+cl=[c for c in hc("clients") if c["mapped"] and want in (c["class"].lower(),c["initialClass"].lower(),c["class"].lower().replace(" ","-"))]
+act=hc("activewindow").get("address","")
+mini=[c for c in cl if c["workspace"]["name"]=="special:kucultulen"]
+if mini: c=mini[0]; e="ac"
+else:
+    a=[c for c in cl if c["address"]==act]
+    if a: c=a[0]; e="gizle"
+    elif cl: c=cl[0]; e="odak"
+    else: print("yok - - -"); sys.exit()
+print(e,c["address"],c["workspace"]["name"].replace(" ","_"),(c["title"] or "-").replace(" ","_"))
+PY
+)
+    case "$eylem" in
+      ac) geri_getir "$adr" ;;
+      gizle) kucult "$adr" "${baslik//_/ }" "$ws" ;;
+      odak) odakla "$adr" ;;
+      *) exit 1 ;;
+    esac ;;
+  *) echo "kullanım: $0 tikla|geri|dock <appId>" >&2; exit 2 ;;
+esac

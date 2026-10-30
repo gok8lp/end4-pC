@@ -1,0 +1,5 @@
+#!/bin/bash
+# sunucudan-gonder <sunucudaki-dosya> <cihaz> — sunucudaki bir dosyayı doğrudan başka Tailnet cihazına (Taildrop) yollar;
+# veri PC'den geçmez. Örn: sunucudan-gonder /mnt/sidemain/media/film.mkv gokalp-1
+[ "$#" -eq 2 ] || { echo "kullanım: sunucudan-gonder /sunucu/yolu cihaz-adı" >&2; exit 2; }
+ssh -o BatchMode=yes -i "$HOME/.ssh/id_ed25519_homeserver" flugel@192.168.0.15 "sudo -n tailscale file cp $(printf %q "$1") $(printf %q "$2"):"

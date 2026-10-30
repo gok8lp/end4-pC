@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=all/all;
+Actions=TaildropGonder
+Icon=network-wireless
+
+[Desktop Action TaildropGonder]
+Name=Cihaza gönder (Taildrop)
+Icon=network-wireless
+Exec=taildrop-gonder %F

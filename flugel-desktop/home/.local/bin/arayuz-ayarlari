@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+if qs list -c end4-pC 2>/dev/null | grep -q 'Process ID'; then
+  qs ipc -c end4-pC call settings openPresets
+else
+  if [[ -f "$HOME/.local/share/caelestia-aw/ready" ]]; then
+    qs ipc -c caelestia-aw call nexus open
+  else
+    qs ipc -c caelestia call nexus open
+  fi
+fi

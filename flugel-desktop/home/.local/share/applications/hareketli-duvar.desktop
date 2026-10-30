@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Hareketli Duvar Kâğıdı
+Exec=/home/flugel/.local/bin/hareketli-duvar
+Icon=preferences-desktop-wallpaper
+Categories=Settings;DesktopSettings;
+Terminal=false

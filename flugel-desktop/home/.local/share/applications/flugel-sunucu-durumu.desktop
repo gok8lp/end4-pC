@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Sunucu Durumu
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:3011/durum
+Exec=/usr/bin/google-chrome-stable --app=http://flugelserver.tail42f1f4.ts.net:3011/durum
+Icon=utilities-system-monitor
+Categories=Network;

@@ -1,0 +1,33 @@
+[
+  {
+    "component": "end4-pC",
+    "url": "https://github.com/pctrade/end4-pC.git",
+    "commit": "74813a8219defc8d210c2055d6935fbfb9f93239"
+  },
+  {
+    "component": "caelestia-dots",
+    "url": "https://github.com/caelestia-dots/caelestia.git",
+    "commit": "c034621845453260b245692b13ce514e7371d735"
+  },
+  {
+    "component": "caelestia-cli-aw",
+    "url": "https://github.com/AdiAmbassador/caelestia-cli-aw.git",
+    "commit": "3a18a76a1baaf0b66a93bc5d39bbb28ad01138c8"
+  },
+  {
+    "component": "caelestia-shell-aw",
+    "url": "https://github.com/AdiAmbassador/caelestia-shell-aw.git",
+    "commit": "82413c860e7394bc8aa45f36bfc146ccde14cc4f"
+  },
+  {
+    "component": "mpvpaper",
+    "url": "https://github.com/GhostNaN/mpvpaper.git",
+    "commit": "fc5ed285d657c31fbd063b854884ea00e72d2d51"
+  },
+  {
+    "component": "matugen",
+    "url": "https://github.com/InioX/matugen",
+    "tag": "v4.2.0",
+    "release": "https://github.com/InioX/matugen/releases/tag/v4.2.0"
+  }
+]

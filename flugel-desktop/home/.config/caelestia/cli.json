@@ -1,0 +1,71 @@
+{
+    "toggles": {
+        "music": {
+            "spotify": {
+                "command": [
+                    "spotify"
+                ]
+            }
+        },
+        "communication": {
+            "telegram": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "org.telegram.desktop"
+                    }
+                ],
+                "command": [
+                    "Telegram"
+                ],
+                "move": true
+            },
+            "signal": {
+                "enable": false
+            },
+            "whatsapp": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "com.rtosta.zapzap"
+                    }
+                ],
+                "command": [
+                    "flatpak",
+                    "run",
+                    "com.rtosta.zapzap"
+                ],
+                "move": true
+            },
+            "discord": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "discord"
+                    }
+                ],
+                "command": [
+                    "/home/flugel/.local/bin/discord-mullvad"
+                ],
+                "move": true
+            }
+        },
+        "todo": {
+            "todoist": {
+                "enable": false
+            },
+            "obsidian": {
+                "enable": true,
+                "match": [
+                    {
+                        "class": "obsidian"
+                    }
+                ],
+                "command": [
+                    "obsidian"
+                ],
+                "move": true
+            }
+        }
+    }
+}

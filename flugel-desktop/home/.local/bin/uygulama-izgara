@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+# uygulama-izgara — Super+A: Ubuntu tarzı tam ekran uygulama ızgarası (nwg-drawer).
+# nwg-drawer arka planda hazır bekler (-r), tuşa basınca anında açılır/kapanır (SIGUSR1).
+# Renkler Caelestia'nın şemasından gelir; şema değişince CSS yenilenir ve hazır kopya yeniden başlatılır.
+# "--baslat": açılışta sadece hazırla, gösterme.
+import json
+import os
+import signal
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+HOME = Path.home()
+CSS = HOME / ".config/nwg-drawer/caelestia.css"
+SADECE_HAZIRLA = "--baslat" in sys.argv
+PIDFILE = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "nwg-drawer.pid"
+
+
+def drawer_pid():
+    # pkill/pgrep tüm süreçleri taradığı için ~100 ms sürüyor; PID dosyası anında
+    try:
+        pid = int(PIDFILE.read_text())
+        if Path(f"/proc/{pid}/comm").read_text().strip() == "nwg-drawer":
+            return pid
+    except (OSError, ValueError):
+        pass
+    return None
+
+try:
+    s = json.loads((HOME / ".local/state/caelestia/scheme.json").read_text())
+    c, light = s["colours"], s.get("mode") == "light"
+except (OSError, ValueError, KeyError):
+    c, light = {}, False
+
+
+def col(name, fallback):
+    return "#" + c.get(name, fallback)
+
+
+def rgba(name, fallback, a):
+    h = c.get(name, fallback)
+    return f"rgba({int(h[0:2], 16)}, {int(h[2:4], 16)}, {int(h[4:6], 16)}, {a})"
+
+
+CSS.parent.mkdir(parents=True, exist_ok=True)
+yeni_css = (f"""
+* {{ font-family: "Rubik", "Noto Sans", sans-serif; }}
+
+window {{
+    background-color: {rgba("surface", "1c1b1a", 0.72 if light else 0.68)};
+    color: {col("onSurface", "e6e2df")};
+}}
+
+/* arama kutusu */
+entry {{
+    min-height: 44px;
+    min-width: 520px;
+    margin: 28px 0 8px 0;
+    padding: 0 18px;
+    font-size: 17px;
+    border-radius: 999px;
+    border: 2px solid {rgba("outlineVariant", "49473f", 0.6)};
+    background-color: {col("surfaceContainerHigh", "2b2a28")};
+    color: {col("onSurface", "e6e2df")};
+    box-shadow: none;
+}}
+entry:focus {{ border-color: {col("primary", "cac6b0")}; }}
+
+button, image {{ background: none; border: none; box-shadow: none; }}
+#category-button image {{ margin-right: 6px; min-height: 0; padding: 0; }}
+#category-button label {{ padding: 7px 0; min-height: 0; }}
+
+/* uygulama düğmeleri */
+button {{
+    border-radius: 22px;
+    padding: 10px 6px;
+    margin: 4px;
+    color: {col("onSurface", "e6e2df")};
+    font-size: 13px;
+    transition: background-color 120ms ease;
+}}
+button:hover, button:focus {{
+    background-color: {rgba("primaryContainer", "4a4838", 0.85)};
+    color: {col("onPrimaryContainer", "e6e2c8")};
+}}
+
+/* kategori düğmeleri */
+#category-button {{
+    margin: 0 3px 14px 3px;
+    padding: 0 14px;
+    min-height: 0;
+    border-radius: 999px;
+    font-size: 13px;
+    background-color: {rgba("surfaceContainerHigh", "2b2a28", 0.9)};
+}}
+#category-button:checked, #category-button:hover {{
+    background-color: {col("primary", "cac6b0")};
+    color: {col("onPrimary", "1c1b1a")};
+}}
+
+#pinned-box {{ padding-bottom: 10px; border-bottom: 1px solid {rgba("outlineVariant", "49473f", 0.5)}; }}
+#files-box {{ padding: 8px; border: 1px solid {rgba("outlineVariant", "49473f", 0.5)}; border-radius: 22px; }}
+#math-label {{ font-weight: bold; font-size: 18px; }}
+label {{ color: {col("onSurfaceVariant", "cac6bb")}; }}
+""")
+
+pid = drawer_pid()
+eski_css = CSS.read_text() if CSS.exists() else ""
+
+if pid and eski_css == yeni_css:
+    os.utime(CSS)  # hızlı yol (izgara-ac) şemayı yeniden kontrol etmesin
+    if not SADECE_HAZIRLA:
+        os.kill(pid, signal.SIGUSR1)  # anında aç/kapat
+    raise SystemExit
+
+# ilk açılış ya da tema değişti: CSS'i yaz, hazır kopyayı (yeniden) başlat
+CSS.write_text(yeni_css)
+if pid:
+    os.kill(pid, signal.SIGTERM)
+    time.sleep(0.2)
+proc = subprocess.Popen(["nwg-drawer", "-r", "-s", CSS.name, "-term", "foot", "-fm", "dolphin",
+                  "-c", "7", "-is", "64", "-spacing", "28",
+                  "-ovl", "-nofs"],
+                 start_new_session=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+PIDFILE.write_text(str(proc.pid))
+if not SADECE_HAZIRLA:
+    time.sleep(0.8)  # ilk yükleme; sonraki açılışlar anında
+    os.kill(proc.pid, signal.SIGUSR2)

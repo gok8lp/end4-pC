@@ -1,0 +1,17 @@
+#!/bin/bash
+# tailscale-durum — çubuk simgesi için tek satır: ts=running|stopped|yok mullvad=connected|disconnected|yok peers=N
+ts=yok; peers=0
+if command -v tailscale >/dev/null; then
+  j=$(tailscale status --json 2>/dev/null)
+  if [ -n "$j" ]; then
+    read -r ts peers < <(python3 -c "
+import json,sys
+d=json.loads(sys.argv[1]); st=d.get('BackendState','')
+print('running' if st=='Running' else 'stopped', sum(1 for p in d.get('Peer',{}).values() if p.get('Online')))" "$j" 2>/dev/null || echo "yok 0")
+  fi
+fi
+mv=yok
+if command -v mullvad >/dev/null; then
+  case "$(mullvad status 2>/dev/null | head -1)" in Connected*) mv=connected;; Disconnected*|Connecting*|Disconnecting*) mv=disconnected;; esac
+fi
+echo "ts=$ts mullvad=$mv peers=$peers"

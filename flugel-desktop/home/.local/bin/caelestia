@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if [[ $(cat "$HOME/.local/state/arayuz-secimi" 2>/dev/null) == Caelestia && -f "$HOME/.local/share/caelestia-aw/ready" ]]; then
+  export QML_IMPORT_PATH="$HOME/.local/share/caelestia-aw/qml${QML_IMPORT_PATH:+:$QML_IMPORT_PATH}"
+  exec "$HOME/.local/share/caelestia-aw/venv/bin/caelestia" "$@"
+fi
+exec /usr/bin/caelestia "$@"

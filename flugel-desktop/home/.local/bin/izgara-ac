@@ -1,0 +1,10 @@
+#!/bin/bash
+# izgara-ac — Super+A: klasörlü uygulama ızgarası (uygulama-klasor). Hazırsa sinyal gönderir (~5 ms), değilse başlatır.
+# "--baslat": açılışta sadece hazırla. Eski nwg-drawer sürümü: ~/kurulum/izgara-ac.nwg-yedek
+pid=$(cat "${XDG_RUNTIME_DIR:-/tmp}/uygulama-klasor.pid" 2>/dev/null)
+if [ -n "$pid" ] && grep -q uygulama-klasor "/proc/$pid/cmdline" 2>/dev/null; then
+  [ "$1" = --baslat ] || exec kill -USR1 "$pid"
+  exit 0
+fi
+if [ "$1" = --baslat ]; then setsid -f ~/.local/bin/uygulama-klasor >/dev/null 2>&1
+else setsid -f ~/.local/bin/uygulama-klasor --goster >/dev/null 2>&1; fi

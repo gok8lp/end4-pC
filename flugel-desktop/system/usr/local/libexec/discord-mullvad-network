@@ -1,0 +1,60 @@
+#!/usr/bin/python3
+import fcntl,json,os,pathlib,subprocess,sys,time
+NS='discord-mullvad'
+IP='/usr/bin/ip'
+def run(*args,**kw):
+    return subprocess.run(args,check=True,**kw)
+def ns(*args,**kw):
+    return run(IP,'netns','exec',NS,*args,**kw)
+def check():
+    p=ns('/usr/bin/curl','--noproxy','*','-fsS','--connect-timeout','5','--max-time','12','https://am.i.mullvad.net/json',capture_output=True,text=True)
+    d=json.loads(p.stdout)
+    if not d.get('mullvad_exit_ip'): raise RuntimeError('Mullvad exit verification failed')
+    return {'mullvad_exit_ip':True,'country':d.get('country'),'city':d.get('city')}
+def down():
+    subprocess.run([IP,'netns','del',NS],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+def up():
+    # Never change the host's routes, resolver, firewall, or Tailscale interface.
+    if 'Disconnected' not in run('/usr/bin/mullvad','status',capture_output=True,text=True).stdout:
+        raise RuntimeError('Disconnect the global Mullvad connection first')
+    d=json.load(open('/etc/mullvad-vpn/device.json'))['logged_in']['device']['wg_data']
+    w=json.load(open('/var/cache/mullvad-vpn/relays.json'))['wireguard']
+    relays=[r for r in w['relays'] if r['active'] and r['hostname'].startswith('bg-')]
+    if not relays: raise RuntimeError('No active Bulgaria relays found')
+    down()
+    run(IP,'netns','add',NS)
+    try:
+        run(IP,'link','add','dc-mullvad','type','wireguard')
+        run(IP,'link','set','dc-mullvad','netns',NS)
+        run(IP,'-n',NS,'link','set','lo','up')
+        run(IP,'-n',NS,'link','set','dc-mullvad','mtu','1280')
+        for addr in d['addresses'].values():
+            run(IP,'-n',NS,'address','add',addr,'dev','dc-mullvad')
+        run(IP,'-n',NS,'link','set','dc-mullvad','up')
+        run(IP,'-n',NS,'route','add','default','dev','dc-mullvad')
+        run(IP,'-n',NS,'-6','route','add','default','dev','dc-mullvad')
+        for r in relays[:3]:
+            config='[Interface]\nPrivateKey = '+d['private_key']+'\n[Peer]\nPublicKey = '+r['public_key']+'\nAllowedIPs = 0.0.0.0/0, ::/0\nEndpoint = '+r['ipv4_addr_in']+':51820\nPersistentKeepalive = 25\n'
+            # Pass keys over stdin, never argv or logs.
+            ns('/usr/bin/wg','setconf','dc-mullvad','/dev/stdin',input=config,text=True)
+            try:
+                result=check()
+                print(json.dumps(result),flush=True)
+                return
+            except Exception:
+                continue
+        raise RuntimeError('Unable to verify a Mullvad relay; Discord remains offline')
+    except Exception:
+        down()
+        raise
+if os.geteuid()!=0: sys.exit('Root required')
+try:
+    action=sys.argv[1]
+    if action=='up': up()
+    elif action=='down': down()
+    elif action=='check': print(json.dumps(check()))
+    else: raise ValueError('Invalid action')
+except Exception as e:
+    # Do not include device contents or private key in diagnostic output.
+    print('Discord VPN: '+type(e).__name__+'; check system service status.',file=sys.stderr)
+    sys.exit(1)

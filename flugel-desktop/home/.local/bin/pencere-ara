@@ -1,0 +1,135 @@
+#!/usr/bin/python3 -S
+# pencere-ara — Super+Tab: açık pencereler (üstte) + yüklü uygulamalar arasında fuzzel ile arama.
+# Pencere seçilirse ona geçer, uygulama seçilirse açar. Renkler Caelestia'nın şu anki şemasından alınır.
+import json
+import os
+import re
+import subprocess
+from pathlib import Path
+
+HOME = Path.home()
+
+
+def scheme_colours():
+    try:
+        text = (HOME / ".config/hypr/scheme/current.lua").read_text()
+    except OSError:
+        return {}
+    return dict(re.findall(r'(\w+)\s*=\s*"([0-9a-fA-F]{6})"', text))
+
+
+def windows():
+    try:
+        out = subprocess.run(["hyprctl", "clients", "-j"], capture_output=True, text=True).stdout
+        clients = json.loads(out)
+    except (OSError, ValueError):
+        return []
+    clients = [c for c in clients if c.get("mapped") and c.get("title")]
+    clients.sort(key=lambda c: c.get("focusHistoryID", 99))
+    return clients
+
+
+APP_DIRS = [HOME / ".local/share/applications", Path("/usr/share/applications"),
+            HOME / ".local/share/flatpak/exports/share/applications",
+            Path("/var/lib/flatpak/exports/share/applications")]
+CACHE = HOME / ".cache/pencere-ara.json"
+PIDFILE = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "pencere-ara.pid"
+
+
+def apps():
+    # uygulama klasörleri değişmediyse önbellekten oku (her basışta ~300 ms kazanç)
+    stamp = [d.stat().st_mtime for d in APP_DIRS if d.is_dir()]
+    try:
+        cached = json.loads(CACHE.read_text())
+        if cached["stamp"] == stamp:
+            return [tuple(a) for a in cached["apps"]]
+    except (OSError, ValueError, KeyError):
+        pass
+
+    import configparser
+    seen, result = set(), []
+    for d in APP_DIRS:
+        if not d.is_dir():
+            continue
+        for f in sorted(d.glob("*.desktop")):
+            if f.name in seen:
+                continue
+            seen.add(f.name)
+            cp = configparser.ConfigParser(interpolation=None, strict=False)
+            try:
+                cp.read(f, encoding="utf-8")
+                e = cp["Desktop Entry"]
+            except (configparser.Error, KeyError, UnicodeDecodeError):
+                continue
+            if e.get("Type") != "Application" or e.get("NoDisplay", "").lower() == "true" \
+                    or e.get("Hidden", "").lower() == "true":
+                continue
+            result.append((e.get("Name", f.stem), e.get("Icon", ""), f.name[:-8], e.get("StartupWMClass", "")))
+    result.sort(key=lambda a: a[0].lower())
+    try:
+        CACHE.parent.mkdir(parents=True, exist_ok=True)
+        CACHE.write_text(json.dumps({"stamp": stamp, "apps": result}))
+    except OSError:
+        pass
+    return result
+
+
+def main():
+    # ikinci Super+Tab: açıksa kapat (pkill ~100 ms sürüyor; PID dosyası anında)
+    try:
+        pid = int(PIDFILE.read_text())
+        if Path(f"/proc/{pid}/comm").read_text().strip() == "fuzzel":
+            os.kill(pid, 15)
+            return
+    except (OSError, ValueError):
+        pass
+    wins, aps = windows(), apps()
+    entries = []
+    # pencere sınıfından simge bul (ör. com.anthropic.Claude -> Claude'un .desktop simgesi)
+    icon_for = {}
+    for name, icon, app_id, wmclass in aps:
+        for k in (wmclass, app_id, name):
+            if k:
+                icon_for.setdefault(k.lower(), icon)
+    for c in wins:
+        cls = c["class"]
+        c["_icon"] = icon_for.get(cls.lower()) or icon_for.get(cls.split(".")[-1].lower()) or cls
+    for c in wins:
+        ws = c["workspace"]["name"]
+        ws = "special" if ws.startswith("special") else ws
+        entries.append(f"[{ws}]  {c['title']}\0icon\x1f{c['_icon']}")
+    for name, icon, _, _ in aps:
+        entries.append(f"{name}\0icon\x1f{icon}")
+
+    s = scheme_colours()
+    cmd = ["fuzzel", "--dmenu", "--index", "--prompt", "  ", "--placeholder",
+           "Search windows or apps…", "--lines", "12", "--width", "50"]
+    if s:
+        cmd += ["--background-color", s.get("surfaceContainer", "282c34") + "f0",
+                "--text-color", s.get("onSurface", "abb2bf") + "ff",
+                "--prompt-color", s.get("primary", "d19a66") + "ff",
+                "--input-color", s.get("onSurface", "abb2bf") + "ff",
+                "--match-color", s.get("primary", "be5046") + "ff",
+                "--selection-color", s.get("primaryContainer", "d19a66") + "ff",
+                "--selection-text-color", s.get("onPrimaryContainer", "abb2bf") + "ff",
+                "--selection-match-color", s.get("onPrimaryContainer", "be5046") + "ff",
+                "--border-color", s.get("primary", "d19a66") + "aa"]
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
+    PIDFILE.write_text(str(proc.pid))
+    out, _ = proc.communicate("\n".join(entries))
+    if proc.returncode != 0 or not out.strip().isdigit():
+        return
+    i = int(out.strip())
+    if i < len(wins):
+        addr = wins[i]["address"]
+        subprocess.run(["hyprctl", "dispatch", f'hl.dsp.focus({{ window = "address:{addr}" }})'],
+                       capture_output=True)
+    else:
+        app_id = aps[i - len(wins)][2]
+        subprocess.Popen(["gtk-launch", app_id], start_new_session=True,
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+if __name__ == "__main__":
+    os.environ.setdefault("LANG", "en_US.UTF-8")
+    main()

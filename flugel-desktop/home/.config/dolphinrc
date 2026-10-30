@@ -1,0 +1,15 @@
+[General]
+Version=202
+ViewPropsTimestamp=2026,10,25,23,15,45.999
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[MainWindow]
+MenuBar=Disabled
+
+[PreviewSettings]
+MaximumRemoteSize=67108864
+Plugins=directorythumbnail,imagethumbnail,jpegthumbnail,rawthumbnail
+

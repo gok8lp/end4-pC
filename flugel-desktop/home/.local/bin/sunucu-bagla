@@ -1,0 +1,12 @@
+#!/bin/bash
+# sunucu-bagla [ayir] — sunucu disklerini ~/Sunucu/ altına SSHFS ile bağlar (tüm uygulamalar normal klasör gibi görür).
+KOK="$HOME/Sunucu"; ANAHTAR="$HOME/.ssh/id_ed25519_homeserver"; SUNUCU=flugel@192.168.0.15
+DISKLER=(side:/mnt/side sidemain:/mnt/sidemain sistem:/)
+if [ "${1:-}" = ayir ]; then
+  for d in "${DISKLER[@]}"; do fusermount3 -u "$KOK/${d%%:*}" 2>/dev/null && echo "ayrıldı: ${d%%:*}"; done; exit 0
+fi
+for d in "${DISKLER[@]}"; do
+  ad=${d%%:*}; yol=${d#*:}; mkdir -p "$KOK/$ad"
+  mountpoint -q "$KOK/$ad" && { echo "zaten bağlı: $ad"; continue; }
+  sshfs -o IdentityFile="$ANAHTAR",BatchMode=yes,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,compression=no,cache_timeout=20 "$SUNUCU:$yol" "$KOK/$ad" && echo "bağlandı: $ad ($yol)"
+done

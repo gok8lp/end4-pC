@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=end4-pC Arayüzü
+Exec=/home/flugel/.local/bin/arayuz-sec end4-pC
+Icon=preferences-desktop-theme
+Categories=Settings;DesktopSettings;
+Terminal=false

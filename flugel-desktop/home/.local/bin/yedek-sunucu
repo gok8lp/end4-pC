@@ -1,0 +1,30 @@
+#!/bin/bash
+# yedek-sunucu — bu PC'nin önemli dosyalarını home server'a (LAN) tarihli, hardlink'li anlık görüntüler olarak yedekler.
+# Yerelde ek yedek TUTMAZ (PC'de alan dar). Hedef: flugel@192.168.0.15:/mnt/side/backups/linux-pc/snap/<tarih>
+# Kullanım: yedek-sunucu [--kuru] ; geri yükleme: yedek-geri
+set -u
+SUNUCU=flugel@192.168.0.15; ANAHTAR="$HOME/.ssh/id_ed25519_homeserver"; HEDEF=/mnt/side/backups/linux-pc
+SSH="ssh -o BatchMode=yes -o ConnectTimeout=6 -i $ANAHTAR"
+KAYNAKLAR=(
+  .config/hypr .config/caelestia .config/quickshell .config/illogical-impulse .config/matugen .config/fish
+  .config/foot .config/fuzzel .config/btop .config/gtk-3.0 .config/gtk-4.0 .config/chrome-flags.conf
+  .config/mimeapps.list .config/user-dirs.dirs .config/kdeglobals .config/kwinrc
+  .local/bin .local/share/user-places.xbel .local/share/kio/servicemenus .local/share/applications
+  .claude/skills .claude/knowledge .claude/CLAUDE.md .ssh/config .ssh/known_hosts
+  Documents Projects Pictures/Wallpapers
+)
+HARIC=(--exclude=node_modules --exclude=__pycache__ --exclude='*.part' --exclude=.cache --exclude=ayar
+       --exclude='id_*' --exclude='.credentials.json' --exclude='*.sock' --exclude='.venv' --exclude=target)
+kuru=""; [ "${1:-}" = --kuru ] && kuru="--dry-run"
+$SSH "$SUNUCU" true 2>/dev/null || { echo "Sunucuya ulaşılamadı (LAN); yedek atlandı."; exit 0; }
+tarih=$(date +%Y%m%d-%H%M%S)
+son=$($SSH "$SUNUCU" "mkdir -p $HEDEF/snap && ls -1 $HEDEF/snap | grep -v partial | tail -1")
+mevcut=(); cd "$HOME" || exit 1
+for k in "${KAYNAKLAR[@]}"; do [ -e "$k" ] && mevcut+=("$k"); done
+link=(); [ -n "$son" ] && link=(--link-dest="$HEDEF/snap/$son")
+rsync -aHR $kuru --delete --info=stats1 "${link[@]}" "${HARIC[@]}" -e "$SSH" "${mevcut[@]}" "$SUNUCU:$HEDEF/snap/$tarih.partial/" || { echo "rsync HATA"; exit 1; }
+[ -n "$kuru" ] && { echo "(kuru çalıştırma — hiçbir şey yazılmadı)"; exit 0; }
+$SSH "$SUNUCU" "mv $HEDEF/snap/$tarih.partial $HEDEF/snap/$tarih && echo '$tarih' > $HEDEF/son"
+# saklama: en yeni 14 anlık görüntü + son 8 haftanın pazar günkü olanları
+$SSH "$SUNUCU" "cd $HEDEF/snap && ls -1 | grep -v partial | head -n -14 | while read d; do dow=\$(date -d \"\${d:0:8}\" +%u 2>/dev/null); age=\$(( (\$(date +%s) - \$(date -d \"\${d:0:8}\" +%s)) / 86400 )); if [ \"\$dow\" = 7 ] && [ \$age -le 56 ]; then :; else rm -rf \"\$d\"; fi; done"
+echo "Yedek tamam: $tarih ($(printf '%s ' "${mevcut[@]}" | wc -w) kaynak)"

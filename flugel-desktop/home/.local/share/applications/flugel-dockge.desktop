@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Dockge
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:5001/
+Exec=/usr/bin/google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:31443/
+Icon=docker
+Categories=Network;

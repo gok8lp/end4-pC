@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Sonarr
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:8989/
+Exec=/usr/bin/google-chrome-stable --app=http://flugelserver.tail42f1f4.ts.net:8989/
+Icon=sonarr
+Categories=Network;

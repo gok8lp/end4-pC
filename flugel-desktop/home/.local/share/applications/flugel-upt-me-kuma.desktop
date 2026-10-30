@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Uptime Kuma
+Comment=flugelserver: http://flugelserver.tail42f1f4.ts.net:3004/
+Exec=google-chrome-stable --app=http://flugelserver.tail42f1f4.ts.net:3004/
+Icon=utilities-system-monitor
+Categories=Network;

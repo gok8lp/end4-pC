@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -eu
+file="${1:-}"
+if [[ -z "$file" ]]; then
+  file=$(zenity --file-selection --title='Duvar kâğıdı seç' --filename="$HOME/Pictures/Wallpapers/Animated/" --file-filter='Resim ve video | *.mp4 *.webm *.mkv *.mov *.png *.jpg *.jpeg *.webp') || exit 0
+fi
+[[ -f "$file" ]] || exit 1
+if [[ $(cat "$HOME/.local/state/arayuz-secimi" 2>/dev/null) == Caelestia ]]; then
+  "$HOME/.local/bin/caelestia" wallpaper -f "$file"
+else
+  export ILLOGICAL_IMPULSE_VIRTUAL_ENV="$HOME/.local/share/end4-pc/venv"
+  export PATH="$HOME/.local/bin:$ILLOGICAL_IMPULSE_VIRTUAL_ENV/bin:$PATH"
+  "$HOME/.config/quickshell/end4-pC/scripts/colors/switchwall.sh" --image "$file" --mode dark >"$HOME/.local/state/end4-wallpaper.log" 2>&1
+fi

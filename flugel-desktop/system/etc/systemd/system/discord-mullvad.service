@@ -1,0 +1,14 @@
+[Unit]
+Description=Isolated Mullvad network for Discord
+Wants=network-online.target
+After=network-online.target mullvad-daemon.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/libexec/discord-mullvad-network up
+ExecStop=/usr/local/libexec/discord-mullvad-network down
+TimeoutStartSec=90
+
+[Install]
+WantedBy=multi-user.target

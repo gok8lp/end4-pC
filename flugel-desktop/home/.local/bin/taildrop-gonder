@@ -1,0 +1,17 @@
+#!/bin/bash
+# taildrop-gonder dosya... — Tailnet'te ÇEVRİMİÇİ cihazlardan birini seçtirip dosyaları Taildrop ile gönderir.
+[ "$#" -gt 0 ] || { echo "kullanım: taildrop-gonder dosya..." >&2; exit 2; }
+liste=$(tailscale status --json 2>/dev/null | python3 -c "
+import json,sys
+d=json.load(sys.stdin)
+for p in d.get('Peer',{}).values():
+    if p.get('Online'): print(p['HostName'], '(' + p.get('OS','?') + ')', sep='\t')
+")
+[ -n "$liste" ] || { notify-send -a Taildrop "Çevrimiçi cihaz yok" 2>/dev/null; echo "Çevrimiçi cihaz yok"; exit 1; }
+secim=$(printf '%s\n' "$liste" | fuzzel --dmenu --prompt "Taildrop → " ) || exit 0
+cihaz=${secim%%$'\t'*}; ok=0; hata=0
+for f in "$@"; do
+  if [ -d "$f" ]; then hata=$((hata+1)); echo "klasör gönderilemez (önce sıkıştır): $f"; continue; fi
+  tailscale file cp "$f" "$cihaz:" && ok=$((ok+1)) || hata=$((hata+1))
+done
+notify-send -a Taildrop "→ $cihaz" "$ok gönderildi, $hata hata" 2>/dev/null; echo "→ $cihaz: $ok gönderildi, $hata hata"

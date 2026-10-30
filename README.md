@@ -1,3 +1,19 @@
+# flugel'in End4-pC masaüstü
+
+[Resmî kaynak: pctrade/end4-pC](https://github.com/pctrade/end4-pC) üzerinden oluşturulmuş kişisel fork. 31 Ekim 2026 itibarıyla bu bilgisayarda çalışan End4-pC kaynak değişikliklerini; Caelestia/Hyprland ayarlarını, yerel uygulama ızgarasını, temaları, ilgili görselleri ve yardımcı betikleri içerir.
+
+- [Değişikliklerin ayrıntıları](flugel-desktop/DEGISIKLIKLER.md)
+- [Kurulum ve yedekli geri yükleme](flugel-desktop/KURULUM.md)
+- [Dosya bazında envanter](flugel-desktop/DOSYA-ENVANTERI.tsv)
+- [Kaynak depolar ve sabit sürümler](flugel-desktop/sources.json)
+- [Özgün dosya yolları ve SHA-256 kaydı](flugel-desktop/manifest.json)
+
+Kendi ayarlarım `flugel-desktop/` altında, End4-pC kaynak yamaları kendi özgün dosyalarındadır. Etkin oturum End4-pC'dir; Caelestia alternatif arayüz ve Hyprland tabanı olarak korunur. Kimlik bilgileri ve özel anahtarlar dahil edilmedi. Yapılandırma mevcut `flugel` kullanıcısı ve donanımı için kaydedildi; temiz makinede uçtan uca kurulum testi yapılmadı.
+
+---
+
+Aşağıdaki bölüm upstream README içeriğidir.
+
 
 
 

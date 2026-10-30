@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Portainer
+Comment=flugelserver: https://flugelserver.tail42f1f4.ts.net:30443/
+Exec=/usr/bin/google-chrome-stable --app=https://flugelserver.tail42f1f4.ts.net:30443/
+Icon=docker
+Categories=Network;
